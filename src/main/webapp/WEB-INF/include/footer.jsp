@@ -8,9 +8,9 @@
         InetAddress.getLocalHost().getHostAddress() + 
             ":" + request.getLocalPort() 
     %>
-    <a href="" target='_blank'>
-        關於作者
+    <a href="http://www.iecs.fcu.edu.tw/wSite/mp?mp=370201" target='_blank'>
+        逢甲大學資訊工程學系
     </a> 
-    <a href="MantadiaMobile.apk">下載服務生App</a> 
-    <a href="MantadiaEMenu.apk">下載電子菜單App</a>
+    <a href="">下載點餐系統APP</a> 
+    <a href="">下載行動逢甲APP</a>
 </div>

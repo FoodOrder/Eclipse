@@ -23,7 +23,7 @@
 <body>
 	<div class="container">
 
-	<form class="form-signin" method="post" action="Login.jsp">
+	<form class="form-signin" method="post" action="login.jsp">
 		<h3>登入</h3>
 	
 		<label for="InputEmail">電子郵件</label>
