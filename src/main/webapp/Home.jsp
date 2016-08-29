@@ -7,18 +7,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- 最新編譯和最佳化的 CSS -->
-<link rel="stylesheet"
+	<!-- 最新編譯和最佳化的 CSS -->
+	<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-<!-- 選擇性佈景主題 -->
-<link rel="stylesheet"
+	<!-- 選擇性佈景主題 -->
+	<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
-<!-- 最新編譯和最佳化的 JavaScript -->
-<script
+	<!-- 最新編譯和最佳化的 JavaScript -->
+	<script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+	
+<title>Home</title>
 </head>
 <body>
 	<div class="container">
