@@ -23,20 +23,24 @@
 <body>
 	<div class="container">
 
-	<form class="form-signin" method="post" action="login.jsp">
-		<h3>登入</h3>
+	<form class="form-signin" method="post" action="Login.jsp">
+	<div class="login-panel panel panel-default">
+		<div class="panel-heading"><h3>登入</h3></div>
 	
-		<label for="InputEmail">電子郵件</label>
-		<input type="email" class="form-control" name="InputEmail" placeholder="輸入電子郵件" requried autofocus>
+		<div class="panel-body">
+			<label for="InputEmail">電子郵件</label>
+			<input type="email" class="form-control" name="InputEmail" placeholder="輸入電子郵件" requried autofocus>
 
-		<label for="eInputPassword">密碼</label>
-		<input type="password" class="form-control" name="InputPassword" placeholder="輸入密碼" requried>
+			<label for="eInputPassword">密碼</label>
+			<input type="password" class="form-control" name="InputPassword" placeholder="輸入密碼" requried>
 		
-		<div class="checkbox">
-			<label> <input type="checkbox"> 記住我</label>
-		</div>
+			<div class="checkbox">
+				<label> <input type="checkbox"> 記住我</label>
+			</div>
 
-		<button type="submit" class="btn btn-default">登入</a>
+			<button type="submit" class="btn btn-default">登入</a>
+		</div>
+	</div>
 	</form>
 	</div>
 </body>

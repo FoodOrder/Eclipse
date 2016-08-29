@@ -3,26 +3,26 @@
     <h1>資料管理</h1>
     <ul>
         <li>
-            <a href="shop.jsp">店家資訊</a>
-            <a href='rev_shop.jsp'>[修改]</a>
+            <a href="users.jsp">使用者</a>
+            <a href='add_user.jsp'>[新增]</a>
         </li>
         <li>
-            <a href="menu.jsp">菜單</a>
-            <a href='rev_menu.jsp'>[修改]</a>
+            <a href="tables.jsp">餐桌</a>
+            <a href='add_table.jsp'>[新增]</a>
         </li>
         <li>
-            <a href="evaluation.jsp">評價</a>
-            <a href='rev_evaluation.jsp'>[修改]</a>
+            <a href="menu_types.jsp">菜單種類</a>
+            <a href='add_menu_type.jsp'>[新增]</a>
         </li>
         <li>
-            <a href="order.jsp">訂單管理</a>
-            <a href='rev_order.jsp'>[修改]</a>
+            <a href="menu_items.jsp">菜單項目</a>
+            <a href='add_menu_item.jsp'>[新增]</a>
         </li>
     </ul>
 
-    <h1>銷售紀錄</h1>
+    <h1>報表</h1>
     <ul>
-        <li><a href="guest.jsp">銷售客群</a></li>
+        <li><a href="table_status.jsp">餐桌狀態</a></li>
         <li><a href="daily_report.jsp">日報表</a></li>
     </ul>
 </div>

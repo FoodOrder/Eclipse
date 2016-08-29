@@ -24,12 +24,12 @@
 		isvalidshop = shopservice.isValidShop(Email, Password);	
 		
 		if(isvalidshop.equals(StringTrue)){
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("ShopInfo.jsp");
 		}
 		else{%>
 			<h3>登入失敗!</h3>
 			<br>
-			<a href=home.jsp>回到首頁</a>
+			<a href=Home.jsp>回到首頁</a>
 		<%}
 		
 	%>
