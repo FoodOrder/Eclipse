@@ -96,7 +96,7 @@ public class ShopDBManager {
 			Shop shop = new Shop();
 			if (rs.next()) {
 				shop.setID(rs.getInt("ID"));
-				shop.setShopName(rs.getString("userName"));
+				shop.setShopName(rs.getString("shopName"));
 				shop.setPassword(rs.getString("password"));
 				shop.setEmail(rs.getString("email"));
 				shop.setPhone(rs.getString("phone"));

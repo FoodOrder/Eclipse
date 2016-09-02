@@ -76,5 +76,4 @@ public class ShopService {
 	public List<Shop> listShops() {
 		return dbManager.listAllShops();
 	}
-
 }
