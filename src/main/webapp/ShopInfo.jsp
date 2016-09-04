@@ -400,6 +400,7 @@
                  								<td>
                  								店家名稱：
                  								<%=shopservice.getShop(email).getShopName() %>
+                 								<span><a href="">修改</a></span>
                  								</td>
                  							</tr>
                  							<tr>
