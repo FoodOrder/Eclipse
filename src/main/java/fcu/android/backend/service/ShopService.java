@@ -24,14 +24,29 @@ public class ShopService {
 	@Path("register")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Shop register(@FormParam("shopName") String userName, @FormParam("password") String password,
+	public Shop register(@FormParam("shopName") String shopName, @FormParam("password") String password,
 			@FormParam("email") String email, @FormParam("phone") String phone) {
 		Shop shop = new Shop();
-		shop.setShopName(userName);
+		shop.setShopName(shopName);
 		shop.setPassword(password);
 		shop.setEmail(email);
 		shop.setPhone(phone);
 		dbManager.addShop(shop);
+		return shop;
+	}
+	
+	@POST
+	@Path("update")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Shop update(@FormParam("shopName") String shopName, @FormParam("password") String password,
+			@FormParam("email") String email, @FormParam("phone") String phone) {
+		Shop shop = new Shop();
+		shop.setShopName(shopName);
+		shop.setPassword(password);
+		shop.setEmail(email);
+		shop.setPhone(phone);
+		dbManager.updateShop(shop);
 		return shop;
 	}
 

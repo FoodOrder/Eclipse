@@ -59,6 +59,42 @@ public class ShopDBManager {
 		}
 		return false;
 	}
+	
+	public boolean updateShop(Shop shop) {
+		Connection conn = database.getConnection();
+		PreparedStatement preStmt = null;
+		Statement stmt = null;
+		String sql = "UPDATE SHOP SET shopName=?, password=?, phone=? WHERE email=?";
+		String query = "SELECT * FROM SHOP";
+		try {
+			preStmt = conn.prepareStatement(sql);
+			preStmt.setString(1, shop.getShopName());
+			preStmt.setString(2, shop.getPassword());
+			preStmt.setString(3, shop.getPhone());
+			preStmt.setString(4, shop.getEmail());
+			preStmt.executeUpdate();
+			preStmt.close();
+
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			System.out.println("List All Shops");
+			while (rs.next()) {
+				System.out.println("Shop Name: " + rs.getString("shopName") + ", Email: " + rs.getString("email"));
+			}
+			stmt.close();
+			conn.commit();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
 
 	public boolean validateShop(String email, String password) {
 		Connection conn = database.getConnection();
