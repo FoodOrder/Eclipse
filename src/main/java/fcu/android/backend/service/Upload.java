@@ -69,11 +69,11 @@ public class Upload extends HttpServlet {
             String sql = "INSERT INTO ShopImg (ShopID, ImgPath, photo) values (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, 0);
-            statement.setString(2, "123");
+            //statement.setString(2, "123");
              
             if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
-                statement.setBlob(3, inputStream);
+                statement.setBlob(2, inputStream);
             }
  
             // sends the statement to the database server

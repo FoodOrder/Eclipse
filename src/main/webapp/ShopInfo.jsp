@@ -394,7 +394,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                 <!-- 開始打 -->     <form role="form" method="post" action="Upload" enctype="multipart/form-data">
+                 <!-- 開始打 -->     <form role="form" method="post" action="upload" enctype="multipart/form-data">
                  						<table class=table>
                  							<tr>
                  								<td>

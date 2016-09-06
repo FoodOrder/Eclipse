@@ -39,16 +39,4 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/main/webapp/dist</name>
-			<type>2</type>
-			<location>C:/Users/WeiHan/Desktop/startbootstrap-sb-admin-2-gh-pages/dist</location>
-		</link>
-		<link>
-			<name>src/main/webapp/vendor</name>
-			<type>2</type>
-			<location>C:/Users/WeiHan/Desktop/startbootstrap-sb-admin-2-gh-pages/vendor</location>
-		</link>
-	</linkedResources>
 </projectDescription>
