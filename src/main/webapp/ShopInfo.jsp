@@ -393,24 +393,17 @@
 											</tr>
 											<tr>
 												<td>
-													<form method="post" action="uploadServlet"
+													<form method="post" action="UploadDownloadFileServlet"
 														enctype="multipart/form-data">
 														<table border="0">
 														<label><h3><strong>上傳店家圖片</strong></h3></label>
 															<tr>
-																<td>First Name:</td>
-																<td><input type="text" name="firstName" size="50" /></td>
+																<td>File Name:</td>
+																<td><input type="file" name="fileName" size="50" /></td>
 															</tr>
 															<tr>
-																<td>Last Name:</td>
-																<td><input type="text" name="lastName" size="50" /></td>
-															</tr>
 															<tr>
-																<td>Portrait Photo:</td>
-																<td><input type="file" name="photo" size="50" /></td>
-															</tr>
-															<tr>
-																<td colspan="2"><input type="submit" value="Submit">
+																<td colspan="2"><input type="submit" value="Upload">
 																</td>
 															</tr>
 														</table>

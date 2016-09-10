@@ -25,5 +25,22 @@
     <servlet-name>Upload</servlet-name>
     <url-pattern>/Upload</url-pattern>
   </servlet-mapping>
- 
+  <display-name>ServletFileUploadDownloadExample</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>img.dir</param-name>
+    <param-value>imgfiles</param-value>
+  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>UploadDownloadFileServlet</display-name>
+    <servlet-name>UploadDownloadFileServlet</servlet-name>
+    <servlet-class>fcu.android.backend.upload.UploadDownloadFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadDownloadFileServlet</servlet-name>
+    <url-pattern>/UploadDownloadFileServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
