@@ -40,7 +40,7 @@ public class ShopService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Shop update(@FormParam("shopName") String shopName, @FormParam("password") String password,
-			@FormParam("email") String email, @FormParam("phone") String phone) {
+			 @FormParam("phone") String phone, @FormParam("email") String email) {
 		Shop shop = new Shop();
 		shop.setShopName(shopName);
 		shop.setPassword(password);
@@ -72,9 +72,9 @@ public class ShopService {
 	@Path("validate")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String isValidShop(@FormParam("email") String email, @FormParam("password") String password) {
+	public boolean isValidShop(@FormParam("email") String email, @FormParam("password") String password) {
 		boolean valid = dbManager.validateShop(email, password);
-		return String.valueOf(valid);
+		return valid;
 	}
 
 	@GET

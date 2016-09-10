@@ -10,7 +10,8 @@
 </head>
 <body>
 	<%!
-		String Email, Password, isvalidshop, StringTrue;
+		String Email, Password, StringTrue;
+		boolean valid;
 	%>
 	
 	<%
@@ -21,9 +22,9 @@
 		Password = request.getParameter("InputPassword");
 		
 		
-		isvalidshop = shopservice.isValidShop(Email, Password);	
+		valid = shopservice.isValidShop(Email, Password);	
 		
-		if(isvalidshop.equals(StringTrue)){
+		if(valid){
 			session.setAttribute("email", Email);
 			response.sendRedirect("Dashboard.jsp");
 		}

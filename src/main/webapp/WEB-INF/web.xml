@@ -25,14 +25,5 @@
     <servlet-name>Upload</servlet-name>
     <url-pattern>/Upload</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>UploadImg</display-name>
-    <servlet-name>UploadImg</servlet-name>
-    <servlet-class>fcu.android.backend.service.Upload</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UploadImg</servlet-name>
-    <url-pattern>/UploadImg</url-pattern>
-  </servlet-mapping>
+ 
 </web-app>
