@@ -14,6 +14,8 @@ public class Shop implements Serializable {
 	private String phone;
 
 	private String email;
+	
+	private String photo;
 
 	public int getID() {
 		return ID;
@@ -55,4 +57,11 @@ public class Shop implements Serializable {
 		this.email = email;
 	}
 
+	public String getPhoto(){
+		return photo;
+	}
+	
+	public void setPhoto(String photo){
+		this.photo = photo;
+	}
 }

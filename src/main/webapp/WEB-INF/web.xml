@@ -15,16 +15,6 @@
     <servlet-name>Jersey Web Application</servlet-name>
     <url-pattern>/webapi/*</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Upload</display-name>
-    <servlet-name>Upload</servlet-name>
-    <servlet-class>fcu.android.backend.service.Upload</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Upload</servlet-name>
-    <url-pattern>/Upload</url-pattern>
-  </servlet-mapping>
   <display-name>ServletFileUploadDownloadExample</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -42,5 +32,15 @@
   <servlet-mapping>
     <servlet-name>UploadDownloadFileServlet</servlet-name>
     <url-pattern>/UploadDownloadFileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UploadToDatabase</display-name>
+    <servlet-name>UploadToDatabase</servlet-name>
+    <servlet-class>fcu.android.backend.upload.UploadToDatabase</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadToDatabase</servlet-name>
+    <url-pattern>/UploadToDatabase</url-pattern>
   </servlet-mapping>
 </web-app>

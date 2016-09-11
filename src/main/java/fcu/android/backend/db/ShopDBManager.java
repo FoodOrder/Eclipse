@@ -136,6 +136,7 @@ public class ShopDBManager {
 				shop.setPassword(rs.getString("password"));
 				shop.setEmail(rs.getString("email"));
 				shop.setPhone(rs.getString("phone"));
+				shop.setPhoto(rs.getString("photo"));
 			}
 			stmt.close();
 			conn.commit();
@@ -168,6 +169,7 @@ public class ShopDBManager {
 				String password = rs.getString("password");
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
+				String photo = rs.getString("photo");
 
 				Shop shop = new Shop();
 				shop.setID(id);
@@ -175,6 +177,7 @@ public class ShopDBManager {
 				shop.setPassword(password);
 				shop.setEmail(email);
 				shop.setPhone(phone);
+				shop.setPhoto(photo);
 				lsShops.add(shop);
 			}
 		} catch (SQLException e) {

@@ -1,10 +1,12 @@
 package fcu.android.backend.upload;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,6 +25,10 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class UploadDownloadFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ServletFileUpload uploader = null;
+	
+	private String dbURL = "jdbc:mysql://140.134.26.71:53306/mydb?relaxAutoCommit=true&useSSL=false";
+	private String dbUser = "root";
+	private String dbPass = "iecsfcu";
 
 	@Override
 	public void init() throws ServletException {
@@ -34,12 +40,13 @@ public class UploadDownloadFileServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		String fileName = request.getParameter("fileName");
 		if (fileName == null || fileName.equals("")) {
-			throw new ServletException("File Name can't be null or empty");
+			return ;
 		}
 		File file = new File(request.getServletContext().getAttribute("FILES_DIR") + "\\" +fileName);
-		System.out.println(request.getServletContext().getAttribute("FILES_DIR") + "\\" + fileName);
+		System.out.println(request.getServletContext().getAttribute("FILES_DIR") + "\\" + fileName + "123");
 		if (!file.exists()) {
 			throw new ServletException("File doesn't exists on server.");
 		}
@@ -72,7 +79,12 @@ public class UploadDownloadFileServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.write("<html><head></head><body>");
-		try {
+		Connection conn = new fcu.android.backend.db.MySqlDatabase().getConnection();
+		
+		
+		try {           
+            String sql = "UPDATE SHOP SET photo=? WHERE email=?";                 							
+			
 			List<FileItem> fileItemsList = uploader.parseRequest(request);
 			Iterator<FileItem> fileItemsIterator = fileItemsList.iterator();
 			while (fileItemsIterator.hasNext()) {
@@ -81,12 +93,23 @@ public class UploadDownloadFileServlet extends HttpServlet {
 				System.out.println("FileName=" + fileItem.getName());
 				System.out.println("ContentType=" + fileItem.getContentType());
 				System.out.println("Size in bytes=" + fileItem.getSize());
-
+								
+				
+				PreparedStatement statement = null;
+				statement = conn.prepareStatement(sql);
+				String path = null;
+				path = request.getServletContext().getAttribute("FILES_DIR") + "\\" + fileItem.getName();
+				statement.setString(1, path);
+	            statement.setString(2, "lajiou@gmail.com");
+	            statement.executeUpdate();
+	            statement.close();	              	            
+	          	             	            
+	            
 				File file = new File(
 						request.getServletContext().getAttribute("FILES_DIR") + File.separator + fileItem.getName());
 				System.out.println("Absolute Path at server=" + file.getAbsolutePath());
 				fileItem.write(file);
-				out.write("File " + fileItem.getName() + " uploaded successfully.");
+				out.write("File " + fileItem.getName() + " uploaded successfully");
 				out.write("<br>");
 				out.write("<a href=\"UploadDownloadFileServlet?fileName=" + fileItem.getName() + "\">Download "
 						+ fileItem.getName() + "</a>");
