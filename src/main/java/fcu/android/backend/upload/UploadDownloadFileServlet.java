@@ -16,6 +16,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -93,14 +94,16 @@ public class UploadDownloadFileServlet extends HttpServlet {
 				System.out.println("FileName=" + fileItem.getName());
 				System.out.println("ContentType=" + fileItem.getContentType());
 				System.out.println("Size in bytes=" + fileItem.getSize());
-								
+				
+				HttpSession session = request.getSession();
+				String email = (String) session.getAttribute("email");
 				
 				PreparedStatement statement = null;
 				statement = conn.prepareStatement(sql);
 				String path = null;
 				path = request.getServletContext().getAttribute("FILES_DIR") + "\\" + fileItem.getName();
 				statement.setString(1, path);
-	            statement.setString(2, "lajiou@gmail.com");
+	            statement.setString(2, email);
 	            statement.executeUpdate();
 	            statement.close();	              	            
 	          	             	            
