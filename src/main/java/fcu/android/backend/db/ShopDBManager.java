@@ -13,6 +13,8 @@ import fcu.android.backend.data.Shop;
 public class ShopDBManager {
 	
 	private static ShopDBManager DB_MANAGER = new ShopDBManager();
+	
+	private static final String shopImgURL = "http://140.134.26.71:58080/android-backend/UploadDownloadFileServlet?id=";
 
 	public static ShopDBManager getInstance() {
 		return DB_MANAGER;
@@ -136,7 +138,8 @@ public class ShopDBManager {
 				shop.setPassword(rs.getString("password"));
 				shop.setEmail(rs.getString("email"));
 				shop.setPhone(rs.getString("phone"));
-				shop.setPhoto(rs.getString("photo"));
+				int id = rs.getInt("ID");
+				shop.setPhoto(shopImgURL+id);
 			}
 			stmt.close();
 			conn.commit();
@@ -169,7 +172,7 @@ public class ShopDBManager {
 				String password = rs.getString("password");
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
-				String photo = rs.getString("photo");
+				//String photo = rs.getString("photo");
 
 				Shop shop = new Shop();
 				shop.setID(id);
@@ -177,7 +180,7 @@ public class ShopDBManager {
 				shop.setPassword(password);
 				shop.setEmail(email);
 				shop.setPhone(phone);
-				shop.setPhoto(photo);
+				shop.setPhoto(shopImgURL+id);
 				lsShops.add(shop);
 			}
 		} catch (SQLException e) {
