@@ -168,6 +168,8 @@ public class UploadDownloadFileServlet extends HttpServlet {
 			out.write("<br>");
 			out.write("<a href=\"UploadDownloadFileServlet?id=" + id + "\">Download "
 					+ fileItem.getName() + "</a>");
+			out.write("<br>");
+			out.write("<a href=\"ShopInfo.jsp" + "\">Return " + "</a>");
 			statement.close();
 			statementUpdate.close();
 	        

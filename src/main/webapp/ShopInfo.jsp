@@ -12,6 +12,9 @@
 	ShopService shopservice = new ShopService();
 
 	//session.setAttribute("email", null);
+	
+	String path = "\""+ "http://140.134.26.71:58080/android-backend/UploadDownloadFileServlet?id=" + shopservice.getShop(email).getID() + "\"";
+	log(path);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -362,7 +365,8 @@
 																		</div>
 																		<div class="form-group">
 																			<label for="message-text" class="control-label">店家簡介</label>
-																			<textarea class="form-control" id="message-text" name="ShopIntro">
+																			<textarea class="popop" id="message-text"
+																				name="ShopIntro">
 																			</textarea>
 																		</div>
 																	</div>
@@ -390,9 +394,7 @@
 												<td>密碼：<%=shopservice.getShop(email).getPassword()%></td>
 											</tr>
 											<tr>
-												<form >
-													<td>店家簡介：<%=shopservice.getShop(email).getIntro()%></td>
-												</form>
+												<td>店家簡介：<%=shopservice.getShop(email).getIntro()%></td>
 											</tr>
 											<tr>
 												<td>
@@ -400,6 +402,9 @@
 														enctype="multipart/form-data">
 														<table border="0">
 															<label>上傳店家圖片</label>
+															<img
+																src=<%=path %>
+																class="img-responsive" alt="Responsive image">
 															<tr>
 																<td>File Name:</td>
 																<td><input type="file" name="fileName" size="50" /></td>
