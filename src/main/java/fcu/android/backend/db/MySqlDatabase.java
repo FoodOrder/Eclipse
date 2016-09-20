@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class MySqlDatabase implements IDatabase {
   
   private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-  private static final String DB_CONNECTION = "jdbc:mysql://140.134.26.71:53306/mydb?relaxAutoCommit=true&useSSL=false";
+  private static final String DB_CONNECTION = "jdbc:mysql://140.134.26.71:53306/mydb?relaxAutoCommit=true&useSSL=false&useUnicode=true&characterEncoding=utf-8";
   private static final String DB_USER = "root";
   private static final String DB_PASSWORD = "iecsfcu";
   private Connection con = null; 

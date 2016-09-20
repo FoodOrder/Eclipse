@@ -12,15 +12,18 @@
 </head>
 <body>
 <%
+	request.setCharacterEncoding("utf-8");
+
 	String name = request.getParameter("ShopName");
 	String phone = request.getParameter("ShopPhone");
 	String email = request.getParameter("ShopEmail");
 	String pwd = request.getParameter("ShopPwd");
+	String intro = request.getParameter("ShopIntro");
 	
 	ShopService shopservice = new ShopService();
 	
 	Shop shop = new Shop();
-	shopservice.update(name, pwd, phone, email);
+	shopservice.update(name, pwd, phone, email, intro);
 %>	
 
 <%

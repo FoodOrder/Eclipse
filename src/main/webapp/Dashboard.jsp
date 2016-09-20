@@ -276,13 +276,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="Dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard(首頁)</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts(圖表)</a>
+                                    <a href="FlotCharts.jsp">Flot Charts(圖表)</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">Morris.js Charts</a>
@@ -291,10 +291,10 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables(訂單查詢)</a>
+                            <a href="Order.jsp"><i class="fa fa-table fa-fw"></i> Order(訂單查詢)</a>
                         </li>
                         <li>
-                            <a href="ShopInfo.jsp"><i class="fa fa-edit fa-fw"></i> Forms(編輯店家資訊)</a>
+                            <a href="ShopInfo.jsp"><i class="fa fa-edit fa-fw"></i> Shop Information(編輯店家資訊)</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

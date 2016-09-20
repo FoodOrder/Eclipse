@@ -30,7 +30,7 @@ public class ShopDBManager {
 		Connection conn = database.getConnection();
 		PreparedStatement preStmt = null;
 		Statement stmt = null;
-		String sql = "INSERT INTO SHOP(shopName, password, email, phone)  VALUES(?, ?, ?, ?)";
+		String sql = "INSERT INTO SHOP(shopName, password, email, phone, intro)  VALUES(?, ?, ?, ?, ?)";
 		String query = "SELECT * FROM SHOP";
 		try {
 			preStmt = conn.prepareStatement(sql);
@@ -38,6 +38,7 @@ public class ShopDBManager {
 			preStmt.setString(2, shop.getPassword());
 			preStmt.setString(3, shop.getEmail());
 			preStmt.setString(4, shop.getPhone());
+			preStmt.setString(5, shop.getIntro());
 			preStmt.executeUpdate();
 			preStmt.close();
 
@@ -66,14 +67,15 @@ public class ShopDBManager {
 		Connection conn = database.getConnection();
 		PreparedStatement preStmt = null;
 		Statement stmt = null;
-		String sql = "UPDATE SHOP SET shopName=?, password=?, phone=? WHERE email=?";
+		String sql = "UPDATE SHOP SET shopName=?, password=?, phone=?, intro=? WHERE email=?";
 		String query = "SELECT * FROM SHOP";
 		try {
 			preStmt = conn.prepareStatement(sql);
 			preStmt.setString(1, shop.getShopName());
 			preStmt.setString(2, shop.getPassword());
 			preStmt.setString(3, shop.getPhone());
-			preStmt.setString(4, shop.getEmail());
+			preStmt.setString(4, shop.getIntro());
+			preStmt.setString(5, shop.getEmail());
 			preStmt.executeUpdate();
 			preStmt.close();
 
@@ -138,6 +140,7 @@ public class ShopDBManager {
 				shop.setPassword(rs.getString("password"));
 				shop.setEmail(rs.getString("email"));
 				shop.setPhone(rs.getString("phone"));
+				shop.setIntro(rs.getString("intro"));
 				int id = rs.getInt("ID");
 				shop.setPhoto(shopImgURL+id);
 			}
@@ -172,6 +175,7 @@ public class ShopDBManager {
 				String password = rs.getString("password");
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
+				String intro = rs.getString("intro");
 				//String photo = rs.getString("photo");
 
 				Shop shop = new Shop();
@@ -180,6 +184,7 @@ public class ShopDBManager {
 				shop.setPassword(password);
 				shop.setEmail(email);
 				shop.setPhone(phone);
+				shop.setIntro(intro);
 				shop.setPhoto(shopImgURL+id);
 				lsShops.add(shop);
 			}

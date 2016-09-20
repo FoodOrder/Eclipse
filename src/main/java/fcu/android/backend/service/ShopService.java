@@ -25,12 +25,13 @@ public class ShopService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Shop register(@FormParam("shopName") String shopName, @FormParam("password") String password,
-			@FormParam("email") String email, @FormParam("phone") String phone) {
+			@FormParam("email") String email, @FormParam("phone") String phone, @FormParam("intro") String intro) {
 		Shop shop = new Shop();
 		shop.setShopName(shopName);
 		shop.setPassword(password);
 		shop.setEmail(email);
 		shop.setPhone(phone);
+		shop.setIntro(intro);
 		dbManager.addShop(shop);
 		return shop;
 	}
@@ -40,12 +41,13 @@ public class ShopService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Shop update(@FormParam("shopName") String shopName, @FormParam("password") String password,
-			 @FormParam("phone") String phone, @FormParam("email") String email) {
+			 @FormParam("phone") String phone, @FormParam("email") String email, @FormParam("intro") String intro) {
 		Shop shop = new Shop();
 		shop.setShopName(shopName);
 		shop.setPassword(password);
 		shop.setEmail(email);
 		shop.setPhone(phone);
+		shop.setIntro(intro);
 		dbManager.updateShop(shop);
 		return shop;
 	}

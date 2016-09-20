@@ -40,7 +40,7 @@
 <link href="./vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
-<title>ShopInfo</title>
+<title>Order</title>
 </head>
 
 <body>
@@ -251,8 +251,8 @@
 							</span>
 						</div> <!-- /input-group -->
 					</li>
-					<li><a href="Dashboard.jsp"><i
-							class="fa fa-dashboard fa-fw"></i> Dashboard(首頁)</a></li>
+					<li><a href="Dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i>
+							Dashboard(首頁)</a></li>
 					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 							Charts<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
@@ -297,142 +297,17 @@
 			<!-- /.sidebar-collapse -->
 		</div>
 		<!-- /.navbar-static-side --> </nav>
-
+		
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Shop Information</h1>
+					<h1 class="page-header">Order</h1>
 				</div>
-				<!-- /.col-lg-12 -->
 			</div>
-			<!-- /.row -->
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading"></div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-6">
-									<table class=table>
-										<tbody>
-											<tr>
-												<td>
-													<form method="post" action="Edit.jsp">
-														<button type="button" class="btn btn-default"
-															data-toggle="modal" data-target="#exampleModal"
-															data-whatever="@mdo">編輯資料</button>
-														<div class="modal fade" id="exampleModal" tabindex="-1"
-															role="dialog" aria-labelledby="exampleModalLabel"
-															aria-hidden="true">
-															<div class="modal-dialog">
-																<div class="modal-content">
-																	<div class="modal-header">
-																		<button type="button" class="close"
-																			data-dismiss="modal">
-																			<span aria-hidden="true">&times;</span>
-																			<spanclass="sr-only">Close</span>
-																		</button>
-																		<h4 class="modal-title" id="exampleModalLabel">編輯資料</h4>
-																	</div>
-
-																	<div class="modal-body">
-																		<div class="form-group">
-																			<label for="recipient-name" class="control-label">店家名稱:</label>
-																			<input type="text" class="form-control"
-																				name="ShopName"
-																				value=<%=shopservice.getShop(email).getShopName()%>>
-																		</div>
-																		<div class="form-group">
-																			<label for="recipient-name" class="control-label">聯絡電話:</label>
-																			<input type="text" class="form-control"
-																				name="ShopPhone"
-																				value=<%=shopservice.getShop(email).getPhone()%>>
-																		</div>
-																		<div class="form-group">
-																			<label for="recipient-name" class="control-label">信箱:</label>
-																			<input type="email" class="form-control"
-																				name="ShopEmail"
-																				value=<%=shopservice.getShop(email).getEmail()%>>
-																		</div>
-																		<div class="form-group">
-																			<label for="recipient-name" class="control-label">密碼:</label>
-																			<input type="text" class="form-control"
-																				name="ShopPwd"
-																				value=<%=shopservice.getShop(email).getPassword()%>>
-																		</div>
-																		<div class="form-group">
-																			<label for="message-text" class="control-label">店家簡介</label>
-																			<textarea class="form-control" id="message-text" name="ShopIntro">
-																			</textarea>
-																		</div>
-																	</div>
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-default"
-																			data-dismiss="modal">關閉</button>
-																		<button type="submit" class="btn btn-primary">送出</button>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</form>
-												</td>
-											</tr>
-											<tr>
-												<td>店家名稱：<%=shopservice.getShop(email).getShopName()%></td>
-											</tr>
-											<tr>
-												<td>聯絡電話： <%=shopservice.getShop(email).getPhone()%></td>
-											</tr>
-											<tr>
-												<td>信箱：<%=shopservice.getShop(email).getEmail()%></td>
-											</tr>
-											<tr>
-												<td>密碼：<%=shopservice.getShop(email).getPassword()%></td>
-											</tr>
-											<tr>
-												<form >
-													<td>店家簡介：<%=shopservice.getShop(email).getIntro()%></td>
-												</form>
-											</tr>
-											<tr>
-												<td>
-													<form method="post" action="UploadDownloadFileServlet"
-														enctype="multipart/form-data">
-														<table border="0">
-															<label>上傳店家圖片</label>
-															<tr>
-																<td>File Name:</td>
-																<td><input type="file" name="fileName" size="50" /></td>
-															</tr>
-															<tr>
-															<tr>
-																<td colspan="2"><input type="submit" value="上傳">
-																</td>
-															</tr>
-														</table>
-													</form>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<!-- /.col-lg-6 (nested) -->
-						</div>
-						<!-- /.row (nested) -->
-					</div>
-					<!-- /.panel-body -->
-				</div>
-				<!-- /.panel -->
-			</div>
-			<!-- /.col-lg-12 -->
 		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /#page-wrapper -->
+		
 
-	</div>
-	<!-- /#wrapper -->
+		
 
 	<!-- jQuery -->
 	<script src="./vendor/jquery/jquery.min.js"></script>
