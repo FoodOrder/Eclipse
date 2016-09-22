@@ -12,8 +12,9 @@
 	ShopService shopservice = new ShopService();
 
 	//session.setAttribute("email", null);
-	
-	String path = "\""+ "http://140.134.26.71:58080/android-backend/UploadDownloadFileServlet?id=" + shopservice.getShop(email).getID() + "\"";
+
+	String path = "\"" + "http://140.134.26.71:58080/android-backend/UploadDownloadFileServlet?id="
+			+ shopservice.getShop(email).getID() + "\"";
 	log(path);
 %>
 
@@ -266,6 +267,8 @@
 					</li>
 					<li><a href="ShopInfo.jsp"><i class="fa fa-edit fa-fw"></i>
 							Shop Information(編輯店家資訊)</a></li>
+					<li><a href="Menu.jsp"><i class="fa fa-edit fa-fw"></i>
+							Menu菜單</a></li>
 					<li><a href="#"><i class="fa fa-wrench fa-fw"></i> UI
 							Elements<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
@@ -340,33 +343,33 @@
 
 																	<div class="modal-body">
 																		<div class="form-group">
-																			<label for="recipient-name" class="control-label">店家名稱:</label>
+																			<label for="ShopName" class="control-label">店家名稱:</label>
 																			<input type="text" class="form-control"
 																				name="ShopName"
 																				value=<%=shopservice.getShop(email).getShopName()%>>
 																		</div>
 																		<div class="form-group">
-																			<label for="recipient-name" class="control-label">聯絡電話:</label>
+																			<label for="ShopPhone" class="control-label">聯絡電話:</label>
 																			<input type="text" class="form-control"
 																				name="ShopPhone"
 																				value=<%=shopservice.getShop(email).getPhone()%>>
 																		</div>
 																		<div class="form-group">
-																			<label for="recipient-name" class="control-label">信箱:</label>
+																			<label for="ShopEmail" class="control-label">信箱:</label>
 																			<input type="email" class="form-control"
 																				name="ShopEmail"
 																				value=<%=shopservice.getShop(email).getEmail()%>>
 																		</div>
 																		<div class="form-group">
-																			<label for="recipient-name" class="control-label">密碼:</label>
+																			<label for="ShopPwd" class="control-label">密碼:</label>
 																			<input type="text" class="form-control"
 																				name="ShopPwd"
 																				value=<%=shopservice.getShop(email).getPassword()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="message-text" class="control-label">店家簡介</label>
-																			<textarea class="popop" id="message-text"
-																				name="ShopIntro">
+																			<textarea class="form-control" id="message-text"
+																				name="ShopIntro" rows="3">
 																			</textarea>
 																		</div>
 																	</div>
@@ -402,9 +405,8 @@
 														enctype="multipart/form-data">
 														<table border="0">
 															<label>上傳店家圖片</label>
-															<img
-																src=<%=path %>
-																class="img-responsive" alt="Responsive image">
+															<img src=<%=path%> class="img-responsive"
+																alt="Responsive image">
 															<tr>
 																<td>File Name:</td>
 																<td><input type="file" name="fileName" size="50" /></td>

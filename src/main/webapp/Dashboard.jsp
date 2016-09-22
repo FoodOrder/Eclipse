@@ -296,6 +296,7 @@
                         <li>
                             <a href="ShopInfo.jsp"><i class="fa fa-edit fa-fw"></i> Shop Information(編輯店家資訊)</a>
                         </li>
+                        <li><a href="Menu.jsp"><i class="fa fa-edit fa-fw"></i>Menu菜單</a></li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

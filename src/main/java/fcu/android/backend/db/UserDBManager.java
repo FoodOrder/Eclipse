@@ -31,23 +31,30 @@ public class UserDBManager {
 		String sql = "INSERT INTO USER(userName, password, email, phone)  VALUES(?, ?, ?, ?)";
 		String query = "SELECT * FROM USER";
 		try {
-			preStmt = conn.prepareStatement(sql);
-			preStmt.setString(1, user.getUserName());
-			preStmt.setString(2, user.getPassword());
-			preStmt.setString(3, user.getEmail());
-			preStmt.setString(4, user.getPhone());
-			preStmt.executeUpdate();
-			preStmt.close();
-
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			System.out.println("List All Users");
-			while (rs.next()) {
-				System.out.println("User Name: " + rs.getString("userName") + ", Email: " + rs.getString("email"));
+			if(CheckaddUser(user.getEmail())){
+				return false;
 			}
-			stmt.close();
-			conn.commit();
-			return true;
+			
+			else{
+				preStmt = conn.prepareStatement(sql);
+				preStmt.setString(1, user.getUserName());
+				preStmt.setString(2, user.getPassword());
+				preStmt.setString(3, user.getEmail());
+				preStmt.setString(4, user.getPhone());
+				preStmt.executeUpdate();
+				preStmt.close();
+
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+				System.out.println("List All Users");
+				while (rs.next()) {
+					System.out.println("User Name: " + rs.getString("userName") + ", Email: " + rs.getString("email"));
+				}
+				stmt.close();
+				conn.commit();
+				return true;
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -68,6 +75,30 @@ public class UserDBManager {
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, email);
 			stmt.setString(2, password);
+			ResultSet rs = stmt.executeQuery();
+			boolean valid = rs.first();
+			stmt.close();
+			conn.commit();
+			return valid;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	public boolean CheckaddUser(String email) {
+		Connection conn = database.getConnection();
+		PreparedStatement stmt = null;
+		String query = "SELECT * FROM USER WHERE email = ?";
+		try {
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
 			boolean valid = rs.first();
 			stmt.close();

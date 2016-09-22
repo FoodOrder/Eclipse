@@ -251,8 +251,8 @@
 							</span>
 						</div> <!-- /input-group -->
 					</li>
-					<li><a href="Dashboard.jsp"><i class="fa fa-dashboard fa-fw"></i>
-							Dashboard(首頁)</a></li>
+					<li><a href="Dashboard.jsp"><i
+							class="fa fa-dashboard fa-fw"></i> Dashboard(首頁)</a></li>
 					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 							Charts<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
@@ -263,6 +263,8 @@
 					</li>
 					<li><a href="ShopInfo.jsp"><i class="fa fa-edit fa-fw"></i>
 							Shop Information(編輯店家資訊)</a></li>
+					<li><a href="Menu.jsp"><i class="fa fa-edit fa-fw"></i>
+							Menu菜單</a></li>
 					<li><a href="#"><i class="fa fa-wrench fa-fw"></i> UI
 							Elements<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
@@ -297,7 +299,7 @@
 			<!-- /.sidebar-collapse -->
 		</div>
 		<!-- /.navbar-static-side --> </nav>
-		
+
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
@@ -306,19 +308,18 @@
 			</div>
 		</div>
 
-		
 
-	<!-- jQuery -->
-	<script src="./vendor/jquery/jquery.min.js"></script>
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+		<!-- jQuery -->
+		<script src="./vendor/jquery/jquery.min.js"></script>
 
-	<!-- Metis Menu Plugin JavaScript -->
-	<script src="./vendor/metisMenu/metisMenu.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
 
-	<!-- Custom Theme JavaScript -->
-	<script src="./dist/js/sb-admin-2.js"></script>
+		<!-- Metis Menu Plugin JavaScript -->
+		<script src="./vendor/metisMenu/metisMenu.min.js"></script>
 
+		<!-- Custom Theme JavaScript -->
+		<script src="./dist/js/sb-admin-2.js"></script>
 </body>
 </html>
