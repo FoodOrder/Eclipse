@@ -324,14 +324,9 @@
 								<div class="col-lg-6">
 									<table class=table>
 										<tbody>
-											<%
-												int i = 0;
-												int times = lsMenu.size();
-
-												for (times = lsMenu.size(); times >= 0; times--) {
-											%>
 											<tr>
 												<%
+													int i = 0;
 													for (Menu menu : lsMenu) {
 												%>
 												<td>
@@ -366,15 +361,10 @@
 													</div>
 												</td>
 												<%
-													if (i >= 5)
-														break;
-													}
 													i++;
+													}
 												%>
 											</tr>
-											<%
-												}
-											%>
 										</tbody>
 									</table>
 								</div>
