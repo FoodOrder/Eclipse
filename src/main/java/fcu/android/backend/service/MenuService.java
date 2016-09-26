@@ -3,7 +3,6 @@ package fcu.android.backend.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -14,7 +13,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import fcu.android.backend.data.Menu;
-import fcu.android.backend.db.MenuDBManager;
 import fcu.android.backend.db.MenuDBManager;
 
 @Path("menu/")
@@ -89,7 +87,7 @@ public class MenuService {
 	@GET
 	@Path("{email}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Menu getMenu(@PathParam("ShopEmail") String ShopEmail) {
+	public List<Menu> getMenu(@PathParam("ShopEmail") String ShopEmail) {
 
 		return dbManager.getMenu(ShopEmail);
 	}

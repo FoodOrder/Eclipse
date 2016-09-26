@@ -11,7 +11,7 @@ import java.util.List;
 import fcu.android.backend.data.Menu;
 
 public class MenuDBManager {
-	
+
 	private static MenuDBManager DB_MANAGER = new MenuDBManager();
 
 	public static MenuDBManager getInstance() {
@@ -29,19 +29,19 @@ public class MenuDBManager {
 		PreparedStatement preStmt = null;
 		PreparedStatement statement = null;
 		Statement stmt = null;
-		String findShopId  = "select * from SHOP where email=?";
-		String sql = "INSERT INTO ShopMenu(id, MenuName, MenuPrice, ShopID)  VALUES(?, ?, ?, ?)";
-		String query = "SELECT * FROM ShopMenu";
+		String findShopId = "select * from SHOP where email=?";
+		String sql = "INSERT INTO Menu(id, MenuName, MenuPrice, ShopID)  VALUES(?, ?, ?, ?)";
+		String query = "SELECT * FROM Menu";
 		try {
 			statement = conn.prepareStatement(findShopId);
 			statement.setString(1, menu.getShopEmail());
-	        ResultSet rs_id = statement.executeQuery();
-	        
-	        int sid = -1;
-	        while(rs_id.next()) {
-	        	sid = rs_id.getInt("ID");
-	        }
-			
+			ResultSet rs_id = statement.executeQuery();
+
+			int sid = -1;
+			while (rs_id.next()) {
+				sid = rs_id.getInt("ID");
+			}
+
 			preStmt = conn.prepareStatement(sql);
 			preStmt.setInt(1, menu.getId());
 			preStmt.setString(2, menu.getMenuName());
@@ -70,98 +70,73 @@ public class MenuDBManager {
 		}
 		return false;
 	}
-	
-	/*public boolean updateShop(Menu menu) {
-		Connection conn = database.getConnection();
-		PreparedStatement preStmt = null;
-		Statement stmt = null;
-		String sql = "UPDATE ShopMenu SET shopName=?, password=?, phone=?, intro=? WHERE email=?";
-		String query = "SELECT * FROM SHOP";
-		try {
-			preStmt = conn.prepareStatement(sql);
-			preStmt.setString(1, shop.getShopName());
-			preStmt.setString(2, shop.getPassword());
-			preStmt.setString(3, shop.getPhone());
-			preStmt.setString(4, shop.getIntro());
-			preStmt.setString(5, shop.getEmail());
-			preStmt.executeUpdate();
-			preStmt.close();
 
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			System.out.println("List All Shops");
-			while (rs.next()) {
-				System.out.println("Shop Name: " + rs.getString("shopName") + ", Email: " + rs.getString("email"));
-			}
-			stmt.close();
-			conn.commit();
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
-	}*/
+	/*
+	 * public boolean updateShop(Menu menu) { Connection conn =
+	 * database.getConnection(); PreparedStatement preStmt = null; Statement
+	 * stmt = null; String sql =
+	 * "UPDATE ShopMenu SET shopName=?, password=?, phone=?, intro=? WHERE email=?"
+	 * ; String query = "SELECT * FROM SHOP"; try { preStmt =
+	 * conn.prepareStatement(sql); preStmt.setString(1, shop.getShopName());
+	 * preStmt.setString(2, shop.getPassword()); preStmt.setString(3,
+	 * shop.getPhone()); preStmt.setString(4, shop.getIntro());
+	 * preStmt.setString(5, shop.getEmail()); preStmt.executeUpdate();
+	 * preStmt.close();
+	 * 
+	 * stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query);
+	 * System.out.println("List All Shops"); while (rs.next()) {
+	 * System.out.println("Shop Name: " + rs.getString("shopName") + ", Email: "
+	 * + rs.getString("email")); } stmt.close(); conn.commit(); return true; }
+	 * catch (SQLException e) { e.printStackTrace(); } finally { try {
+	 * conn.close(); } catch (SQLException e) { e.printStackTrace(); } } return
+	 * false; }
+	 */
 
-	/*public boolean validateShop(String email, String password) {
-		Connection conn = database.getConnection();
-		PreparedStatement stmt = null;
-		String query = "SELECT * FROM SHOP WHERE email = ? and password = ?";
-		try {
-			stmt = conn.prepareStatement(query);
-			stmt.setString(1, email);
-			stmt.setString(2, password);
-			ResultSet rs = stmt.executeQuery();
-			boolean valid = rs.first();
-			stmt.close();
-			conn.commit();
-			return valid;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
-	}*/
+	/*
+	 * public boolean validateShop(String email, String password) { Connection
+	 * conn = database.getConnection(); PreparedStatement stmt = null; String
+	 * query = "SELECT * FROM SHOP WHERE email = ? and password = ?"; try { stmt
+	 * = conn.prepareStatement(query); stmt.setString(1, email);
+	 * stmt.setString(2, password); ResultSet rs = stmt.executeQuery(); boolean
+	 * valid = rs.first(); stmt.close(); conn.commit(); return valid; } catch
+	 * (SQLException e) { e.printStackTrace(); } finally { try { conn.close(); }
+	 * catch (SQLException e) { e.printStackTrace(); } } return false; }
+	 */
 
-	public Menu getMenu(String ShopEmail) {
+	public List<Menu> getMenu(String ShopEmail) {
 		Connection conn = database.getConnection();
 		PreparedStatement stmt = null;
 		PreparedStatement statement = null;
-		String findShopId  = "select * from SHOP where email=?";
-		String query = "select * from ShopMenu where ShopID = ?";
+		String findShopId = "select * from SHOP where email=?";
+		String query = "select * from Menu where ShopID = ?";
 		try {
-			
+
 			statement = conn.prepareStatement(findShopId);
 			statement.setString(1, ShopEmail);
-	        ResultSet rs_id = statement.executeQuery();
-	        
-	        int sid = -1;
-	        while(rs_id.next()) {
-	        	sid = rs_id.getInt("ID");
-	        }
-	        
-	       	stmt = conn.prepareStatement(query);
+			ResultSet rs_id = statement.executeQuery();
+
+			int sid = -1;
+			while (rs_id.next()) {
+				sid = rs_id.getInt("ID");
+			}
+
+			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, sid);
 			ResultSet rs = stmt.executeQuery();
-			Menu menu = new Menu();
-			if (rs.next()) {
-				menu.setId(rs.getInt("id"));
+			
+			List<Menu> lsMenu = new ArrayList<Menu>();
+			
+			while(rs.next()) {
+				Menu menu = new Menu();
 				menu.setMenuName(rs.getString("MenuName"));
 				menu.setMenuPrice(rs.getInt("MenuPrice"));
+				lsMenu.add(menu);
 			}
+		
 			stmt.close();
 			conn.commit();
-			return menu;
+			return lsMenu;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -171,14 +146,14 @@ public class MenuDBManager {
 				e.printStackTrace();
 			}
 		}
-		return new Menu();
+		return new ArrayList<Menu>();
 	}
 
 	public List<Menu> listAllMenu() {
 		List<Menu> lsMenu = new ArrayList<Menu>();
 
 		Connection conn = database.getConnection();
-		String sql = "SELECT * FROM ShopMenu";
+		String sql = "SELECT * FROM Menu";
 		Statement stmt = null;
 
 		try {

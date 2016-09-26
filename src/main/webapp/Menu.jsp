@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<%@ page import="fcu.android.backend.service.*"%>
+<%@ page
+	import="fcu.android.backend.service.*, fcu.android.backend.data.*, java.util.*"%>
 
 <%
 	String email = (String) session.getAttribute("email");
@@ -13,6 +14,11 @@
 
 	//session.setAttribute("email", null);
 
+	//out.println(email);
+
+	List<Menu> lsMenu = menuservice.getMenu(email);
+
+	//out.println(lsMenu.size());
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -318,7 +324,16 @@
 								<div class="col-lg-6">
 									<table class=table>
 										<tbody>
+											<%
+												int i = 0;
+												int times = lsMenu.size();
+
+												for (times = lsMenu.size(); times >= 0; times--) {
+											%>
 											<tr>
+												<%
+													for (Menu menu : lsMenu) {
+												%>
 												<td>
 													<div class="product-card product-card--standard">
 														<div class="panel panel-default panel-product">
@@ -326,7 +341,7 @@
 																<img
 																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31321.png?"
 																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
+																<h5 class="product-title" style="height: 19px;"><%=lsMenu.get(i).getMenuName()%></h5>
 																<div class="product-badges"></div>
 															</div>
 															<div class="panel-footer">
@@ -334,7 +349,7 @@
 																	<div class="col-xs-6">
 																		<div class="product-details">
 																			<div class="product-cost">
-																				價格  $<span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
+																				價格 $<span class="starting-price"><%=lsMenu.get(i).getMenuPrice()%></span>
 																			</div>
 																			<div class="product-nutritional-info"></div>
 																		</div>
@@ -350,364 +365,16 @@
 														</div>
 													</div>
 												</td>
-												<!--第一個結尾-->
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31321.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格  $<span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;九塊原味麥脆鷄&quot;,'id':'31321','price':'NT$398','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<!-- 第二個結尾 -->
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31318.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格 $<span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;六塊原味麥脆鷄&quot;,'id':'31318','price':'NT$268','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div> <!-- 第三個結尾 -->
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31318.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格 $ <span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;六塊原味麥脆鷄&quot;,'id':'31318','price':'NT$268','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div> <!-- 第四個結尾 -->
-												</td>
+												<%
+													if (i >= 5)
+														break;
+													}
+													i++;
+												%>
 											</tr>
-											<!-- [1:!] -->
-											<tr>
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31321.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格  $<span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;快樂組合雙人餐&quot;,'id':'36639','price':'NT$299','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<!--第一個結尾-->
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31321.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格  $<span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;九塊原味麥脆鷄&quot;,'id':'31321','price':'NT$398','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<!-- 第二個結尾 -->
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31318.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格 $<span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;六塊原味麥脆鷄&quot;,'id':'31318','price':'NT$268','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div> <!-- 第三個結尾 -->
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31318.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格 $ <span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;六塊原味麥脆鷄&quot;,'id':'31318','price':'NT$268','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div> <!-- 第四個結尾 -->
-												</td>
-											</tr>
-											<!-- [2,;] -->
-											<tr>
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31321.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格  $<span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;快樂組合雙人餐&quot;,'id':'36639','price':'NT$299','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<!--第一個結尾-->
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31321.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格  $<span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;九塊原味麥脆鷄&quot;,'id':'31321','price':'NT$398','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</td>
-												<!-- 第二個結尾 -->
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31318.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格 $<span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;六塊原味麥脆鷄&quot;,'id':'31318','price':'NT$268','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div> <!-- 第三個結尾 -->
-												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31318.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=menuservice.getMenu(email).getMenuName() %></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格 $ <span class="starting-price"><%=menuservice.getMenu(email).getMenuPrice() %></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
-																		</div>
-																	</div>
-																	<div class="product-controls">
-
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;六塊原味麥脆鷄&quot;,'id':'31318','price':'NT$268','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div> <!-- 第四個結尾 -->
-												</td>
-											</tr>
-											<!-- [3,:] -->
+											<%
+												}
+											%>
 										</tbody>
 									</table>
 								</div>
