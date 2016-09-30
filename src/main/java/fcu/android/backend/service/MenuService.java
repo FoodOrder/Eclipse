@@ -24,10 +24,9 @@ public class MenuService {
 	@Path("register")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Menu addMenu(@FormParam("id") int id, @FormParam("MenuName") String MenuName,
-			@FormParam("MenuPrice") int MenuPrice, @FormParam("ShopEmail") String ShopEmail) {
+	public Menu addMenu(@FormParam("MenuName") String MenuName, @FormParam("MenuPrice") int MenuPrice,
+			@FormParam("ShopEmail") String ShopEmail) {
 		Menu menu = new Menu();
-		menu.setId(id);
 		menu.setMenuName(MenuName);
 		menu.setMenuPrice(MenuPrice);
 		menu.setShopEmail(ShopEmail);
@@ -35,23 +34,21 @@ public class MenuService {
 		return menu;
 	}
 
-	/*
-	 * @POST
-	 * 
-	 * @Path("update")
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON) public Shop
-	 * update(@FormParam("shopName") String shopName, @FormParam("password")
-	 * String password,
-	 * 
-	 * @FormParam("phone") String phone, @FormParam("email") String
-	 * email, @FormParam("intro") String intro) { Shop shop = new Shop();
-	 * shop.setShopName(shopName); shop.setPassword(password);
-	 * shop.setEmail(email); shop.setPhone(phone); shop.setIntro(intro);
-	 * dbManager.updateShop(shop); return shop; }
-	 */
+	@POST
+
+	@Path("update")
+
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+
+	@Produces(MediaType.APPLICATION_JSON)
+	public Menu update(@FormParam("MenuName") String menuName, @FormParam("MenuPrice") int menuPrice) {
+		Menu menu = new Menu();
+		menu.setMenuName(menuName);
+		menu.setMenuPrice(menuPrice);
+		//menu.setEmail(email);
+		dbManager.updateMenu(menu);
+		return menu;
+	}
 
 	@GET
 	@Path("hello")

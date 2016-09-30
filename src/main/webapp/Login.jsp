@@ -17,6 +17,7 @@
 	<%
 		ShopService shopservice = new ShopService();
 		StringTrue = "true";
+		
 	
 		Email = request.getParameter("InputEmail");
 		Password = request.getParameter("InputPassword");
