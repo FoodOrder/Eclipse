@@ -324,9 +324,14 @@
 								<div class="col-lg-6">
 									<table class=table>
 										<tbody>
+											<%
+												int i = 0, j = 0;
+												int size = lsMenu.size() % 5;
+
+												for (j = 0; j <= size; j++) {
+											%>
 											<tr>
 												<%
-													int i = 0;
 													for (Menu menu : lsMenu) {
 												%>
 												<td>
@@ -349,22 +354,66 @@
 																			<div class="product-nutritional-info"></div>
 																		</div>
 																	</div>
-																	<div class="product-controls">
-																		<a data-productid="789" href="#signin"
-																			data-toggle="modal" data-target="#signin"
-																			class="btn btn-block action-create btn-red"
-																			onclick="onProductClick({ 'name':&quot;快樂組合雙人餐&quot;,'id':'36639','price':'NT$299','brand':'McDonalds','cat':&quot;快樂分享餐&quot;,'variant':'','url':'#signin'})">訂購</a>
-																	</div>
+																	<form method="post" action="Edit.jsp">
+																		<button type="button" class="btn btn-default"
+																			data-toggle="modal" data-target="#exampleModal"
+																			data-whatever="@mdo">編輯資料</button>
+																		<div class="modal fade" id="exampleModal"
+																			tabindex="-1" role="dialog"
+																			aria-labelledby="exampleModalLabel"
+																			aria-hidden="true">
+																			<div class="modal-dialog">
+																				<div class="modal-content">
+																					<div class="modal-header">
+																						<button type="button" class="close"
+																							data-dismiss="modal">
+																							<span aria-hidden="true">&times;</span>
+																							<spanclass="sr-only">Close</span>
+																						</button>
+																						<h4 class="modal-title" id="exampleModalLabel">編輯</h4>
+																					</div>
+
+																					<div class="modal-body">
+																						<div class="form-group">
+																							<label for="MenuName" class="control-label">餐點名稱:</label>
+																							<input type="text" class="form-control"
+																								name="MenuName"
+																								value=<%=lsMenu.get(i).getMenuName()%>>
+																						</div>
+																						<div class="form-group">
+																							<label for="MenuPrice" class="control-label">餐點價格:</label>
+																							<input type="text" class="form-control"
+																								name="MenuPrice"
+																								value=<%=lsMenu.get(i).getMenuPrice()%>>
+																						</div>
+
+																					</div>
+																					<div class="modal-footer">
+																						<button type="button" class="btn btn-default"
+																							data-dismiss="modal">關閉</button>
+																						<button type="submit" class="btn btn-primary">送出</button>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</form>
 																</div>
 															</div>
 														</div>
 													</div>
 												</td>
 												<%
-													i++;
-													}
+													if (i != 0 && i % 4 == 0) {
+																i++;
+																break;
+															} else
+																i++;
+														}
 												%>
 											</tr>
+											<%
+												}
+											%>
 										</tbody>
 									</table>
 								</div>
