@@ -17,6 +17,8 @@
 	//out.println(email);
 
 	List<Menu> lsMenu = menuservice.getMenu(email);
+	
+	//out.println(lsMenu.get(4).getShopID());
 
 	//out.println(lsMenu.size());
 %>
@@ -326,13 +328,16 @@
 										<tbody>
 											<%
 												int i = 0, j = 0;
-												int size = lsMenu.size() % 5;
+												int size = lsMenu.size() / 5 + 1;
 
-												for (j = 0; j <= size; j++) {
+												for (j = 0; j < size; j++) {
 											%>
 											<tr>
 												<%
 													for (Menu menu : lsMenu) {
+															if (i > lsMenu.size() - 1) {
+																break;
+															}
 												%>
 												<td>
 													<div class="product-card product-card--standard">
@@ -354,7 +359,7 @@
 																			<div class="product-nutritional-info"></div>
 																		</div>
 																	</div>
-																	<form method="post" action="Edit.jsp">
+																	<form method="post" action="EditMenu.jsp">
 																		<button type="button" class="btn btn-default"
 																			data-toggle="modal" data-target="#exampleModal"
 																			data-whatever="@mdo">編輯資料</button>
@@ -402,12 +407,14 @@
 														</div>
 													</div>
 												</td>
+
 												<%
 													if (i != 0 && i % 4 == 0) {
 																i++;
 																break;
-															} else
+															} else {
 																i++;
+															}
 														}
 												%>
 											</tr>

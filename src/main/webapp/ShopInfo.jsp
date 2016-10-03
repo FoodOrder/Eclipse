@@ -323,7 +323,7 @@
 										<tbody>
 											<tr>
 												<td>
-													<form method="post" action="Edit.jsp">
+													<form method="post" action="EditShop.jsp">
 														<button type="button" class="btn btn-default"
 															data-toggle="modal" data-target="#exampleModal"
 															data-whatever="@mdo">編輯資料</button>
