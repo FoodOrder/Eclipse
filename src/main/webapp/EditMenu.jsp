@@ -16,20 +16,16 @@
 
 	int id = Integer.valueOf(request.getParameter("MenuId"));
 	String name = request.getParameter("MenuName");
-	//String menuPrice = request.getParameter("MenuPrince");
 	int price = Integer.valueOf(request.getParameter("MenuPrice"));
 	
 	MenuService menuservice = new MenuService();
 	
 	Menu Menu = new Menu();
-	menuservice.update(id, name,price);
+	menuservice.update(id, name, price);
 %>	
-<!--<%=id %>
-	<%=name %>
-	<%=price %> -->
 
 <%
-	//response.sendRedirect("Menu.jsp");
+	response.sendRedirect("Menu.jsp");
 %>
 </body>
 </html>

@@ -10,6 +10,15 @@ public class Menu implements Serializable {
 	private int  ShopID;
 	private String MenuName;
 	private String ShopEmail;
+	private String photo;
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	public String getShopEmail() {
 		return ShopEmail;

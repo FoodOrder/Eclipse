@@ -73,21 +73,11 @@ public class MenuDBManager {
 	public boolean updateMenu(Menu menu) {
 		Connection conn = database.getConnection();
 		PreparedStatement preStmt = null;
-		PreparedStatement statement = null;
 		Statement stmt = null;
-//		String findShopId = "select * from SHOP where email=?";
-		String sql = "UPDATE MENU SET MenuName=?, MenuPrice=?, WHERE id=?";
+		String sql = "UPDATE MENU SET MenuName=?, MenuPrice=? WHERE id=?";
 		String query = "SELECT * FROM MENU";
 		try {
-//			statement = conn.prepareStatement(findShopId);
-//			statement.setString(1, menu.getShopEmail());
-//			ResultSet rs_id = statement.executeQuery();
-//
-//			int sid = -1;
-//			while (rs_id.next()) {
-//				sid = rs_id.getInt("ID");
-//			}
-			
+		
 			preStmt = conn.prepareStatement(sql);
 			preStmt.setString(1, menu.getMenuName());
 			preStmt.setInt(2, menu.getMenuPrice());
@@ -189,11 +179,13 @@ public class MenuDBManager {
 				int id = rs.getInt("id");
 				String name = rs.getString("MenuName");
 				int price = rs.getInt("MenuPrice");
+				int shopId = rs.getInt("ShopID");
 
 				Menu menu = new Menu();
 				menu.setId(id);
 				menu.setMenuName(name);
 				menu.setMenuPrice(price);
+				menu.setShopID(rs.getInt(shopId));
 				lsMenu.add(menu);
 			}
 		} catch (SQLException e) {

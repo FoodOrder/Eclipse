@@ -17,13 +17,13 @@
 
 	List<Menu> lsMenu = menuservice.getMenu(email);
 
-	for (int i = 0; i < lsMenu.size(); i++) {
+	/*for (int i = 0; i < lsMenu.size(); i++) {
 		out.println(lsMenu.get(i).getMenuName());
 		out.println(lsMenu.get(i).getMenuPrice());
 		out.println(lsMenu.get(i).getId());
 		out.println(lsMenu.get(i).getShopID());
 		out.println("<br>");
-	}
+	}*/
 
 	//out.println(lsMenu.size());
 %>
