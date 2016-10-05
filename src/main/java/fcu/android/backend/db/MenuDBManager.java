@@ -75,30 +75,31 @@ public class MenuDBManager {
 		PreparedStatement preStmt = null;
 		PreparedStatement statement = null;
 		Statement stmt = null;
-		String findShopId = "select * from SHOP where email=?";
-		String sql = "UPDATE MENU SET MenuName=?, MenuPrice=?, WHERE ShopID=?";
+//		String findShopId = "select * from SHOP where email=?";
+		String sql = "UPDATE MENU SET MenuName=?, MenuPrice=?, WHERE id=?";
 		String query = "SELECT * FROM MENU";
 		try {
-			statement = conn.prepareStatement(findShopId);
-			statement.setString(1, menu.getShopEmail());
-			ResultSet rs_id = statement.executeQuery();
-
-			int sid = -1;
-			while (rs_id.next()) {
-				sid = rs_id.getInt("ID");
-			}
+//			statement = conn.prepareStatement(findShopId);
+//			statement.setString(1, menu.getShopEmail());
+//			ResultSet rs_id = statement.executeQuery();
+//
+//			int sid = -1;
+//			while (rs_id.next()) {
+//				sid = rs_id.getInt("ID");
+//			}
 			
 			preStmt = conn.prepareStatement(sql);
 			preStmt.setString(1, menu.getMenuName());
 			preStmt.setInt(2, menu.getMenuPrice());
+			preStmt.setInt(3, menu.getId());
 			preStmt.executeUpdate();
 			preStmt.close();
 
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			System.out.println("List All Shops");
+			System.out.println("List All Menus");
 			while (rs.next()) {
-				System.out.println("Shop Name: " + rs.getString("shopName") + ", Email: " + rs.getString("email"));
+				System.out.println("MenuId: " + rs.getInt("id") + ", Menu Name: " + rs.getString("MenuName") + ", MenuPrice: " + rs.getString("MenuPrice"));
 			}
 			stmt.close();
 			conn.commit();
@@ -153,6 +154,8 @@ public class MenuDBManager {
 				Menu menu = new Menu();
 				menu.setMenuName(rs.getString("MenuName"));
 				menu.setMenuPrice(rs.getInt("MenuPrice"));
+				menu.setShopID(rs.getInt("ShopID"));
+				menu.setId(rs.getInt("id"));
 				lsMenu.add(menu);
 			}
 

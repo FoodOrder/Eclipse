@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<%@ page
-	import="fcu.android.backend.service.*, fcu.android.backend.data.*, java.util.*"%>
+<%@ page import="fcu.android.backend.service.*, fcu.android.backend.data.*, java.util.*"%>
 
 <%
 	String email = (String) session.getAttribute("email");
@@ -17,8 +16,14 @@
 	//out.println(email);
 
 	List<Menu> lsMenu = menuservice.getMenu(email);
-	
-	//out.println(lsMenu.get(4).getShopID());
+
+	for (int i = 0; i < lsMenu.size(); i++) {
+		out.println(lsMenu.get(i).getMenuName());
+		out.println(lsMenu.get(i).getMenuPrice());
+		out.println(lsMenu.get(i).getId());
+		out.println(lsMenu.get(i).getShopID());
+		out.println("<br>");
+	}
 
 	//out.println(lsMenu.size());
 %>
@@ -338,71 +343,69 @@
 															if (i > lsMenu.size() - 1) {
 																break;
 															}
+															int id = lsMenu.get(i).getId();
 												%>
 												<td>
-													<div class="product-card product-card--standard">
-														<div class="panel panel-default panel-product">
-															<div class="panel-body">
-																<img
-																	src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31321.png?"
-																	class="img-block">
-																<h5 class="product-title" style="height: 19px;"><%=lsMenu.get(i).getMenuName()%></h5>
-																<div class="product-badges"></div>
-															</div>
-															<div class="panel-footer">
-																<div class="row row-narrow">
-																	<div class="col-xs-6">
-																		<div class="product-details">
-																			<div class="product-cost">
-																				價格 $<span class="starting-price"><%=lsMenu.get(i).getMenuPrice()%></span>
-																			</div>
-																			<div class="product-nutritional-info"></div>
+													<div class="panel panel-default panel-product">
+														<div class="panel-body">
+															<img
+																src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31321.png?"
+																class="img-block">
+															<h5 class="product-title" style="height: 19px;"><%=lsMenu.get(i).getMenuName()%></h5>
+															<div class="product-badges"></div>
+														</div>
+														<div class="panel-footer">
+															<div class="row row-narrow">
+																<div class="col-xs-6">
+																	<div class="product-details">
+																		<div class="product-cost">
+																			價格 $<span class="starting-price"><%=lsMenu.get(i).getMenuPrice()%></span>
 																		</div>
+																		<div class="product-nutritional-info"></div>
 																	</div>
-																	<form method="post" action="EditMenu.jsp">
-																		<button type="button" class="btn btn-default"
-																			data-toggle="modal" data-target="#exampleModal"
-																			data-whatever="@mdo">編輯資料</button>
-																		<div class="modal fade" id="exampleModal"
-																			tabindex="-1" role="dialog"
-																			aria-labelledby="exampleModalLabel"
-																			aria-hidden="true">
-																			<div class="modal-dialog">
-																				<div class="modal-content">
-																					<div class="modal-header">
-																						<button type="button" class="close"
-																							data-dismiss="modal">
-																							<span aria-hidden="true">&times;</span>
-																							<spanclass="sr-only">Close</span>
-																						</button>
-																						<h4 class="modal-title" id="exampleModalLabel">編輯</h4>
-																					</div>
+																</div>
+																<form method="post" action="EditMenu.jsp?MenuId=<%=lsMenu.get(i).getId()%>">
+																	<button type="button" class="btn btn-default"
+																		data-toggle="modal" data-target="#exampleModal-<%=i%>"
+																		data-whatever="@mdo">編輯資料</button>
+																	<div class="modal fade" id="exampleModal-<%=i%>" tabindex="-1"
+																		role="dialog" aria-labelledby="exampleModalLabel"
+																		aria-hidden="true">
+																		<div class="modal-dialog" id={{id}}>
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<button type="button" class="close"
+																						data-dismiss="modal">
+																						<span aria-hidden="true">&times;</span>
+																						<spanclass="sr-only">Close</span>
+																					</button>
+																					<h4 class="modal-title" id="exampleModalLabel">編輯</h4>
+																				</div>
 
-																					<div class="modal-body">
-																						<div class="form-group">
-																							<label for="MenuName" class="control-label">餐點名稱:</label>
-																							<input type="text" class="form-control"
-																								name="MenuName"
-																								value=<%=lsMenu.get(i).getMenuName()%>>
-																						</div>
-																						<div class="form-group">
-																							<label for="MenuPrice" class="control-label">餐點價格:</label>
-																							<input type="text" class="form-control"
-																								name="MenuPrice"
-																								value=<%=lsMenu.get(i).getMenuPrice()%>>
-																						</div>
+																				<div class="modal-body">
+																					<div class="form-group">
+																						<label for="MenuName" class="control-label">餐點名稱:</label>
+																						<input type="text" class="form-control"
+																							name="MenuName"
+																							value=<%=lsMenu.get(i).getMenuName()%>>
+																					</div>
+																					<div class="form-group">
+																						<label for="MenuPrice" class="control-label">餐點價格:</label>
+																						<input type="text" class="form-control"
+																							name="MenuPrice"
+																							value=<%=lsMenu.get(i).getMenuPrice()%>>
+																					</div>
+																				</div>
 
-																					</div>
-																					<div class="modal-footer">
-																						<button type="button" class="btn btn-default"
-																							data-dismiss="modal">關閉</button>
-																						<button type="submit" class="btn btn-primary">送出</button>
-																					</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn btn-default"
+																						data-dismiss="modal">關閉</button>
+																					<button type="submit" class="btn btn-primary">送出</button>
 																				</div>
 																			</div>
 																		</div>
-																	</form>
-																</div>
+																	</div>
+																</form>
 															</div>
 														</div>
 													</div>

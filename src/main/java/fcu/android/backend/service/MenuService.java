@@ -41,8 +41,9 @@ public class MenuService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 
 	@Produces(MediaType.APPLICATION_JSON)
-	public Menu update(@FormParam("MenuName") String menuName, @FormParam("MenuPrice") int menuPrice) {
+	public Menu update(@FormParam("id") int id, @FormParam("MenuName") String menuName, @FormParam("MenuPrice") int menuPrice) {
 		Menu menu = new Menu();
+		menu.setId(id);
 		menu.setMenuName(menuName);
 		menu.setMenuPrice(menuPrice);
 		//menu.setEmail(email);
