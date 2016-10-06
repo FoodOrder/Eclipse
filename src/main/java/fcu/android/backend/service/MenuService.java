@@ -93,7 +93,7 @@ public class MenuService {
 	@GET
 	@Path("list")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Menu> listShops() {
+	public List<Menu> listMenus() {
 		return dbManager.listAllMenu();
 	}
 }
