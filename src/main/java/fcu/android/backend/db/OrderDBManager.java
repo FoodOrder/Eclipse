@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+//import java.util.Date;
 
 import fcu.android.backend.data.Order;
 
@@ -26,47 +28,59 @@ public class OrderDBManager {
 
 	public boolean addOrder(Order order) {
 		Connection conn = database.getConnection();
-		PreparedStatement preStmt = null;
-		PreparedStatement statement = null;
-		PreparedStatement statement1 = null;
-		Statement stmt = null;
+		PreparedStatement preStmt = null; // insert order
+		PreparedStatement statement_findShop = null; // find shopId
+		PreparedStatement statement_findUser = null; // find userId
+
+		Statement stmt = null; // select order
 		String findShopId = "select * from SHOP where email=?";
 		String findUserId = "select * from USER where email=?";
-		String sql = "INSERT INTO ORDER(shopId, userId, orderTime)  VALUES(?, ?, ?)";
-		String query = "SELECT * FROM ORDER";
+		String insertOrder = "insert into ORDER_LIST(shopId, userId, orderTime) values(?, ?, ?)";
+		String selectOrder = "SELECT * FROM ORDER_LIST";
+
 		try {
-			statement = conn.prepareStatement(findShopId);
-			statement.setString(1, order.getShopEmail());
-			ResultSet rs_sid = statement.executeQuery();
+			// find shopId
+			statement_findShop = conn.prepareStatement(findShopId);
+			statement_findShop.setString(1, order.getShopEmail());
+			ResultSet rs_sid = statement_findShop.executeQuery();
+
+			// Date date = new Date();
+			// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd
+			// HH:mm:ss");
+			// String datetoString = sdf.format(date);
 
 			int sid = -1;
 			while (rs_sid.next()) {
 				sid = rs_sid.getInt("ID");
 			}
-			System.out.println(sid);
-			
-			statement1 = conn.prepareStatement(findUserId);
-			statement1.setString(1, order.getUserEmail());
-			ResultSet rs_uid = statement1.executeQuery();
+			// find userId
+			statement_findUser = conn.prepareStatement(findUserId);
+			statement_findUser.setString(1, order.getUserEmail());
+			ResultSet rs_uid = statement_findUser.executeQuery();
 
 			int uid = -1;
 			while (rs_uid.next()) {
 				uid = rs_uid.getInt("ID");
 			}
 
-			preStmt = conn.prepareStatement(sql);
+			// insert order
+			preStmt = conn.prepareStatement(insertOrder);
 			preStmt.setInt(1, sid);
 			preStmt.setInt(2, uid);
-			preStmt.setString(3, order.getOrderTime());
+			preStmt.setString(3, "2016-10-08");
 			preStmt.executeUpdate();
 			preStmt.close();
 
+			Statement stmt1 = conn.createStatement(); // insert order
+			stmt1.executeUpdate(insertOrder);
+			stmt1.close();
+
 			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs = stmt.executeQuery(selectOrder);
 			System.out.println("List All Orders");
 			while (rs.next()) {
-				System.out.println("ShopID: " + rs.getInt("shopId") + ", UserID: " + rs.getInt("userID") 
-					+ ", Order Time:" + rs.getString("orderTime"));
+				System.out.println("ShopID: " + rs.getInt("shopId") + ", UserID: " + rs.getInt("userID")
+						+ ", Order Time:" + rs.getString("orderTime"));
 			}
 			stmt.close();
 			conn.commit();
@@ -83,42 +97,26 @@ public class OrderDBManager {
 		return false;
 	}
 
-/*	public boolean updateMenu(Menu menu) {
-		Connection conn = database.getConnection();
-		PreparedStatement preStmt = null;
-		Statement stmt = null;
-		String sql = "UPDATE MENU SET MenuName=?, MenuPrice=? WHERE id=?";
-		String query = "SELECT * FROM MENU";
-		try {
-		
-			preStmt = conn.prepareStatement(sql);
-			preStmt.setString(1, menu.getMenuName());
-			preStmt.setInt(2, menu.getMenuPrice());
-			preStmt.setInt(3, menu.getId());
-			preStmt.executeUpdate();
-			preStmt.close();
-
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			System.out.println("List All Menus");
-			while (rs.next()) {
-				System.out.println("MenuId: " + rs.getInt("id") + ", Menu Name: " + rs.getString("MenuName") + ", MenuPrice: " + rs.getString("MenuPrice"));
-			}
-			stmt.close();
-			conn.commit();
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
-	}
-	*/
+	/*
+	 * public boolean updateMenu(Menu menu) { Connection conn =
+	 * database.getConnection(); PreparedStatement preStmt = null; Statement
+	 * stmt = null; String sql =
+	 * "UPDATE MENU SET MenuName=?, MenuPrice=? WHERE id=?"; String query =
+	 * "SELECT * FROM MENU"; try {
+	 * 
+	 * preStmt = conn.prepareStatement(sql); preStmt.setString(1,
+	 * menu.getMenuName()); preStmt.setInt(2, menu.getMenuPrice());
+	 * preStmt.setInt(3, menu.getId()); preStmt.executeUpdate();
+	 * preStmt.close();
+	 * 
+	 * stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query);
+	 * System.out.println("List All Menus"); while (rs.next()) {
+	 * System.out.println("MenuId: " + rs.getInt("id") + ", Menu Name: " +
+	 * rs.getString("MenuName") + ", MenuPrice: " + rs.getString("MenuPrice"));
+	 * } stmt.close(); conn.commit(); return true; } catch (SQLException e) {
+	 * e.printStackTrace(); } finally { try { conn.close(); } catch
+	 * (SQLException e) { e.printStackTrace(); } } return false; }
+	 */
 
 	/*
 	 * public boolean validateShop(String email, String password) { Connection
@@ -156,9 +154,12 @@ public class OrderDBManager {
 
 			while (rs.next()) {
 				Order order = new Order();
-				order.setOrderTime(rs.getString("orderTime"));;
-				order.setShopId(rs.getInt("shopId"));;
-				order.setUserId(rs.getInt("userId"));;
+				order.setOrderTime(rs.getString("orderTime"));
+				;
+				order.setShopId(rs.getInt("shopId"));
+				;
+				order.setUserId(rs.getInt("userId"));
+				;
 				order.setId(rs.getInt("id"));
 				lsOrder.add(order);
 			}
@@ -183,7 +184,7 @@ public class OrderDBManager {
 		List<Order> lsOrder = new ArrayList<Order>();
 
 		Connection conn = database.getConnection();
-		String sql = "SELECT * FROM ORDER";
+		String sql = "SELECT * FROM ORDER_LIST";
 		Statement stmt = null;
 
 		try {
@@ -197,9 +198,12 @@ public class OrderDBManager {
 
 				Order order = new Order();
 				order.setId(id);
-				order.setShopId(shopId);;
-				order.setUserId(userId);;
-				order.setOrderTime(orderTime);;
+				order.setShopId(shopId);
+				;
+				order.setUserId(userId);
+				;
+				order.setOrderTime(orderTime);
+				;
 				lsOrder.add(order);
 			}
 		} catch (SQLException e) {

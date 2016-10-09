@@ -12,24 +12,25 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fcu.android.backend.data.Order;
-import fcu.android.backend.db.OrderDBManager;
+import fcu.android.backend.data.OrderItem;
+import fcu.android.backend.db.OrderItemDBManager;
 
-@Path("order/")
-public class OrderService {
+@Path("orderItem/")
+public class OrderItemService {
 
-	private OrderDBManager dbManager = OrderDBManager.getInstance();
+	private OrderItemDBManager dbManager = OrderItemDBManager.getInstance();
 
 	@POST
 	@Path("register")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Order addOrder(@FormParam("ShopEmail") String shopEmail, @FormParam("UserEmail") String userEmail) {
-		Order order = new Order();
-		order.setShopEmail(shopEmail);
-		order.setUserEmail(userEmail);
-		dbManager.addOrder(order);
-		return order;
+	public OrderItem addOrderItem(@FormParam("orderId") int orderId, @FormParam("foodId") int foodId, @FormParam("amount") int amount) {
+		OrderItem orderItem = new OrderItem();
+		orderItem.setOrderid(orderId);
+		orderItem.setFoodId(foodId);
+		orderItem.setAmount(amount);
+		dbManager.addOrderItem(orderItem);
+		return orderItem;
 	}
 
 //	@POST
@@ -83,15 +84,15 @@ public class OrderService {
 	@GET
 	@Path("{email}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Order> getOrder(@PathParam("ShopEmail") String ShopEmail) {
+	public List<OrderItem> getOrderItem(@PathParam("OrderId") int orderId) {
 
-		return dbManager.getOrder(ShopEmail);
+		return dbManager.getOrderItem(orderId);
 	}
 
 	@GET
 	@Path("list")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Order> listOrders() {
-		return dbManager.listAllOrder();
+	public List<OrderItem> listOrders() {
+		return dbManager.listAllOrderItem();
 	}
 }

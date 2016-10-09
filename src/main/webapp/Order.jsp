@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<%@ page import="fcu.android.backend.service.*"%>
+<%@ page
+	import="fcu.android.backend.service.*, fcu.android.backend.data.*, java.util.*"%>
 
 <%
 	String email = (String) session.getAttribute("email");
@@ -9,7 +10,8 @@
 		response.sendRedirect("Home.jsp");
 	}
 
-	ShopService shopservice = new ShopService();
+	OrderService orderservice = new OrderService();
+	List<Order> lsOrder = orderservice.getOrder(email);
 
 	//session.setAttribute("email", null);
 %>
@@ -305,8 +307,71 @@
 				<div class="col-lg-12">
 					<h1 class="page-header">Order</h1>
 				</div>
+				<!-- /.col-lg-12 -->
 			</div>
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading"></div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-6">
+									<table class=table>
+										<tbody>
+											<tr>
+												<td></td>
+												<td>訂購人</td>
+												<td>訂單內容</td>
+												<td>訂餐時間</td>
+											</tr>
+											<%
+												int i = 0, j = 0;
+												int size = lsOrder.size() / 5 + 1;
+
+												for (j = 0; j < size; j++) {
+											%>
+												<%
+													for (Order order : lsOrder) {
+															if (i > lsOrder.size() - 1) {
+																break;
+															}
+															int id = lsOrder.get(i).getId();
+												%>
+												<tr>
+													<td><%=i+1 %>. </td>
+													<td><%=lsOrder.get(i).getUserId()%></span></td>
+													<td></td>
+													<td><%=lsOrder.get(i).getOrderTime() %></td>													
+												</tr>
+											<%
+												if (i != 0 && i % 4 == 0) {
+															i++;
+															break;
+														} else {
+															i++;
+														}
+													}
+											%>
+											<%
+												}
+											%>
+										</tbody>
+									</table>
+								</div>
+								<!-- /.col-lg-6 (nested) -->
+							</div>
+							<!-- /.row (nested) -->
+						</div>
+						<!-- /.panel-body -->
+					</div>
+					<!-- /.panel -->
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
 		</div>
+		<!-- /#page-wrapper -->
 
 
 

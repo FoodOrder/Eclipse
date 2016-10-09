@@ -16,6 +16,9 @@
 	//out.println(email);
 
 	List<Menu> lsMenu = menuservice.getMenu(email);
+	int i = 0;
+	String path = "\"" + "http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id="
+			+ lsMenu.get(i).getId() + "\"";
 
 	/*for (int i = 0; i < lsMenu.size(); i++) {
 		out.println(lsMenu.get(i).getMenuName());
@@ -63,7 +66,7 @@
 
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
-			style="margin-bottom: 0">
+			style="margin-bottom: 0">s
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target=".navbar-collapse">
@@ -332,7 +335,7 @@
 									<table class=table>
 										<tbody>
 											<%
-												int i = 0, j = 0;
+												int j = 0;
 												int size = lsMenu.size() / 5 + 1;
 
 												for (j = 0; j < size; j++) {
@@ -348,64 +351,110 @@
 												<td>
 													<div class="panel panel-default panel-product">
 														<div class="panel-body">
-															<img
-																src="https://drjaosdejw578.cloudfront.net/tw/static/1474473377362/assets/886/products/31321.png?"
-																class="img-block">
-															<h5 class="product-title" style="height: 19px;"><%=lsMenu.get(i).getMenuName()%></h5>
-															<div class="product-badges"></div>
+															<img src=<%=path%> class="img-responsive"
+																alt="Responsive image">
+															<h5 style="height: 19px;"><%=lsMenu.get(i).getMenuName()%></h5>
 														</div>
 														<div class="panel-footer">
 															<div class="row row-narrow">
-																<div class="col-xs-6">
-																	<div class="product-details">
-																		<div class="product-cost">
-																			價格 $<span class="starting-price"><%=lsMenu.get(i).getMenuPrice()%></span>
-																		</div>
-																		<div class="product-nutritional-info"></div>
-																	</div>
-																</div>
-																<form method="post" action="EditMenu.jsp?MenuId=<%=lsMenu.get(i).getId()%>">
-																	<button type="button" class="btn btn-default"
-																		data-toggle="modal" data-target="#exampleModal-<%=i%>"
-																		data-whatever="@mdo">編輯資料</button>
-																	<div class="modal fade" id="exampleModal-<%=i%>" tabindex="-1"
-																		role="dialog" aria-labelledby="exampleModalLabel"
-																		aria-hidden="true">
-																		<div class="modal-dialog" id={{id}}>
-																			<div class="modal-content">
-																				<div class="modal-header">
-																					<button type="button" class="close"
-																						data-dismiss="modal">
-																						<span aria-hidden="true">&times;</span>
-																						<spanclass="sr-only">Close</span>
-																					</button>
-																					<h4 class="modal-title" id="exampleModalLabel">編輯</h4>
-																				</div>
+																<table>
+																	<tr>
+																		<td class="col-md-6">價格 $<span
+																			class="starting-price"><%=lsMenu.get(i).getMenuPrice()%></span>
+																		</td>
+																		<td class="col-md-3">
+																			<form method="post"
+																				action="Menu_UploadDownloadFileServlet?MenuId=<%=lsMenu.get(i).getId()%>"
+																				enctype="multipart/form-data">
+																				<button type="button" class="btn btn-default"
+																					data-toggle="modal"
+																					data-target="#exampleModal-<%=i%>"
+																					data-whatever="@mdo">圖片</button>
+																				<div class="modal fade" id="exampleModal-<%=i%>"
+																					tabindex="-1" role="dialog"
+																					aria-labelledby="exampleModalLabel"
+																					aria-hidden="true">
+																					<div class="modal-dialog" id={{id}}>
+																						<div class="modal-content">
+																							<div class="modal-header">
+																								<button type="button" class="close"
+																									data-dismiss="modal">
+																									<span aria-hidden="true">&times;</span>
+																									<spanclass="sr-only">Close</span>
+																								</button>
+																								<h4 class="modal-title" id="exampleModalLabel">上傳圖片</h4>
+																							</div>
 
-																				<div class="modal-body">
-																					<div class="form-group">
-																						<label for="MenuName" class="control-label">餐點名稱:</label>
-																						<input type="text" class="form-control"
-																							name="MenuName"
-																							value=<%=lsMenu.get(i).getMenuName()%>>
-																					</div>
-																					<div class="form-group">
-																						<label for="MenuPrice" class="control-label">餐點價格:</label>
-																						<input type="text" class="form-control"
-																							name="MenuPrice"
-																							value=<%=lsMenu.get(i).getMenuPrice()%>>
-																					</div>
-																				</div>
+																							<table border="0">
+																								<tr>
+																									<td><h4>File Name:</h4></td>
+																								</tr>
+																								<tr>
+																									<td><input type="file" name="fileName"
+																										size="50" /></td>
+																								</tr>
+																							</table>
 
-																				<div class="modal-footer">
-																					<button type="button" class="btn btn-default"
-																						data-dismiss="modal">關閉</button>
-																					<button type="submit" class="btn btn-primary">送出</button>
+																							<div class="modal-footer">
+																								<button type="button" class="btn btn-default"
+																									data-dismiss="modal">關閉</button>
+																								<button type="submit" class="btn btn-primary">送出</button>
+																							</div>
+
+																						</div>
+																					</div>
 																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</form>
+																			</form>
+																		</td>
+																		<td class="col-md-3">
+																			<form method="post"
+																				action="EditMenu.jsp?MenuId=<%=lsMenu.get(i).getId()%>">
+																				<button type="button" class="btn btn-default"
+																					data-toggle="modal"
+																					data-target="#exampleModal-<%=i%>"
+																					data-whatever="@mdo">編輯</button>
+																				<div class="modal fade" id="exampleModal-<%=i%>"
+																					tabindex="-1" role="dialog"
+																					aria-labelledby="exampleModalLabel"
+																					aria-hidden="true">
+																					<div class="modal-dialog" id={{id}}>
+																						<div class="modal-content">
+																							<div class="modal-header">
+																								<button type="button" class="close"
+																									data-dismiss="modal">
+																									<span aria-hidden="true">&times;</span>
+																									<spanclass="sr-only">Close</span>
+																								</button>
+																								<h4 class="modal-title" id="exampleModalLabel">編輯</h4>
+																							</div>
+
+																							<div class="modal-body">
+																								<div class="form-group">
+																									<label for="MenuName" class="control-label">餐點名稱:</label>
+																									<input type="text" class="form-control"
+																										name="MenuName"
+																										value=<%=lsMenu.get(i).getMenuName()%>>
+																								</div>
+																								<div class="form-group">
+																									<label for="MenuPrice" class="control-label">餐點價格:</label>
+																									<input type="text" class="form-control"
+																										name="MenuPrice"
+																										value=<%=lsMenu.get(i).getMenuPrice()%>>
+																								</div>
+																							</div>
+
+																							<div class="modal-footer">
+																								<button type="button" class="btn btn-default"
+																									data-dismiss="modal">關閉</button>
+																								<button type="submit" class="btn btn-primary">送出</button>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</form>
+																		</td>
+																	</tr>
+																</table>
 															</div>
 														</div>
 													</div>
@@ -427,20 +476,19 @@
 										</tbody>
 									</table>
 								</div>
+								<!-- /.col-lg-6 (nested) -->
 							</div>
-							<!-- /.col-lg-6 (nested) -->
+							<!-- /.row (nested) -->
 						</div>
-						<!-- /.row (nested) -->
+						<!-- /.panel-body -->
 					</div>
-					<!-- /.panel-body -->
+					<!-- /.panel -->
 				</div>
-				<!-- /.panel -->
+				<!-- /.col-lg-12 -->
 			</div>
-			<!-- /.col-lg-12 -->
+			<!-- /.row -->
 		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /#page-wrapper -->
+		<!-- /#page-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->

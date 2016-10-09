@@ -11,11 +11,27 @@ public class Order implements Serializable {
 	private String outsetTime;
 	private String arriveTime;
 	private String status;
+	
 	private String shopEmail;
 	private int shopId;
 	private String userEmail;
 	private int userId;
 	
+	private int foodId;
+	private int amount;
+	
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public int getFoodId() {
+		return foodId;
+	}
+	public void setFoodId(int foodId) {
+		this.foodId = foodId;
+	}
 	public int getShopId() {
 		return shopId;
 	}
