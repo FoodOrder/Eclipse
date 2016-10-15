@@ -134,7 +134,7 @@ public class OrderDBManager {
 		PreparedStatement stmt = null;
 		PreparedStatement statement = null;
 		String findShopId = "select * from SHOP where email=?";
-		String query = "select * from ORDER where shopId = ?";
+		String query = "select * from ORDER_LIST where shopId = ?";
 		try {
 
 			statement = conn.prepareStatement(findShopId);

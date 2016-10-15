@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<%@ page import="fcu.android.backend.service.*, fcu.android.backend.data.*, java.util.*"%>
+<%@ page
+	import="fcu.android.backend.service.*, fcu.android.backend.data.*, java.util.*"%>
 
 <%
 	String email = (String) session.getAttribute("email");
@@ -17,8 +18,8 @@
 
 	List<Menu> lsMenu = menuservice.getMenu(email);
 	int i = 0;
-	String path = "\"" + "http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id="
-			+ lsMenu.get(i).getId() + "\"";
+	String path =  "\"" + "http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id="
+					+ lsMenu.get(i).getId() + "\"";
 
 	/*for (int i = 0; i < lsMenu.size(); i++) {
 		out.println(lsMenu.get(i).getMenuName());
@@ -390,6 +391,7 @@
 																									<td><h4>File Name:</h4></td>
 																								</tr>
 																								<tr>
+																									<td></td>
 																									<td><input type="file" name="fileName"
 																										size="50" /></td>
 																								</tr>
@@ -410,10 +412,9 @@
 																			<form method="post"
 																				action="EditMenu.jsp?MenuId=<%=lsMenu.get(i).getId()%>">
 																				<button type="button" class="btn btn-default"
-																					data-toggle="modal"
-																					data-target="#exampleModal-<%=i%>"
+																					data-toggle="modal" data-target="#Modal-<%=i%>"
 																					data-whatever="@mdo">編輯</button>
-																				<div class="modal fade" id="exampleModal-<%=i%>"
+																				<div class="modal fade" id="Modal-<%=i%>"
 																					tabindex="-1" role="dialog"
 																					aria-labelledby="exampleModalLabel"
 																					aria-hidden="true">
@@ -461,7 +462,7 @@
 												</td>
 
 												<%
-													if (i != 0 && i % 4 == 0) {
+													if (i != 0 && (i + 1) % 5 == 0) {
 																i++;
 																break;
 															} else {
@@ -473,6 +474,51 @@
 											<%
 												}
 											%>
+											<tr>
+												<td>
+													<form method="post"
+														action="AddMenu.jsp">
+														<button type="button" class="btn btn-default"
+															data-toggle="modal" data-target="#exampleModal"
+															data-whatever="@mdo">+</button>
+														<div class="modal fade" id="exampleModal" tabindex="-1"
+															role="dialog" aria-labelledby="exampleModalLabel"
+															aria-hidden="true">
+															<div class="modal-dialog" id={{id}}>
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<button type="button" class="close"
+																			data-dismiss="modal">
+																			<span aria-hidden="true">&times;</span>
+																			<spanclass="sr-only">Close</span>
+																		</button>
+																		<h4 class="modal-title" id="exampleModalLabel">新增餐點</h4>
+																	</div>
+
+																	<div class="modal-body">
+																		<div class="form-group">
+																			<label for="MenuName" class="control-label">餐點名稱:</label>
+																			<input type="text" class="form-control"
+																				name="MenuName">
+																		</div>
+																		<div class="form-group">
+																			<label for="MenuPrice" class="control-label">餐點價格:</label>
+																			<input type="text" class="form-control"
+																				name="MenuPrice">
+																		</div>
+																	</div>
+
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-default"
+																			data-dismiss="modal">關閉</button>
+																		<button type="submit" class="btn btn-primary">送出</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</form>
+												</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>

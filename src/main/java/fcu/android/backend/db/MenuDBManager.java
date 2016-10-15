@@ -53,7 +53,7 @@ public class MenuDBManager {
 			ResultSet rs = stmt.executeQuery(query);
 			System.out.println("List All Menus");
 			while (rs.next()) {
-				System.out.println("Menu Name: " + rs.getString("MenuName") + ", Price: " + rs.getInt("MenuPrice"));
+				System.out.println("ID: " + rs.getInt("id") + ", Menu Name: " + rs.getString("MenuName") + ", Price: " + rs.getInt("MenuPrice"));
 			}
 			stmt.close();
 			conn.commit();
@@ -180,12 +180,14 @@ public class MenuDBManager {
 				String name = rs.getString("MenuName");
 				int price = rs.getInt("MenuPrice");
 				int shopId = rs.getInt("ShopID");
+				String photo = rs.getString("photo");
 
 				Menu menu = new Menu();
 				menu.setId(id);
 				menu.setMenuName(name);
 				menu.setMenuPrice(price);
 				menu.setShopID(shopId);
+				menu.setPhoto(photo);
 				lsMenu.add(menu);
 			}
 		} catch (SQLException e) {
