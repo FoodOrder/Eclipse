@@ -352,7 +352,7 @@
 												<td>
 													<div class="panel panel-default panel-product">
 														<div class="panel-body">
-															<img src=<%=path%> class="img-responsive"
+															<img src="http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id=<%=lsMenu.get(i).getId()%>" class="img-responsive"
 																alt="Responsive image">
 															<h5 style="height: 19px;"><%=lsMenu.get(i).getMenuName()%></h5>
 														</div>
