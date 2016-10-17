@@ -39,8 +39,10 @@ public class UploadDownloadFileServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		DiskFileItemFactory fileFactory = new DiskFileItemFactory();
+		
 		File filesDir = (File) getServletContext().getAttribute("FILES_DIR_FILE");
 		fileFactory.setRepository(filesDir);
+		//System.out.println("***" + filesDir);
 		this.uploader = new ServletFileUpload(fileFactory);
 	}
 
@@ -70,10 +72,10 @@ public class UploadDownloadFileServlet extends HttpServlet {
 		response.setContentType(mimeType != null ? mimeType : "application/octet-stream");
 		response.setContentLength((int) targetFile.length());
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + targetFile + "\"");
-
 		ServletOutputStream os = response.getOutputStream();
 		
 		IOUtils.copy(fis, os);
+		
 		os.flush();
 		os.close();
 		fis.close();

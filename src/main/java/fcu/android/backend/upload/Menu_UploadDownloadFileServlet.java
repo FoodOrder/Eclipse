@@ -39,8 +39,9 @@ public class Menu_UploadDownloadFileServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		DiskFileItemFactory fileFactory = new DiskFileItemFactory();
-		File filesDir = (File) getServletContext().getAttribute("FILES_DIR_FILE");
+		File filesDir = (File) getServletContext().getAttribute("FILES_DIR_FILE_MENU");
 		fileFactory.setRepository(filesDir);
+		System.out.println("***" + filesDir);
 		this.uploader = new ServletFileUpload(fileFactory);
 	}
 
@@ -51,7 +52,7 @@ public class Menu_UploadDownloadFileServlet extends HttpServlet {
 		if (id == null || id.equals("")) {
 			return ;
 		}
-		File parentDir = new File((String)request.getServletContext().getAttribute("FILES_DIR"));
+		File parentDir = new File((String)request.getServletContext().getAttribute("FILES_DIR_MENU"));
 		File[] childFiles = parentDir.listFiles();
 		File targetFile = null;
 		for(File file: childFiles) {
@@ -157,7 +158,7 @@ public class Menu_UploadDownloadFileServlet extends HttpServlet {
 	        out.write("coverFileName:" + convertFileName);
 	        out.write("<br>");
 			File file = new File(
-					request.getServletContext().getAttribute("FILES_DIR") + File.separator + convertFileName);
+					request.getServletContext().getAttribute("FILES_DIR_MENU") + File.separator + convertFileName);
 			
 //			statement.close();
 			statementUpdate = conn.prepareStatement(query);
