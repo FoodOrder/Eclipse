@@ -85,7 +85,7 @@ public class MenuService {
 	@GET
 	@Path("{email}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Menu> getMenu(@PathParam("ShopEmail") String ShopEmail) {
+	public List<Menu> getMenu(@PathParam("email") String ShopEmail) {
 
 		return dbManager.getMenu(ShopEmail);
 	}
