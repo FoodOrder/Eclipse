@@ -1,6 +1,7 @@
 package fcu.android.backend.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class Order implements Serializable {
@@ -16,21 +17,23 @@ public class Order implements Serializable {
 	private int shopId;
 	private String userEmail;
 	private int userId;
+	private int orderId;
 	
-	private int foodId;
-	private int amount;
+	private ArrayList<OrderItem> items = new ArrayList<OrderItem>();
 	
-	public int getAmount() {
-		return amount;
+	
+	public ArrayList<OrderItem> getItems() {
+		return items;
 	}
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setItems(ArrayList<OrderItem> items) {
+		this.items = items;
 	}
-	public int getFoodId() {
-		return foodId;
+	
+	public int getOrderId() {
+		return orderId;
 	}
-	public void setFoodId(int foodId) {
-		this.foodId = foodId;
+	public void setOrderId(int OrderId) {
+		this.orderId = OrderId;
 	}
 	public int getShopId() {
 		return shopId;

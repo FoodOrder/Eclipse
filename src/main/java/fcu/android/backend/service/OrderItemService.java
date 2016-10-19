@@ -26,7 +26,7 @@ public class OrderItemService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public OrderItem addOrderItem(@FormParam("orderId") int orderId, @FormParam("foodId") int foodId, @FormParam("amount") int amount) {
 		OrderItem orderItem = new OrderItem();
-		orderItem.setOrderid(orderId);
+//		orderItem.setOrderid(orderId);
 		orderItem.setFoodId(foodId);
 		orderItem.setAmount(amount);
 		dbManager.addOrderItem(orderItem);

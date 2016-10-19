@@ -36,7 +36,7 @@ public class OrderItemDBManager {
 		String query = "SELECT * FROM ORDER_ITEM";
 		try {
 			preStmt = conn.prepareStatement(sql);
-			preStmt.setInt(1, orderitem.getOrderid());
+		//	preStmt.setInt(1, orderitem.getOrderid());
 			preStmt.setInt(2, orderitem.getFoodId());
 			preStmt.setInt(3, orderitem.getAmount());
 			preStmt.executeUpdate();
@@ -110,7 +110,7 @@ public class OrderItemDBManager {
 
 			while (rs.next()) {
 				OrderItem orderItem = new OrderItem();
-				orderItem.setOrderid(orderId);
+		//		orderItem.setOrderid(orderId);
 				orderItem.setFoodId(rs.getInt("foodId"));
 				orderItem.setAmount(rs.getInt("amount"));
 				lsOrderItem.add(orderItem);
@@ -148,7 +148,7 @@ public class OrderItemDBManager {
 				int amount = rs.getInt("amount");
 
 				OrderItem orderItem = new OrderItem();
-				orderItem.setOrderid(orderid);
+//				orderItem.setOrderid(orderid);
 				orderItem.setFoodId(foodId);
 				orderItem.setAmount(amount);
 				lsOrderItem.add(orderItem);
