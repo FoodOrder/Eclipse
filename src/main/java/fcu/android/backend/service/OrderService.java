@@ -4,6 +4,7 @@ package fcu.android.backend.service;
 import java.io.BufferedReader;
 import java.net.HttpURLConnection;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,29 +50,25 @@ public class OrderService{
 	@Produces(MediaType.APPLICATION_JSON)
 	public Order getOrder() {
 		Order order = new Order();
-		Date nowTime = new Date();
-		System.out.println(String.valueOf(nowTime.getHours() + ":" + nowTime.getMinutes() +":" + nowTime.getSeconds()));
-		order.setOrderTime(String.valueOf(nowTime.getHours() + ":" + nowTime.getMinutes() +":" + nowTime.getSeconds()));;
+		
 		//order.setOrderId(10);
 		
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date current = new Date();
+		System.out.println(sdFormat.format(current));
+		order.setOrderTime(sdFormat.format(current));
+		
+		
+		
 		ArrayList<OrderItem> lsItems = new ArrayList<OrderItem>();
+		
 		/*
-		for(int i = 0; i < 3 ; i++)
-		{
-			OrderItem item = new OrderItem();
-			item.setFoodId(1);
-			item.setAmount(10);
-			lsItems.add(item);
+		for(int i = 0; i < order.getItems().size() ; i++){
+			additem(order.getItems().get(i).getFoodId(),order.getItems().get(i).getAmount(),lsItems);
 		}
 		*/
 		
-	
-		for(int i = 0; i < lsItems.size() ; i++){
-			//additem(,lsItems);
-		}
 		
-		
-		/*
 		OrderItem item1 = new OrderItem();
 		item1.setFoodId(1);
 		item1.setAmount(10);
@@ -81,7 +78,6 @@ public class OrderService{
 		item2.setFoodId(2);
 		item2.setAmount(5);
 		lsItems.add(item2);
-		*/
 		
 		order.setItems(lsItems);
 		return order;

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 //import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,8 +57,7 @@ public class OrderDBManager {
 			}
 			*/
 			
-			Date nowTime = new Date();
-			order.setOrderTime(String.valueOf(nowTime.getHours() + ":" + nowTime.getMinutes() +":" + nowTime.getSeconds()));
+			
 			// find userId
 			statement_findUser = conn.prepareStatement(findUserId);
 			statement_findUser.setString(1, order.getUserEmail());
@@ -69,12 +69,16 @@ public class OrderDBManager {
 			}
 			statement_findUser.close();
 			
+			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date current = new Date();
+			
 			System.out.println("uid: " + uid);
-			System.out.println("OrderTime: " + order.getOrderTime());
+			System.out.println("OrderTime: " + sdFormat.format(current));
+			
 			// insert order
 			preStmt = conn.prepareStatement(insertOrder);
 			preStmt.setInt(1, uid);
-			preStmt.setString(2, "20161019");
+			preStmt.setString(2, sdFormat.format(current));
 			preStmt.executeUpdate();
 			preStmt.close();
 
