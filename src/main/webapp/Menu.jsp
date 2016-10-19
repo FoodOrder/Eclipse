@@ -18,8 +18,8 @@
 
 	List<Menu> lsMenu = menuservice.getMenu(email);
 	int i = 0;
-	String path =  "\"" + "http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id="
-					+ lsMenu.get(i).getId() + "\"";
+	String path = "\"" + "http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id="
+			+ lsMenu.get(i).getId() + "\"";
 
 	/*for (int i = 0; i < lsMenu.size(); i++) {
 		out.println(lsMenu.get(i).getMenuName());
@@ -67,7 +67,7 @@
 
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
-			style="margin-bottom: 0">s
+			style="margin-bottom: 0">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target=".navbar-collapse">
@@ -352,15 +352,53 @@
 												<td>
 													<div class="panel panel-default panel-product">
 														<div class="panel-body">
-															<img src="http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id=<%=lsMenu.get(i).getId()%>" class="img-responsive"
-																alt="Responsive image">
-															<h5 style="height: 19px;"><%=lsMenu.get(i).getMenuName()%></h5>
+															<img
+																src="http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id=<%=lsMenu.get(i).getId()%>"
+																class="img-responsive" alt="Responsive image">
+															<div class="col-md-9">
+																<h4 style="height: 19px;"><%=lsMenu.get(i).getMenuName()%></h4>
+															</div>
+
+															<div class="col-md-3">
+																<form method="post"
+																	action="DeleteMenu.jsp?MenuId=<%=lsMenu.get(i).getId()%>">
+																	<button type="button" class="btn btn-link"
+																		data-toggle="modal" data-target="#deleteModal-<%=i%>"
+																		data-whatever="@mdo">刪除</button>
+																	<div class="modal fade" id="deleteModal-<%=i%>"
+																		tabindex="-1" role="dialog"
+																		aria-labelledby="exampleModalLabel" aria-hidden="true">
+																		<div class="modal-dialog" id={{id}}>
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<button type="button" class="close"
+																						data-dismiss="modal">
+																						<span aria-hidden="true">&times;</span>
+																						<spanclass="sr-only">Close</span>
+																					</button>
+																					<h4 class="modal-title" id="exampleModalLabel">刪除</h4>
+																				</div>
+
+																				<div class="modal-body">
+																					<h3 class="text-center">是否刪除這項餐點？</h3>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="submit" class="btn btn-primary">確定</button>
+																					<button type="button" class="btn btn-default"
+																						data-dismiss="modal">取消</button>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</form>
+															</div>
+
 														</div>
 														<div class="panel-footer">
 															<div class="row row-narrow">
 																<table>
 																	<tr>
-																		<td class="col-md-6">價格 $<span
+																		<td class="col-md-6">NT：<span
 																			class="starting-price"><%=lsMenu.get(i).getMenuPrice()%></span>
 																		</td>
 																		<td class="col-md-3">
@@ -445,8 +483,6 @@
 																							</div>
 
 																							<div class="modal-footer">
-																								<button type="button" class="btn btn-default"
-																									data-dismiss="modal">關閉</button>
 																								<button type="submit" class="btn btn-primary">送出</button>
 																							</div>
 																						</div>
@@ -476,8 +512,7 @@
 											%>
 											<tr>
 												<td>
-													<form method="post"
-														action="AddMenu.jsp">
+													<form method="post" action="AddMenu.jsp">
 														<button type="button" class="btn btn-default"
 															data-toggle="modal" data-target="#exampleModal"
 															data-whatever="@mdo">+</button>

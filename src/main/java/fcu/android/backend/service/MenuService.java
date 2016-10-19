@@ -33,13 +33,22 @@ public class MenuService {
 		dbManager.addMenu(menu);
 		return menu;
 	}
+	
+	@POST
+	@Path("delete")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Menu delete(@FormParam("id") int id) {
+		Menu menu = new Menu();
+		menu.setId(id);
+		//menu.setEmail(email);
+		dbManager.deleteMenu(menu);
+		return menu;
+	}
 
 	@POST
-
 	@Path("update")
-
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-
 	@Produces(MediaType.APPLICATION_JSON)
 	public Menu update(@FormParam("id") int id, @FormParam("MenuName") String menuName, @FormParam("MenuPrice") int menuPrice) {
 		Menu menu = new Menu();

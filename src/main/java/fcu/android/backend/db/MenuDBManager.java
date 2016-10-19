@@ -69,6 +69,40 @@ public class MenuDBManager {
 		}
 		return false;
 	}
+	
+	public boolean deleteMenu(Menu menu) {
+		Connection conn = database.getConnection();
+		PreparedStatement preStmt = null;
+		Statement stmt = null;
+		String sql = "DELETE FROM MENU WHERE id = ?";
+		String query = "SELECT * FROM MENU";
+		try {
+		
+			preStmt = conn.prepareStatement(sql);
+			preStmt.setInt(1, menu.getId());
+			preStmt.executeUpdate();
+			preStmt.close();
+
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			System.out.println("List All Menus");
+			while (rs.next()) {
+				System.out.println("MenuId: " + rs.getInt("id") + ", Menu Name: " + rs.getString("MenuName") + ", MenuPrice: " + rs.getString("MenuPrice"));
+			}
+			stmt.close();
+			conn.commit();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
 
 	public boolean updateMenu(Menu menu) {
 		Connection conn = database.getConnection();
