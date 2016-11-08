@@ -141,6 +141,8 @@ public class ShopDBManager {
 				shop.setEmail(rs.getString("email"));
 				shop.setPhone(rs.getString("phone"));
 				shop.setIntro(rs.getString("intro"));
+				shop.setLongitude(rs.getDouble("longitude"));
+				shop.setLatitude(rs.getDouble("latitude"));
 				int id = rs.getInt("ID");
 				shop.setPhoto(shopImgURL+id);
 			}

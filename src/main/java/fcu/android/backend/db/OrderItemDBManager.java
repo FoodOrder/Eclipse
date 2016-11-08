@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.Date;
 
+import fcu.android.backend.service.MenuService;
 import fcu.android.backend.data.Menu;
 import fcu.android.backend.data.OrderItem;
-import fcu.android.backend.data.Shop;
+//import fcu.android.backend.data.Shop;
 
 public class OrderItemDBManager {
 
@@ -36,7 +37,7 @@ public class OrderItemDBManager {
 		String query = "SELECT * FROM ORDER_ITEM";
 		try {
 			preStmt = conn.prepareStatement(sql);
-		//	preStmt.setInt(1, orderitem.getOrderid());
+			// preStmt.setInt(1, orderitem.getOrderid());
 			preStmt.setInt(2, orderitem.getFoodId());
 			preStmt.setInt(3, orderitem.getAmount());
 			preStmt.executeUpdate();
@@ -98,23 +99,24 @@ public class OrderItemDBManager {
 	public List<OrderItem> getOrderItem(int orderId) {
 		Connection conn = database.getConnection();
 		PreparedStatement stmt = null;
-		PreparedStatement statement = null;
+//		PreparedStatement statement = null;
 		String query = "select * from ORDER_ITEM where orderId=?";
+
 		try {
 
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, orderId);
-			ResultSet rs = stmt.executeQuery();
+			 stmt.setInt(1, orderId);
+			 ResultSet rs = stmt.executeQuery();
 
 			List<OrderItem> lsOrderItem = new ArrayList<OrderItem>();
 
-			while (rs.next()) {
-				OrderItem orderItem = new OrderItem();
-		//		orderItem.setOrderid(orderId);
-				orderItem.setFoodId(rs.getInt("foodId"));
-				orderItem.setAmount(rs.getInt("amount"));
-				lsOrderItem.add(orderItem);
-			}
+				while (rs.next()) {
+					OrderItem orderItem = new OrderItem();
+					orderItem.setFoodId(rs.getInt("foodId"));
+					orderItem.setAmount(rs.getInt("amount"));
+					orderItem.setOrderid(rs.getInt("orderId"));
+					lsOrderItem.add(orderItem);
+				}
 
 			stmt.close();
 			conn.commit();
@@ -148,7 +150,7 @@ public class OrderItemDBManager {
 				int amount = rs.getInt("amount");
 
 				OrderItem orderItem = new OrderItem();
-//				orderItem.setOrderid(orderid);
+				 orderItem.setOrderid(orderid);
 				orderItem.setFoodId(foodId);
 				orderItem.setAmount(amount);
 				lsOrderItem.add(orderItem);

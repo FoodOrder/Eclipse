@@ -19,6 +19,10 @@ public class Shop implements Serializable {
 	
 	private String intro;
 
+	private double longitude;
+	
+	private double latitude;
+	
 	public String getIntro() {
 		return intro;
 	}
@@ -73,5 +77,21 @@ public class Shop implements Serializable {
 	
 	public void setPhoto(String photo){
 		this.photo = photo;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 }

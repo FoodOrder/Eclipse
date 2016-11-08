@@ -75,7 +75,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="Dashboard.jsp">ShopManager</a>
+			<a class="navbar-brand" href="Dashboard.jsp">SuperMenu</a>
 		</div>
 		<!-- /.navbar-header -->
 
@@ -270,51 +270,15 @@
 						</div> <!-- /input-group -->
 					</li>
 					<li><a href="Dashboard.jsp"><i
-							class="fa fa-dashboard fa-fw"></i> Dashboard(首頁)</a></li>
-					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
-							Charts<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="FlotCharts.jsp">Flot Charts(圖表)</a></li>
-							<li><a href="morris.html">Morris.js Charts</a></li>
-						</ul> <!-- /.nav-second-level --></li>
-					<li><a href="Order.jsp"><i class="fa fa-table fa-fw"></i>Order(訂單查詢)</a>
-					</li>
+							class="fa fa-dashboard fa-fw"></i> 首頁</a></li>
+
+					<li><a href="Order.jsp"><i class="fa fa-table fa-fw"></i>
+							訂單查詢</a></li>
 					<li><a href="ShopInfo.jsp"><i class="fa fa-edit fa-fw"></i>
-							Shop Information(編輯店家資訊)</a></li>
-					<li><a href="Menu.jsp"><i class="fa fa-edit fa-fw"></i>
-							Menu菜單</a></li>
-					<li><a href="#"><i class="fa fa-wrench fa-fw"></i> UI
-							Elements<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="panels-wells.html">Panels and Wells</a></li>
-							<li><a href="buttons.html">Buttons</a></li>
-							<li><a href="notifications.html">Notifications</a></li>
-							<li><a href="typography.html">Typography</a></li>
-							<li><a href="icons.html"> Icons</a></li>
-							<li><a href="grid.html">Grid</a></li>
-						</ul> <!-- /.nav-second-level --></li>
-					<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
-							Multi-Level Dropdown<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="#">Second Level Item</a></li>
-							<li><a href="#">Second Level Item</a></li>
-							<li><a href="#">Third Level <span class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li><a href="#">Third Level Item</a></li>
-									<li><a href="#">Third Level Item</a></li>
-									<li><a href="#">Third Level Item</a></li>
-									<li><a href="#">Third Level Item</a></li>
-								</ul> <!-- /.nav-third-level --></li>
-						</ul> <!-- /.nav-second-level --></li>
-					<li><a href="#"><i class="fa fa-files-o fa-fw"></i> Sample
-							Pages<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="blank.html">Blank Page</a></li>
-							<li><a href="login.html">Login Page</a></li>
-						</ul> <!-- /.nav-second-level --></li>
+							編輯店家資訊</a></li>
+					<li><a href="Menu.jsp"><i class="fa fa-edit fa-fw"></i>菜單</a></li>
 				</ul>
 			</div>
-			<!-- /.sidebar-collapse -->
 		</div>
 		<!-- /.navbar-static-side --> </nav>
 
@@ -322,6 +286,45 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Menu</h1>
+
+					<form method="post" action="AddMenu.jsp">
+						<button type="button" class="btn" data-toggle="modal"
+							data-target="#exampleModal" data-whatever="@mdo">新增菜單</button>
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" id={{id}}>
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span>
+											<spanclass="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="exampleModalLabel">新增餐點</h4>
+									</div>
+
+									<div class="modal-body">
+										<div class="form-group">
+											<label for="MenuName" class="control-label">餐點名稱:</label> <input
+												type="text" class="form-control" name="MenuName">
+										</div>
+										<div class="form-group">
+											<label for="MenuPrice" class="control-label">餐點價格:</label> <input
+												type="text" class="form-control" name="MenuPrice">
+										</div>
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">關閉</button>
+										<button type="submit" class="btn btn-primary">送出</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</form>
+
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -342,15 +345,15 @@
 									<div class="panel-body">
 
 										<img
-											src="http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id=<%=lsMenu.get(i).getId()%>"
+											src="http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id=<%=menu.getId()%>"
 											class="img-responsive" alt="Responsive image">
 										<div class="col-md-9">
-											<h4 style="height: 19px;"><%=lsMenu.get(i).getMenuName()%></h4>
+											<h4 style="height: 19px;"><%=menu.getMenuName()%></h4>
 										</div>
 
 										<div class="col-md-3">
 											<form method="post"
-												action="DeleteMenu.jsp?MenuId=<%=lsMenu.get(i).getId()%>">
+												action="DeleteMenu.jsp?MenuId=<%=menu.getId()%>">
 												<button type="button" class="btn btn-link"
 													data-toggle="modal" data-target="#deleteModal-<%=i%>"
 													data-whatever="@mdo">刪除</button>
@@ -386,11 +389,11 @@
 										<div class="row row-narrow">
 											<table>
 												<tr>
-													<td class="col-md-6">NT：<span class="starting-price"><%=lsMenu.get(i).getMenuPrice()%></span>
+													<td class="col-md-6">NT：<span class="starting-price"><%=menu.getMenuPrice()%></span>
 													</td>
 													<td class="col-md-3">
 														<form method="post"
-															action="Menu_UploadDownloadFileServlet?MenuId=<%=lsMenu.get(i).getId()%>"
+															action="Menu_UploadDownloadFileServlet?MenuId=<%=menu.getId()%>"
 															enctype="multipart/form-data">
 															<button type="button" class="btn btn-default"
 																data-toggle="modal" data-target="#exampleModal-<%=i%>"
@@ -403,8 +406,8 @@
 																		<div class="modal-header">
 																			<button type="button" class="close"
 																				data-dismiss="modal">
-																				<span aria-hidden="true">&times;</span>
-																				<spanclass="sr-only">Close</span>
+																				<span aria-hidden="true">&times;</span> <span
+																					class="sr-only">Close</span>
 																			</button>
 																			<h4 class="modal-title" id="exampleModalLabel">上傳圖片</h4>
 																		</div>
@@ -433,7 +436,7 @@
 													</td>
 													<td class="col-md-3">
 														<form method="post"
-															action="EditMenu.jsp?MenuId=<%=lsMenu.get(i).getId()%>">
+															action="EditMenu.jsp?MenuId=<%=menu.getId()%>">
 															<button type="button" class="btn btn-default"
 																data-toggle="modal" data-target="#Modal-<%=i%>"
 																data-whatever="@mdo">編輯</button>
@@ -455,14 +458,12 @@
 																			<div class="form-group">
 																				<label for="MenuName" class="control-label">餐點名稱:</label>
 																				<input type="text" class="form-control"
-																					name="MenuName"
-																					value=<%=lsMenu.get(i).getMenuName()%>>
+																					name="MenuName" value=<%=menu.getMenuName()%>>
 																			</div>
 																			<div class="form-group">
 																				<label for="MenuPrice" class="control-label">餐點價格:</label>
 																				<input type="text" class="form-control"
-																					name="MenuPrice"
-																					value=<%=lsMenu.get(i).getMenuPrice()%>>
+																					name="MenuPrice" value=<%=menu.getMenuPrice()%>>
 																			</div>
 																		</div>
 
@@ -488,61 +489,17 @@
 								}
 							%>
 
-							<tr>
-								<td>
-									<form method="post" action="AddMenu.jsp">
-										<button type="button" class="btn btn-default"
-											data-toggle="modal" data-target="#exampleModal"
-											data-whatever="@mdo">+</button>
-										<div class="modal fade" id="exampleModal" tabindex="-1"
-											role="dialog" aria-labelledby="exampleModalLabel"
-											aria-hidden="true">
-											<div class="modal-dialog" id={{id}}>
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal">
-															<span aria-hidden="true">&times;</span>
-															<spanclass="sr-only">Close</span>
-														</button>
-														<h4 class="modal-title" id="exampleModalLabel">新增餐點</h4>
-													</div>
 
-													<div class="modal-body">
-														<div class="form-group">
-															<label for="MenuName" class="control-label">餐點名稱:</label>
-															<input type="text" class="form-control" name="MenuName">
-														</div>
-														<div class="form-group">
-															<label for="MenuPrice" class="control-label">餐點價格:</label>
-															<input type="text" class="form-control" name="MenuPrice">
-														</div>
-													</div>
-
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">關閉</button>
-														<button type="submit" class="btn btn-primary">送出</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</form>
-								</td>
-							</tr>
 						</div>
-						<!-- /.col-lg-6 (nested) -->
+						<!-- /.row (nested) -->
 					</div>
-					<!-- /.row (nested) -->
+					<!-- /.panel -->
 				</div>
-				<!-- /.panel-body -->
+				<!-- /.col-lg-12 -->
 			</div>
-			<!-- /.panel -->
+			<!-- /.row -->
 		</div>
-		<!-- /.col-lg-12 -->
-	</div>
-	<!-- /.row -->
-	</div>
-	<!-- /#page-wrapper -->
+		<!-- /#page-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->

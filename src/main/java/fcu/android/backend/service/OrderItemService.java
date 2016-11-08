@@ -26,7 +26,6 @@ public class OrderItemService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public OrderItem addOrderItem(@FormParam("orderId") int orderId, @FormParam("foodId") int foodId, @FormParam("amount") int amount) {
 		OrderItem orderItem = new OrderItem();
-//		orderItem.setOrderid(orderId);
 		orderItem.setFoodId(foodId);
 		orderItem.setAmount(amount);
 		dbManager.addOrderItem(orderItem);
@@ -80,11 +79,11 @@ public class OrderItemService {
 	 * String password) { boolean valid = dbManager.validateShop(email,
 	 * password); return valid; }
 	 */
-
+	
 	@GET
-	@Path("{email}")
+	@Path("{orderId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<OrderItem> getOrderItem(@PathParam("OrderId") int orderId) {
+	public List<OrderItem> getOrderItem(@PathParam("orderId") int orderId) {
 
 		return dbManager.getOrderItem(orderId);
 	}

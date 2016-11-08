@@ -44,7 +44,7 @@
 						</div>
 						
 						<div class="form-group">
-							<button type="submit" class="btn btn-lg btn-default btn-block">登入</button>
+							<button type="submit" class="btn btn-lg btn-success btn-block">登入</button>
 						</div>
 					</div>
 				</div>

@@ -141,7 +141,7 @@ public class OrderService{
 	@GET
 	@Path("{email}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Order> getOrder(@PathParam("ShopEmail") String ShopEmail) {
+	public List<Order> getOrder(@PathParam("email") String ShopEmail) {
 
 		return dbManager.getOrder(ShopEmail);
 	}

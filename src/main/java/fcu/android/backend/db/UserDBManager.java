@@ -146,6 +146,36 @@ public class UserDBManager {
 		}
 		return new User();
 	}
+	
+	public User getUser(int id) {
+		Connection conn = database.getConnection();
+		PreparedStatement stmt = null;
+		String query = "select * from USER where ID = ?";
+		try {
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			User user = new User();
+			if (rs.next()) {
+				user.setUserName(rs.getString("userName"));
+				user.setPassword(rs.getString("password"));
+				user.setEmail(rs.getString("email"));
+				user.setPhone(rs.getString("phone"));
+			}
+			stmt.close();
+			conn.commit();
+			return user;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return new User();
+	}
 
 	public List<User> listAllUsers() {
 		List<User> lsUsers = new ArrayList<User>();

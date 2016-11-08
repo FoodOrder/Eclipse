@@ -69,6 +69,14 @@ public class UserService {
 
 		return dbManager.getUser(email);
 	}
+	
+	@GET
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getUser(@PathParam("id") int id) {
+
+		return dbManager.getUser(id);
+	}
 
 	@GET
 	@Path("list")

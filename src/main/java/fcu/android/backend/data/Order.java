@@ -13,11 +13,9 @@ public class Order implements Serializable {
 	private String arriveTime;
 	private String status;
 	
-	private String shopEmail;
-	private int shopId;
 	private String userEmail;
 	private int userId;
-	private int orderId;
+	private int shopId;
 	
 	private ArrayList<OrderItem> items = new ArrayList<OrderItem>();
 	
@@ -29,18 +27,6 @@ public class Order implements Serializable {
 		this.items = items;
 	}
 	
-	public int getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(int OrderId) {
-		this.orderId = OrderId;
-	}
-	public int getShopId() {
-		return shopId;
-	}
-	public void setShopId(int shopId) {
-		this.shopId = shopId;
-	}
 	public int getUserId() {
 		return userId;
 	}
@@ -53,12 +39,7 @@ public class Order implements Serializable {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getShopEmail() {
-		return shopEmail;
-	}
-	public void setShopEmail(String shopEmail) {
-		this.shopEmail = shopEmail;
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -94,6 +75,12 @@ public class Order implements Serializable {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public int getShopId() {
+		return shopId;
+	}
+	public void setShopId(int shopId) {
+		this.shopId = shopId;
 	}
 
 	

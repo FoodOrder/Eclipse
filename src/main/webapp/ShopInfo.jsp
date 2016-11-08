@@ -21,7 +21,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
+<script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.js'></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdhLKOdsw9wjoBV4sCF3IuZGZtJuEO0HI&signed_in=true&callback=initMap"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=BIG5"
+	name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=BIG5"> -->
 
 <!-- 選擇性佈景主題 -->
 <link rel="stylesheet"
@@ -61,7 +68,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="Dashboard.jsp">ShopManager</a>
+			<a class="navbar-brand" href="Dashboard.jsp">SuperMenu</a>
 		</div>
 		<!-- /.navbar-header -->
 
@@ -256,51 +263,15 @@
 						</div> <!-- /input-group -->
 					</li>
 					<li><a href="Dashboard.jsp"><i
-							class="fa fa-dashboard fa-fw"></i> Dashboard(首頁)</a></li>
-					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
-							Charts<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="FlotCharts.jsp">Flot Charts(圖表)</a></li>
-							<li><a href="morris.html">Morris.js Charts</a></li>
-						</ul> <!-- /.nav-second-level --></li>
-					<li><a href="Order.jsp"><i class="fa fa-table fa-fw"></i>Order(訂單查詢)</a>
-					</li>
+							class="fa fa-dashboard fa-fw"></i> 首頁</a></li>
+
+					<li><a href="Order.jsp"><i class="fa fa-table fa-fw"></i>
+							訂單查詢</a></li>
 					<li><a href="ShopInfo.jsp"><i class="fa fa-edit fa-fw"></i>
-							Shop Information(編輯店家資訊)</a></li>
-					<li><a href="Menu.jsp"><i class="fa fa-edit fa-fw"></i>
-							Menu菜單</a></li>
-					<li><a href="#"><i class="fa fa-wrench fa-fw"></i> UI
-							Elements<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="panels-wells.html">Panels and Wells</a></li>
-							<li><a href="buttons.html">Buttons</a></li>
-							<li><a href="notifications.html">Notifications</a></li>
-							<li><a href="typography.html">Typography</a></li>
-							<li><a href="icons.html"> Icons</a></li>
-							<li><a href="grid.html">Grid</a></li>
-						</ul> <!-- /.nav-second-level --></li>
-					<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
-							Multi-Level Dropdown<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="#">Second Level Item</a></li>
-							<li><a href="#">Second Level Item</a></li>
-							<li><a href="#">Third Level <span class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li><a href="#">Third Level Item</a></li>
-									<li><a href="#">Third Level Item</a></li>
-									<li><a href="#">Third Level Item</a></li>
-									<li><a href="#">Third Level Item</a></li>
-								</ul> <!-- /.nav-third-level --></li>
-						</ul> <!-- /.nav-second-level --></li>
-					<li><a href="#"><i class="fa fa-files-o fa-fw"></i> Sample
-							Pages<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="blank.html">Blank Page</a></li>
-							<li><a href="login.html">Login Page</a></li>
-						</ul> <!-- /.nav-second-level --></li>
+							編輯店家資訊</a></li>
+					<li><a href="Menu.jsp"><i class="fa fa-edit fa-fw"></i>菜單</a></li>
 				</ul>
 			</div>
-			<!-- /.sidebar-collapse -->
 		</div>
 		<!-- /.navbar-static-side --> </nav>
 
@@ -317,6 +288,8 @@
 					<div class="panel panel-default">
 						<div class="panel-heading"></div>
 						<div class="panel-body">
+						<div class="row">
+						<div class="col-lg-12">
 							<div class="row">
 								<div class="col-lg-6">
 									<table class=table>
@@ -399,6 +372,7 @@
 											<tr>
 												<td>店家簡介：<%=shopservice.getShop(email).getIntro()%></td>
 											</tr>
+											
 											<tr>
 												<td>
 													<form method="post" action="UploadDownloadFileServlet"
@@ -423,10 +397,53 @@
 										</tbody>
 									</table>
 								</div>
-							</div>
+								
+								
+							
 							<!-- /.col-lg-6 (nested) -->
+							<div class="row">
+								<div class="col-lg-6">
+								
+													<input type="hidden" id="a" value="<%=shopservice.getShop(email).getLongitude()%>">
+													<input type="hidden" id="b" value="<%=shopservice.getShop(email).getLatitude()%>">
+													<script>
+														$(function() {
+															var a = (document.getElementById("a").value)*1;
+															var b = (document.getElementById("b").value)*1;
+															var latlng = new google.maps.LatLng(a, b);
+															//設定地圖參數
+															var mapOptions = {
+																zoom : 20, //初始放大倍數
+																center : latlng, //中心點所在位置
+																mapTypeId : google.maps.MapTypeId.ROADMAP
+															//正常2D道路模式
+															};
+															//在指定DOM元素中嵌入地圖
+															var map = new google.maps.Map(
+																	document
+																			.getElementById("map_canvas"),
+																	mapOptions);
+															//加入標示點(Marker)
+															var marker = new google.maps.Marker(
+																	{
+																		position : latlng, //經緯度
+																		map : map
+																	//指定要放置的地圖對象
+																	});
+														});
+													</script>
+													<div id="map_canvas" style="width: 450px; height: 450px"></div>
+												
+											
+								</div>
+								</div>
 						</div>
 						<!-- /.row (nested) -->
+						</div>
+						<!--12-->
+						</div>
+						</div>
+						<!-- row -->
 					</div>
 					<!-- /.panel-body -->
 				</div>

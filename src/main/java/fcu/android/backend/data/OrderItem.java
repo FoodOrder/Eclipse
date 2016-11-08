@@ -7,6 +7,7 @@ public class OrderItem implements Serializable {
 
 	private int foodId;
 	private int amount;
+	private int orderid;
 	
 	public int getFoodId() {
 		return foodId;
@@ -19,6 +20,12 @@ public class OrderItem implements Serializable {
 	}
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+	public int getOrderid() {
+		return orderid;
+	}
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
 	}
 
 }
