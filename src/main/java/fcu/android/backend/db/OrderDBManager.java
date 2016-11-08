@@ -211,6 +211,11 @@ public class OrderDBManager {
 			while (rs.next()) {
 				Order order = new Order();
 				order.setOrderTime(rs.getString("orderTime"));
+				order.setConfirmTime(rs.getString("confirmTime"));
+				order.setOutsetTime(rs.getString("outsetTime"));
+				order.setArriveTime(rs.getString("arriveTime"));
+				order.setStatus(rs.getInt("status"));
+				order.setShopId(rs.getInt("shopId"));
 				order.setUserId(rs.getInt("userId"));
 				order.setId(rs.getInt("id"));
 				lsOrder.add(order);
@@ -245,12 +250,22 @@ public class OrderDBManager {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				int userId = rs.getInt("userId");
+				int status = rs.getInt("status");
+				int shopId = rs.getInt("shopId");
 				String orderTime = rs.getString("orderTime");
+				String confirmTime = rs.getString("confirmTime");
+				String outsetTime = rs.getString("outsetTime");
+				String arriveTime = rs.getString("arriveTime");
 
 				Order order = new Order();
 				order.setId(id);
 				order.setUserId(userId);
+				order.setStatus(status);
+				order.setShopId(shopId);
 				order.setOrderTime(orderTime);
+				order.setConfirmTime(confirmTime);
+				order.setOutsetTime(outsetTime);
+				order.setArriveTime(arriveTime);
 				lsOrder.add(order);
 			}
 		} catch (SQLException e) {

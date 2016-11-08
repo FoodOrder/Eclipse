@@ -98,6 +98,14 @@ public class MenuService {
 
 		return dbManager.getMenu(ShopEmail);
 	}
+	
+	@GET
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Menu getMenu(@PathParam("id") int id) {
+
+		return dbManager.getMenu(id);
+	}
 
 	@GET
 	@Path("list")

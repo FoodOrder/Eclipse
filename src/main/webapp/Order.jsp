@@ -16,6 +16,8 @@
 	List<Order> lsOrder = orderservice.getOrder(email);
 
 	UserService userservice = new UserService();
+	
+	MenuService menuservice = new MenuService();
 	//session.setAttribute("email", null);
 %>
 
@@ -282,44 +284,34 @@
 						<div class="panel-heading">
 							<div class="row">
 								<div class="col-lg-12">
-									<ul class="list-inline">
-										<li class="col-md-1 col-md-offset-1"><h4
-												class="text-center">
-												<strong>編號</strong>
-											</h4></li>
-										<li class="col-md-2"><h4 class="text-center">
-												<strong>訂購人</strong>
-											</h4></li>
-										<li class="col-md-2"><h4>
-												<strong>訂單內容</strong>
-											</h4></li>
-										<li class="col-md-3"><h4 class="text-center">
-												<strong>訂餐時間</strong>
-											</h4></li>
-										<li class="col-md-2 col-md-pull-1"><h4
-												class="text-center">
-												<strong>狀態</strong>
-											</h4></li>
-										<li class="col-md-1 col-md-push-1"></li>
-									</ul>
+								<table class="col-lg-12">
+									<tr>
+										<td class="col-md-2"><h4 class="text-center"><strong>編號</strong></h4></td>
+										<td class="col-md-2"><h4 class="text-center"><strong>訂購人</strong></h4></td>
+										<td class="col-md-2"><h4 class="text-center"><strong>訂單內容</strong></h4></td>
+										<td class="col-md-2"><h4 class="text-center"><strong>訂餐時間</strong></h4></td>
+										<td class="col-md-2"><h4 class="text-center"><strong>是否接受</strong></h4></td>
+										<td class="col-md-2"><h4 class="text-center"><strong>目前狀態</strong></h4></td>
+									</tr>
+									</table>
 								</div>
 							</div>
 						</div>
 						<div class="panel-body">
 							<div class="row">
-								<div class="col-lg-12">
+							  <div class="col-lg-12">
+								<table class="col-lg-12 table table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed">
 									<%
 										int i = 1;
 										for (Order order : lsOrder) {
 											List<OrderItem> lsOrderItem = orderitemservice.getOrderItem(order.getId());
 									%>
-									<ul class="list-inline">
-										<li class="col-md-1 col-md-offset-1"><h4
-												class="text-center"><%=i%></h4></li>
-										<li class="col-md-2"><h4 class="text-center"><%=order.getUserId()%></h4></li>
-										<li class="col-md-2">
+									<tr>
+										<td class="col-md-2"><h4 class="text-center"><%=i%></h4></td>
+										<td class="col-md-2"><h4 class="text-center"><%=userservice.getUser(order.getUserId()).getUserName()%></h4></td>
+										<td class="col-md-2">
 											<form>
-												<button type="button" class="btn btn-link"
+												<button type="button" class="btn btn-link btn-block"
 													data-toggle="modal" data-target="#showModal-<%=i - 1%>"
 													data-whatever="@mdo">查看訂單內容</button>
 												<div class="modal fade" id="showModal-<%=i - 1%>"
@@ -332,46 +324,82 @@
 																	<span aria-hidden="true">&times;</span> <span
 																		class="sr-only">Close</span>
 																</button>
-																<h4 class="modal-title" id="exampleModalLabel">訂單內容</h4>
+																<h3 class="modal-title" id="exampleModalLabel">訂單內容</h3>
 															</div>
 
 															<div class="modal-body">
-																<ul>
+																<ul class="list-style">
 																	<%
+																		int price = 0;
 																		for (OrderItem orderItem : lsOrderItem) {
 																	%>
 																	<li>
 																		<ul class="list-inline">
-																			<li><%=orderItem.getFoodId()%></li>
-																			<li><%=orderItem.getAmount()%></li>
+																			<li><h4><%=menuservice.getMenu(orderItem.getFoodId()).getMenuName()%></h4></li>
+																			<li><h4>x<%=orderItem.getAmount()%></h4></li>
 																		</ul>
 																	</li>
 																	<%
+																		price = price + menuservice.getMenu(orderItem.getFoodId()).getMenuPrice() * orderItem.getAmount();
 																		}
 																	%>
 																</ul>
 															</div>
 															<div class="modal-footer">
-																<button type="submit" class="btn btn-primary">確定</button>
-																<button type="button" class="btn btn-default"
-																	data-dismiss="modal">取消</button>
+																<h3><strong>總金額：<%=price %>元</strong></h3>
 															</div>
 														</div>
 													</div>
 												</div>
 											</form>
-										</li>
-										<li class="col-md-3"><h4 class="text-center"><%=order.getOrderTime()%></h4></li>
-										<li class="col-md-2 col-md-pull-1"><h4
-												class="text-center">
-												<strong>狀態</strong>
-											</h4></li>
-										<li class="col-md-1 col-md-push-1"></li>
-									</ul>
+										</td>
+										<td class="col-md-2"><h4 class="text-center"><%=order.getOrderTime()%></h4></td>
+										<%
+											if(order.getStatus()==1) {
+										%>
+										<td class="col-md-2 text-center"><button type="submit" class="btn btn-default" disabled="disabled">已接受</button></td>
+										<%
+											}else {
+										%>
+										<td class="col-md-2 text-center"><button type="submit" class="btn btn-success">接受</button>
+										<button type="submit" class="btn btn-danger">拒絕</button></td>
+										<%
+											}
+										%>
+										<%
+											String status="";
+										
+											switch(order.getStatus()) {
+												case 0: {
+													status = "待確認";
+												break;
+												}
+												
+												case 1: {
+													status = "製作中";
+													break;
+												}
+												
+												case 2: {
+													status = "外送中";
+												}
+												
+												case 3: {
+													status = "訂單已拒絕";
+												}
+												
+												default: {
+													break;
+												}
+											}
+										%>
+										<td class="col-md-2"><h4 class="text-center" style="color:rgb(172, 115, 57)"><strong><%=status%></strong></h4></td>
+										</tr>
 									<%
 										i++;
 										}
 									%>
+									</table>
 								</div>
 								<!-- /.col-lg-12 (nested) -->
 							</div>

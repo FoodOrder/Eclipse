@@ -198,6 +198,41 @@ public class MenuDBManager {
 		}
 		return new ArrayList<Menu>();
 	}
+	
+	public Menu getMenu(int id) {
+		Connection conn = database.getConnection();
+		PreparedStatement stmt = null;
+		String query = "select * from MENU where id = ?";
+		try {
+			
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			Menu menu = new Menu();
+
+			if (rs.next()) {
+				menu.setMenuName(rs.getString("MenuName"));
+				menu.setMenuPrice(rs.getInt("MenuPrice"));
+				menu.setShopID(rs.getInt("ShopID"));
+				menu.setId(rs.getInt("id"));
+			}
+
+			stmt.close();
+			conn.commit();
+			return menu;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return new Menu();
+	}
 
 	public List<Menu> listAllMenu() {
 		List<Menu> lsMenu = new ArrayList<Menu>();

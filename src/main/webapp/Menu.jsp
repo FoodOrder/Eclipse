@@ -286,7 +286,6 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Menu</h1>
-
 					<form method="post" action="AddMenu.jsp">
 						<button type="button" class="btn" data-toggle="modal"
 							data-target="#exampleModal" data-whatever="@mdo">新增菜單</button>

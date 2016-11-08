@@ -11,7 +11,7 @@ public class Order implements Serializable {
 	private String confirmTime;
 	private String outsetTime;
 	private String arriveTime;
-	private String status;
+	private int status;
 	
 	private String userEmail;
 	private int userId;
@@ -70,10 +70,10 @@ public class Order implements Serializable {
 	public void setArriveTime(String arriveTime) {
 		this.arriveTime = arriveTime;
 	}
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	public int getShopId() {

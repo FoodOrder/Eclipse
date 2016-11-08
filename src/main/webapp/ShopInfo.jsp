@@ -288,8 +288,6 @@
 					<div class="panel panel-default">
 						<div class="panel-heading"></div>
 						<div class="panel-body">
-						<div class="row">
-						<div class="col-lg-12">
 							<div class="row">
 								<div class="col-lg-6">
 									<table class=table>
@@ -306,8 +304,7 @@
 															<div class="modal-dialog">
 																<div class="modal-content">
 																	<div class="modal-header">
-																		<button type="button" class="close"
-																			data-dismiss="modal">
+																		<button type="button" class="close" data-dismiss="modal">
 																			<span aria-hidden="true">&times;</span>
 																			<spanclass="sr-only">Close</span>
 																		</button>
@@ -317,38 +314,31 @@
 																	<div class="modal-body">
 																		<div class="form-group">
 																			<label for="ShopName" class="control-label">店家名稱:</label>
-																			<input type="text" class="form-control"
-																				name="ShopName"
+																			<input type="text" class="form-control" name="ShopName"
 																				value=<%=shopservice.getShop(email).getShopName()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="ShopPhone" class="control-label">聯絡電話:</label>
-																			<input type="text" class="form-control"
-																				name="ShopPhone"
+																			<input type="text" class="form-control" name="ShopPhone"
 																				value=<%=shopservice.getShop(email).getPhone()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="ShopEmail" class="control-label">信箱:</label>
-																			<input type="email" class="form-control"
-																				name="ShopEmail"
+																			<input type="email" class="form-control" name="ShopEmail"
 																				value=<%=shopservice.getShop(email).getEmail()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="ShopPwd" class="control-label">密碼:</label>
-																			<input type="text" class="form-control"
-																				name="ShopPwd"
+																			<input type="text" class="form-control" name="ShopPwd"
 																				value=<%=shopservice.getShop(email).getPassword()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="message-text" class="control-label">店家簡介</label>
-																			<textarea class="form-control" id="message-text"
-																				name="ShopIntro" rows="3">
-																			</textarea>
+																			<textarea class="form-control" id="message-text" name="ShopIntro" rows="3"></textarea>
 																		</div>
 																	</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-default"
-																			data-dismiss="modal">關閉</button>
+																		<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
 																		<button type="submit" class="btn btn-primary">送出</button>
 																	</div>
 																</div>
@@ -358,38 +348,30 @@
 												</td>
 											</tr>
 											<tr>
-												<td>店家名稱：<%=shopservice.getShop(email).getShopName()%></td>
+												<td><h4>店家名稱：<%=shopservice.getShop(email).getShopName()%></h4></td>
 											</tr>
 											<tr>
-												<td>聯絡電話： <%=shopservice.getShop(email).getPhone()%></td>
+												<td><h4>聯絡電話： <%=shopservice.getShop(email).getPhone()%></h4></td>
 											</tr>
 											<tr>
-												<td>信箱：<%=shopservice.getShop(email).getEmail()%></td>
+												<td><h4>信箱：<%=shopservice.getShop(email).getEmail()%></h4></td>
 											</tr>
 											<tr>
-												<td>密碼：<%=shopservice.getShop(email).getPassword()%></td>
+												<td><h4>密碼：<%=shopservice.getShop(email).getPassword()%></h4></td>
 											</tr>
 											<tr>
-												<td>店家簡介：<%=shopservice.getShop(email).getIntro()%></td>
+												<td><h4>店家簡介：<%=shopservice.getShop(email).getIntro()%></h4></td>
 											</tr>
-											
+
 											<tr>
 												<td>
-													<form method="post" action="UploadDownloadFileServlet"
-														enctype="multipart/form-data">
+													<form method="post" action="UploadDownloadFileServlet" enctype="multipart/form-data">
 														<table border="0">
-															<label>上傳店家圖片</label>
-															<img src=<%=path%> class="img-responsive"
-																alt="Responsive image">
-															<tr>
-																<td>File Name:</td>
-																<td><input type="file" name="fileName" size="50" /></td>
-															</tr>
-															<tr>
-															<tr>
-																<td colspan="2"><input type="submit" value="上傳">
-																</td>
-															</tr>
+															<tr><td><h4><strong>上傳店家圖片</strong></h4></td></tr>
+															<tr><td><img src=<%=path%> class="img-responsive" alt="Responsive image"></td></tr>
+															<tr><td><h4>上傳檔案：</h4></td></tr>
+															<tr><td><input type="file" name="fileName" size="50" /></td></tr>
+															<tr><td colspan="2"><input type="submit" value="上傳"></td></tr>
 														</table>
 													</form>
 												</td>
@@ -397,63 +379,58 @@
 										</tbody>
 									</table>
 								</div>
-								
-								
-							
-							<!-- /.col-lg-6 (nested) -->
-							<div class="row">
-								<div class="col-lg-6">
-								
-													<input type="hidden" id="a" value="<%=shopservice.getShop(email).getLongitude()%>">
-													<input type="hidden" id="b" value="<%=shopservice.getShop(email).getLatitude()%>">
-													<script>
-														$(function() {
-															var a = (document.getElementById("a").value)*1;
-															var b = (document.getElementById("b").value)*1;
-															var latlng = new google.maps.LatLng(a, b);
-															//設定地圖參數
-															var mapOptions = {
-																zoom : 20, //初始放大倍數
-																center : latlng, //中心點所在位置
-																mapTypeId : google.maps.MapTypeId.ROADMAP
-															//正常2D道路模式
-															};
-															//在指定DOM元素中嵌入地圖
-															var map = new google.maps.Map(
-																	document
-																			.getElementById("map_canvas"),
-																	mapOptions);
-															//加入標示點(Marker)
-															var marker = new google.maps.Marker(
-																	{
-																		position : latlng, //經緯度
-																		map : map
-																	//指定要放置的地圖對象
-																	});
+								<!-- /.col-lg-6 (nested) -->
+								<div class="row">
+									<div class="col-lg-6">
+										<h5><strong>店家位址：</strong></h5>
+										<input type="hidden" id="a"
+											value="<%=shopservice.getShop(email).getLongitude()%>">
+										<input type="hidden" id="b"
+											value="<%=shopservice.getShop(email).getLatitude()%>">
+										<script>
+											$(function() {
+												var a = (document
+														.getElementById("a").value) * 1;
+												var b = (document
+														.getElementById("b").value) * 1;
+												var latlng = new google.maps.LatLng(
+														a, b);
+												//設定地圖參數
+												var mapOptions = {
+													zoom : 19, //初始放大倍數
+													center : latlng, //中心點所在位置
+													mapTypeId : google.maps.MapTypeId.ROADMAP
+												//正常2D道路模式
+												};
+												//在指定DOM元素中嵌入地圖
+												var map = new google.maps.Map(
+														document
+																.getElementById("map_canvas"),
+														mapOptions);
+												//加入標示點(Marker)
+												var marker = new google.maps.Marker(
+														{
+															position : latlng, //經緯度
+															map : map
+														//指定要放置的地圖對象
 														});
-													</script>
-													<div id="map_canvas" style="width: 450px; height: 450px"></div>
-												
-											
+											});
+										</script>
+										<div id="map_canvas" style="width: 550px; height: 550px"></div>
+									</div>
 								</div>
-								</div>
+							</div>
+							<!-- /.row (nested) -->
 						</div>
-						<!-- /.row (nested) -->
-						</div>
-						<!--12-->
-						</div>
-						</div>
-						<!-- row -->
+						<!-- /.panel-body -->
 					</div>
-					<!-- /.panel-body -->
+					<!-- /.panel -->
 				</div>
-				<!-- /.panel -->
+				<!-- /.col-lg-12 -->
 			</div>
-			<!-- /.col-lg-12 -->
+			<!-- /.row -->
 		</div>
-		<!-- /.row -->
-	</div>
-	<!-- /#page-wrapper -->
+		<!-- /#page-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->
