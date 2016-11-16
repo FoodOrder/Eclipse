@@ -285,8 +285,9 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">菜單</h1>
-					<form method="post" action="AddMenu.jsp">
+					<div class="page-header">
+					<h1>菜單</h1>
+					<form method="post" action="addMenu.jsp">
 						<button type="button" class="btn" data-toggle="modal"
 							data-target="#exampleModal" data-whatever="@mdo">新增菜單</button>
 						<div class="modal fade" id="exampleModal" tabindex="-1"
@@ -321,9 +322,8 @@
 								</div>
 							</div>
 						</div>
-
 					</form>
-
+					</div>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -332,9 +332,6 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="row">
-
-
-
 							<%
 								for (Menu menu : lsMenu) {
 							%>
@@ -352,7 +349,7 @@
 
 										<div class="col-md-3">
 											<form method="post"
-												action="DeleteMenu.jsp?MenuId=<%=menu.getId()%>">
+												action="deleteMenu.jsp?MenuId=<%=menu.getId()%>">
 												<button type="button" class="btn btn-link"
 													data-toggle="modal" data-target="#deleteModal-<%=i%>"
 													data-whatever="@mdo">刪除</button>
@@ -434,7 +431,7 @@
 														</form>
 													</td>
 													<td class="col-md-3">
-														<form method="post" action="EditMenu.jsp?MenuId=<%=menu.getId()%>">
+														<form method="post" action="editMenu.jsp?MenuId=<%=menu.getId()%>">
 															<button type="button" class="btn btn-default"
 																data-toggle="modal" data-target="#Modal-<%=i%>"
 																data-whatever="@mdo">編輯</button>

@@ -357,10 +357,11 @@
 											int check = order.getStatus();
 											if(check == 1) {
 										%>
-											<form method="post" action="changeOrderStatus.jsp?OrderId=<%=order.getId()%>">
-												<td class="col-md-2 text-center">
+											<td class="col-md-2 text-center">
+												<form method="post" action="changeStatusToOutset.jsp?OrderId=<%=order.getId()%>">
 														<button type="submit" class="btn btn-info" name="outset" value=2>外送</button>
-												</td>
+												</form>
+											</td>
 										<%
 											}
 											else if(check == 2 || check == 3) {
@@ -375,11 +376,15 @@
 										<%
 											}else {
 										%>
-												<td class="col-md-2 text-center">
+											<td class="col-md-2 text-center">
+												<form method="post" action="changeStatusToAccept.jsp?OrderId=<%=order.getId()%>">
 														<button type="submit" class="btn btn-success" name="accept" value=1>接受</button>
+												</form>
+												<form method="post" action="changeStatusToReject.jsp?OrderId=<%=order.getId()%>">
 														<button type="submit" class="btn btn-danger" name="reject" value=4>拒絕</button>
-												</td>
-											</form>
+												</form>
+											</td>
+											
 										<%
 											}
 										%>

@@ -92,7 +92,7 @@ public class MenuService {
 	 */
 
 	@GET
-	@Path("{email}")
+	@Path("email/{email}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Menu> getMenu(@PathParam("email") String ShopEmail) {
 
@@ -100,7 +100,7 @@ public class MenuService {
 	}
 	
 	@GET
-	@Path("{id}")
+	@Path("id/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Menu getMenu(@PathParam("id") int id) {
 

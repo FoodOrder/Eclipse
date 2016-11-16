@@ -63,7 +63,7 @@ public class UserService {
 	}
 
 	@GET
-	@Path("{email}")
+	@Path("email/{email}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUser(@PathParam("email") String email) {
 
@@ -71,7 +71,7 @@ public class UserService {
 	}
 	
 	@GET
-	@Path("{id}")
+	@Path("id/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public User getUser(@PathParam("id") int id) {
 

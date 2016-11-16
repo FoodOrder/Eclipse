@@ -24,7 +24,7 @@
 %>	
 
 <%
-	response.sendRedirect("Menu.jsp");
+	response.sendRedirect("menu.jsp");
 %>
 </body>
 </html>

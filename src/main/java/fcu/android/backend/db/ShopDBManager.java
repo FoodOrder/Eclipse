@@ -67,7 +67,7 @@ public class ShopDBManager {
 		Connection conn = database.getConnection();
 		PreparedStatement preStmt = null;
 		Statement stmt = null;
-		String sql = "UPDATE SHOP SET shopName=?, password=?, phone=?, intro=? WHERE email=?";
+		String sql = "UPDATE SHOP SET shopName=?, password=?, phone=?, intro=?, longitude=?, latitude=? WHERE email=?";
 		String query = "SELECT * FROM SHOP";
 		try {
 			preStmt = conn.prepareStatement(sql);
@@ -75,7 +75,9 @@ public class ShopDBManager {
 			preStmt.setString(2, shop.getPassword());
 			preStmt.setString(3, shop.getPhone());
 			preStmt.setString(4, shop.getIntro());
-			preStmt.setString(5, shop.getEmail());
+			preStmt.setDouble(5, shop.getLongitude());
+			preStmt.setDouble(6, shop.getLatitude());
+			preStmt.setString(7, shop.getEmail());
 			preStmt.executeUpdate();
 			preStmt.close();
 

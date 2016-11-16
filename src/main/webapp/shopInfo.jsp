@@ -294,7 +294,7 @@
 										<tbody>
 											<tr>
 												<td>
-													<form method="post" action="EditShop.jsp">
+													<form method="post" action="editShop.jsp">
 														<button type="button" class="btn btn-default"
 															data-toggle="modal" data-target="#exampleModal"
 															data-whatever="@mdo">編輯資料</button>
@@ -329,8 +329,17 @@
 																		</div>
 																		<div class="form-group">
 																			<label for="ShopPwd" class="control-label">密碼:</label>
-																			<input type="text" class="form-control" name="ShopPwd"
-																				value=<%=shopservice.getShop(email).getPassword()%>>
+																			<input type="text" class="form-control" name="ShopPwd">
+																		</div>
+																		<div class="form-group">
+																			<label for="ShopEmail" class="control-label">經度:</label>
+																			<input type="text" class="form-control" name="ShopLongitude"
+																				value=<%=shopservice.getShop(email).getLongitude()%>>
+																		</div>
+																		<div class="form-group">
+																			<label for="ShopEmail" class="control-label">緯度:</label>
+																			<input type="text" class="form-control" name="ShopLatitude"
+																				value=<%=shopservice.getShop(email).getLatitude()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="message-text" class="control-label">店家簡介</label>
@@ -357,7 +366,7 @@
 												<td><h4>信箱：<%=shopservice.getShop(email).getEmail()%></h4></td>
 											</tr>
 											<tr>
-												<td><h4>密碼：<%=shopservice.getShop(email).getPassword()%></h4></td>
+												<td><h4>經緯度：(<%=shopservice.getShop(email).getLongitude()%>, <%=shopservice.getShop(email).getLatitude()%>)</h4></td>
 											</tr>
 											<tr>
 												<td><h4>店家簡介：<%=shopservice.getShop(email).getIntro()%></h4></td>

@@ -19,15 +19,17 @@
 	String email = request.getParameter("ShopEmail");
 	String pwd = request.getParameter("ShopPwd");
 	String intro = request.getParameter("ShopIntro");
+	Double longitude = Double.valueOf(request.getParameter("ShopLongitude"));
+	Double latitude = Double.valueOf(request.getParameter("ShopLatitude"));
 	
 	ShopService shopservice = new ShopService();
 	
 	Shop shop = new Shop();
-	shopservice.update(name, pwd, phone, email, intro);
+	shopservice.update(name, pwd, phone, email, intro, longitude, latitude);
 %>	
 
 <%
-	response.sendRedirect("ShopInfo.jsp");
+	response.sendRedirect("shopInfo.jsp");
 %>
 </body>
 </html>

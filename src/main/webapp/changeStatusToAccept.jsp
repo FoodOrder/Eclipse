@@ -12,13 +12,14 @@
 	<%
 		int id = Integer.valueOf(request.getParameter("OrderId"));
 		int accept = Integer.valueOf(request.getParameter("accept"));
-		int reject = Integer.valueOf(request.getParameter("reject"));
-		int outset = Integer.valueOf(request.getParameter("outset"));
-		int status = -1;
 	
 		OrderService orderservice = new OrderService();
 		
-		out.println(accept + ", " + reject + ", " + outset);
+		out.println(accept);
+		
+		orderservice.update(id, accept);
+		
+		response.sendRedirect("order.jsp");
 	
 	%>
 

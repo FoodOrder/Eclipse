@@ -41,13 +41,15 @@ public class ShopService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Shop update(@FormParam("shopName") String shopName, @FormParam("password") String password,
-			 @FormParam("phone") String phone, @FormParam("email") String email, @FormParam("intro") String intro) {
+			 @FormParam("phone") String phone, @FormParam("email") String email, @FormParam("intro") String intro, @FormParam("longitude") Double longitude, @FormParam("latitude") Double latitude) {
 		Shop shop = new Shop();
 		shop.setShopName(shopName);
 		shop.setPassword(password);
 		shop.setEmail(email);
 		shop.setPhone(phone);
 		shop.setIntro(intro);
+		shop.setLongitude(longitude);
+		shop.setLatitude(latitude);
 		dbManager.updateShop(shop);
 		return shop;
 	}
