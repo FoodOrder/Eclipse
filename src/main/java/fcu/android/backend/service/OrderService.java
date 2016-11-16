@@ -103,60 +103,20 @@ public class OrderService{
 		lsItems.add(item);
 	}
 
-//	@POST
-
-//	@Path("update")
-//
-//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Menu update(@FormParam("id") int id, @FormParam("MenuName") String menuName, @FormParam("MenuPrice") int menuPrice) {
-//		Menu menu = new Menu();
-//		menu.setId(id);
-//		menu.setMenuName(menuName);
-//		menu.setMenuPrice(menuPrice);
-//		//menu.setEmail(email);
-//		dbManager.updateMenu(menu);
-//		return menu;
-//	}
-//
-//	@GET
-//	@Path("hello")
-//	@Produces(MediaType.TEXT_PLAIN)
-//	public String hello() {
-//		return "hello";
-//	}
-
-//	@GET
-//	@Path("ok/{email}/{password}")
-//	@Produces(MediaType.TEXT_PLAIN)
-//	public String ok(@PathParam("email") String email, @PathParam("password") String pass) {
-//		if (email.equals("a") && pass.equals("b")) {
-//			return "true";
-//		}
-//
-//		return "false";
-//	}
-
-	/*
-	 * @POST
-	 * 
-	 * @Path("validate")
-	 * 
-	 * @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON) public boolean
-	 * isValidShop(@FormParam("email") String email, @FormParam("password")
-	 * String password) { boolean valid = dbManager.validateShop(email,
-	 * password); return valid; }
-	 */
-
 	@GET
-	@Path("{email}")
+	@Path("shop/{email}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Order> getOrder(@PathParam("email") String ShopEmail) {
 
 		return dbManager.getOrder(ShopEmail);
+	}
+	
+	@GET
+	@Path("userId/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Order> getOrder(@PathParam("id") int UserId) {
+
+		return dbManager.getOrder(UserId);
 	}
 
 	@GET

@@ -247,6 +247,57 @@ public class OrderDBManager {
 		}
 		return new ArrayList<Order>();
 	}
+	
+	public List<Order> getOrder(int UserId) {
+		Connection conn = database.getConnection();
+		PreparedStatement stmt = null;
+		PreparedStatement statement = null;
+//		String findShopId = "select * from USER where email=?";
+		String query = "select * from ORDER_LIST where userId = ?";
+		try {
+
+//			statement = conn.prepareStatement(findShopId);
+//			statement.setString(1, UserEmail);
+//			ResultSet rs_id = statement.executeQuery();
+//
+//			int uid = -1;
+//			while (rs_id.next()) {
+//				uid = rs_id.getInt("ID");
+//			}
+
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, UserId);
+			ResultSet rs = stmt.executeQuery();
+
+			List<Order> lsOrder = new ArrayList<Order>();
+
+			while (rs.next()) {
+				Order order = new Order();
+				order.setOrderTime(rs.getString("orderTime"));
+				order.setConfirmTime(rs.getString("confirmTime"));
+				order.setOutsetTime(rs.getString("outsetTime"));
+				order.setArriveTime(rs.getString("arriveTime"));
+				order.setStatus(rs.getInt("status"));
+				order.setShopId(rs.getInt("shopId"));
+				order.setId(rs.getInt("id"));
+				lsOrder.add(order);
+			}
+
+			stmt.close();
+			conn.commit();
+			return lsOrder;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return new ArrayList<Order>();
+	}
 
 	public List<Order> listAllOrder() {
 		List<Order> lsOrder = new ArrayList<Order>();
