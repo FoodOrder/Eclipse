@@ -26,12 +26,12 @@
 		
 		if(valid){
 			session.setAttribute("email", Email);
-			response.sendRedirect("Dashboard.jsp");
+			response.sendRedirect("order.jsp");
 		}
 		else{%>
 			<h3>帳號或密碼錯誤!</h3>
 			<br>
-			<a href=Home.jsp>重新登入</a>
+			<a href=index.jsp>重新登入</a>
 		<%}
 		
 	%>

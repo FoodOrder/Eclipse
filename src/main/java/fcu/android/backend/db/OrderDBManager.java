@@ -43,25 +43,25 @@ public class OrderDBManager {
 		String selectOrder = "SELECT * FROM ORDER_LIST";
 
 		try {
-						
+
 			// find userId
 			statement_findUser = conn.prepareStatement(findUserId);
 			statement_findUser.setString(1, order.getUserEmail());
 			ResultSet rs_uid = statement_findUser.executeQuery();
-			
+
 			int uid = -1;
 			while (rs_uid.next()) {
 				uid = rs_uid.getInt("ID");
 			}
 			statement_findUser.close();
-			
+
 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date current = new Date();
-			
+
 			System.out.println("shopId: " + order.getShopId());
 			System.out.println("uid: " + uid);
 			System.out.println("OrderTime: " + sdFormat.format(current));
-			
+
 			// insert order
 			preStmt = conn.prepareStatement(insertOrder);
 			preStmt.setInt(1, order.getShopId());
@@ -74,13 +74,13 @@ public class OrderDBManager {
 			ResultSet rs = stmt.executeQuery(selectOrder);
 			System.out.println("List All Orders");
 			while (rs.next()) {
-				System.out.println(" UserID: " + rs.getInt("userID")+ ", Order Time:" + rs.getString("orderTime"));
+				System.out.println(" UserID: " + rs.getInt("userID") + ", Order Time:" + rs.getString("orderTime"));
 			}
 			stmt.close();
 			conn.commit();
-			
-			addOrderItem(order,uid);
-			
+
+			addOrderItem(order, uid);
+
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,8 +93,8 @@ public class OrderDBManager {
 		}
 		return false;
 	}
-	
-	public boolean addOrderItem(Order order,int uid) {
+
+	public boolean addOrderItem(Order order, int uid) {
 		Connection conn = database.getConnection();
 		PreparedStatement preStmt = null; // insert order
 		PreparedStatement statement_findId = null; // find userId
@@ -105,7 +105,7 @@ public class OrderDBManager {
 		String selectOrder = "SELECT * FROM ORDER_ITEM";
 
 		try {
-			
+
 			// find userId
 			statement_findId = conn.prepareStatement(findUserId);
 			statement_findId.setInt(1, uid);
@@ -117,26 +117,23 @@ public class OrderDBManager {
 			}
 			System.out.println("id: " + id);
 			statement_findId.close();
-			
-			
-			
-			for(int i = 0; i < order.getItems().size(); i++){
+
+			for (int i = 0; i < order.getItems().size(); i++) {
 				preStmt = conn.prepareStatement(insertOrder);
-				
-				preStmt.setInt(1,id);
-				preStmt.setInt(2,order.getItems().get(i).getFoodId());
-				preStmt.setInt(3,order.getItems().get(i).getAmount());
+
+				preStmt.setInt(1, id);
+				preStmt.setInt(2, order.getItems().get(i).getFoodId());
+				preStmt.setInt(3, order.getItems().get(i).getAmount());
 				preStmt.executeUpdate();
 				preStmt.close();
 			}
-			
-		
+
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(selectOrder);
 			System.out.println("List All Orders");
 			while (rs.next()) {
-				System.out.println("OrderId: " + rs.getInt("orderId") + ", foodId: " + rs.getInt("foodId")
-						+ ", Amount:" + rs.getString("amount"));
+				System.out.println("OrderId: " + rs.getInt("orderId") + ", foodId: " + rs.getInt("foodId") + ", Amount:"
+						+ rs.getString("amount"));
 			}
 			stmt.close();
 			conn.commit();
@@ -153,26 +150,40 @@ public class OrderDBManager {
 		return false;
 	}
 
-	/*
-	 * public boolean updateMenu(Menu menu) { Connection conn =
-	 * database.getConnection(); PreparedStatement preStmt = null; Statement
-	 * stmt = null; String sql =
-	 * "UPDATE MENU SET MenuName=?, MenuPrice=? WHERE id=?"; String query =
-	 * "SELECT * FROM MENU"; try {
-	 * 
-	 * preStmt = conn.prepareStatement(sql); preStmt.setString(1,
-	 * menu.getMenuName()); preStmt.setInt(2, menu.getMenuPrice());
-	 * preStmt.setInt(3, menu.getId()); preStmt.executeUpdate();
-	 * preStmt.close();
-	 * 
-	 * stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query);
-	 * System.out.println("List All Menus"); while (rs.next()) {
-	 * System.out.println("MenuId: " + rs.getInt("id") + ", Menu Name: " +
-	 * rs.getString("MenuName") + ", MenuPrice: " + rs.getString("MenuPrice"));
-	 * } stmt.close(); conn.commit(); return true; } catch (SQLException e) {
-	 * e.printStackTrace(); } finally { try { conn.close(); } catch
-	 * (SQLException e) { e.printStackTrace(); } } return false; }
-	 */
+	public boolean updateOrder(Order order) {
+		Connection conn = database.getConnection();
+		PreparedStatement preStmt = null;
+		Statement stmt = null;
+		String sql = "UPDATE ORDER_LIST SET status=? WHERE id=?";
+		String query = "SELECT * FROM ORDER_LIST";
+		try {
+
+			preStmt = conn.prepareStatement(sql);
+			preStmt.setInt(1, order.getStatus());
+			preStmt.setInt(2, order.getId());
+			preStmt.executeUpdate();
+			preStmt.close();
+
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			System.out.println("List All Menus");
+			while (rs.next()) {
+				System.out.println("OrderId: " + rs.getInt("id") + ", userId: " + rs.getInt("userId") + ", orderTime: " + rs.getString("orderTime"));
+			}
+			stmt.close();
+			conn.commit();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
 
 	/*
 	 * public boolean validateShop(String email, String password) { Connection
@@ -185,7 +196,7 @@ public class OrderDBManager {
 	 * catch (SQLException e) { e.printStackTrace(); } } return false; }
 	 */
 
-	public  List<Order> getOrder(String ShopEmail) {
+	public List<Order> getOrder(String ShopEmail) {
 		Connection conn = database.getConnection();
 		PreparedStatement stmt = null;
 		PreparedStatement statement = null;
@@ -201,7 +212,7 @@ public class OrderDBManager {
 			while (rs_id.next()) {
 				sid = rs_id.getInt("ID");
 			}
-			
+
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, sid);
 			ResultSet rs = stmt.executeQuery();

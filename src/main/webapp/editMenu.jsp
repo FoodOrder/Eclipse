@@ -20,7 +20,6 @@
 	
 	MenuService menuservice = new MenuService();
 	
-	Menu Menu = new Menu();
 	menuservice.update(id, name, price);
 %>	
 

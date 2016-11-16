@@ -82,6 +82,36 @@ public class Order implements Serializable {
 	public void setShopId(int shopId) {
 		this.shopId = shopId;
 	}
-
+	
+	public static String getChineseStatus(int status) {
+		String ChineseStatus="";
+		switch(status) {
+			case 0 :{
+				ChineseStatus = "待確認";
+				break;
+			}
+			case 1 :{
+				ChineseStatus = "製作中";
+				break;
+			}
+			case 2 :{
+				ChineseStatus = "外送中";
+				break;
+			}
+			case 3 :{
+				ChineseStatus = "已送達";
+				break;
+			}
+			case 4 :{
+				ChineseStatus = "已拒絕";
+				break;
+			}
+			default :{
+				ChineseStatus = "狀態錯誤";
+				break;
+			}
+		}
+		return ChineseStatus;
+	}
 	
 }

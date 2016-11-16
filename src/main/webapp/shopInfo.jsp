@@ -51,7 +51,7 @@
 <link href="./vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
-<title>ShopInfo</title>
+<title>SuperMenu</title>
 </head>
 
 <body>
@@ -68,7 +68,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="Dashboard.jsp">SuperMenu</a>
+			<a class="navbar-brand" href="index.jsp">SuperMenu</a>
 		</div>
 		<!-- /.navbar-header -->
 
@@ -242,7 +242,7 @@
 					<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 					</li>
 					<li class="divider"></li>
-					<li><a href="Logout.jsp"><i class="fa fa-sign-out fa-fw"></i>
+					<li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i>
 							Logout</a></li>
 				</ul> <!-- /.dropdown-user --></li>
 			<!-- /.dropdown -->
@@ -262,14 +262,14 @@
 							</span>
 						</div> <!-- /input-group -->
 					</li>
-					<li><a href="Dashboard.jsp"><i
+					<li><a href="index.jsp"><i
 							class="fa fa-dashboard fa-fw"></i> 首頁</a></li>
 
-					<li><a href="Order.jsp"><i class="fa fa-table fa-fw"></i>
+					<li><a href="order.jsp"><i class="fa fa-table fa-fw"></i>
 							訂單查詢</a></li>
-					<li><a href="ShopInfo.jsp"><i class="fa fa-edit fa-fw"></i>
+					<li><a href="shopInfo.jsp"><i class="fa fa-edit fa-fw"></i>
 							編輯店家資訊</a></li>
-					<li><a href="Menu.jsp"><i class="fa fa-edit fa-fw"></i>菜單</a></li>
+					<li><a href="menu.jsp"><i class="fa fa-edit fa-fw"></i>菜單</a></li>
 				</ul>
 			</div>
 		</div>
@@ -278,7 +278,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Shop Information</h1>
+					<h1 class="page-header">店家資訊</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>

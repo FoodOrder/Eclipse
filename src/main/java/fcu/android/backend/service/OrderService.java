@@ -19,6 +19,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import fcu.android.backend.data.Menu;
 import fcu.android.backend.data.Order;
 import fcu.android.backend.data.OrderItem;
 import fcu.android.backend.db.OrderDBManager;
@@ -43,6 +44,18 @@ public class OrderService{
 		dbManager.addOrderList(order);
 		System.out.println(id);
 		return true;
+	}
+	
+	@POST
+	@Path("update")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Order update(@FormParam("id") int id, @FormParam("status") int status) {
+		Order order = new Order();
+		order.setId(id);
+		order.setStatus(status);
+		dbManager.updateOrder(order);
+		return order;
 	}
 	
 	@GET
