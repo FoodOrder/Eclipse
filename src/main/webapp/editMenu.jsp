@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>Edit</title>
+<title>SuperMenu</title>
 </head>
 <body>
 <%

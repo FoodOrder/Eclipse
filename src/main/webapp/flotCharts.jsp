@@ -6,7 +6,7 @@
 <%
 	String email = (String) session.getAttribute("email");
 	if (email == null || email.equals("")) {
-		response.sendRedirect("Home.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	ShopService shopservice = new ShopService();

@@ -6,7 +6,7 @@
 <%
 	String email = (String) session.getAttribute("email");
 	if (email == null || email.equals("")) {
-		response.sendRedirect("Home.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	OrderItemService orderitemservice = new OrderItemService();
@@ -63,6 +63,10 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
+				<!--  <a class="navbar-brand" href="index.jsp">
+					<img alt="logo" src="./logo/clipboard.png" style="width:50px;height:50px;">
+					<img src="./logo/9.png" class="img-rounded" alt="SuperMenu" style="width:100px;height:50px;">
+				</a>-->
 			<a class="navbar-brand" href="index.jsp">SuperMenu</a>
 		</div>
 		<!-- /.navbar-header -->
@@ -256,7 +260,7 @@
 							</span>
 						</div> <!-- /input-group -->
 					</li>
-					<li><a href="index.jsp"><i
+					<li><a href="dashboard.jsp"><i
 							class="fa fa-dashboard fa-fw"></i> 首頁</a></li>
 
 					<li><a href="order.jsp"><i class="fa fa-table fa-fw"></i>

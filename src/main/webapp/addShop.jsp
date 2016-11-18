@@ -18,36 +18,37 @@
 <!-- 最新編譯和最佳化的 JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
 <title>SuperMenu</title>
 </head>
 <body>
+	<%
+		request.setCharacterEncoding("utf-8");
+
+		String name = request.getParameter("ShopName");
+		String phone = request.getParameter("ShopPhone");
+		String email = request.getParameter("ShopEmail");
+		String pwd = request.getParameter("ShopPwd");
+		String intro = request.getParameter("ShopIntro");
+		Double longitude = Double.valueOf(request.getParameter("ShopLongitude"));
+		Double latitude = Double.valueOf(request.getParameter("ShopLatitude"));
+
+		ShopService shopservice = new ShopService();
+
+		shopservice.register(name, pwd, email, phone, intro, longitude, latitude);
+	%>
+	
 	<div class="container">
 		<form class="form-signin" method="post" action="login.jsp">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
 						<h3><strong>店家管理平台</strong></h3>
-						<h4 class="col-md-6">登入</h4>
-						<h4 class="text-right"><a href="signUp.jsp">註冊</a></h4>
 					</div>
 
 					<div class="panel-body">
-						<div class="form-group">
-							<label for="InputEmail">電子郵件</label> 
-							<input type="email" class="form-control" name="InputEmail" placeholder="輸入電子郵件" requried autofocus> 
-							
-							<label for="eInputPassword">密碼</label>
-							<input type="password" class="form-control" name="InputPassword" placeholder="輸入密碼" requried>
-
-							<div class="checkbox">
-								<label> <input type="checkbox"> 記住我</label>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<button type="submit" class="btn btn-lg btn-success btn-block">登入</button>
-						</div>
+						<h4>註冊成功！</h4>
+						<br>
+						<h4><a href="index.jsp">回登入畫面</a></h4>
 					</div>
 				</div>
 			</div>

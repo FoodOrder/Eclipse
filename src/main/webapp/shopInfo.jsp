@@ -6,7 +6,7 @@
 <%
 	String email = (String) session.getAttribute("email");
 	if (email == null || email.equals("")) {
-		response.sendRedirect("Home.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	ShopService shopservice = new ShopService();
@@ -262,7 +262,7 @@
 							</span>
 						</div> <!-- /input-group -->
 					</li>
-					<li><a href="index.jsp"><i
+					<li><a href="dashboard.jsp"><i
 							class="fa fa-dashboard fa-fw"></i> 首頁</a></li>
 
 					<li><a href="order.jsp"><i class="fa fa-table fa-fw"></i>
@@ -306,7 +306,7 @@
 																	<div class="modal-header">
 																		<button type="button" class="close" data-dismiss="modal">
 																			<span aria-hidden="true">&times;</span>
-																			<spanclass="sr-only">Close</span>
+																			<span class="sr-only">Close</span>
 																		</button>
 																		<h4 class="modal-title" id="exampleModalLabel">編輯資料</h4>
 																	</div>

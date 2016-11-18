@@ -30,7 +30,7 @@ public class ShopDBManager {
 		Connection conn = database.getConnection();
 		PreparedStatement preStmt = null;
 		Statement stmt = null;
-		String sql = "INSERT INTO SHOP(shopName, password, email, phone, intro)  VALUES(?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO SHOP(shopName, password, email, phone, intro, longitude, latitude)  VALUES(?, ?, ?, ?, ?, ?, ?)";
 		String query = "SELECT * FROM SHOP";
 		try {
 			preStmt = conn.prepareStatement(sql);
@@ -39,6 +39,8 @@ public class ShopDBManager {
 			preStmt.setString(3, shop.getEmail());
 			preStmt.setString(4, shop.getPhone());
 			preStmt.setString(5, shop.getIntro());
+			preStmt.setDouble(6, shop.getLongitude());
+			preStmt.setDouble(7, shop.getLatitude());
 			preStmt.executeUpdate();
 			preStmt.close();
 
