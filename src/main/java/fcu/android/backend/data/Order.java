@@ -12,6 +12,10 @@ public class Order implements Serializable {
 	private String outsetTime;
 	private String arriveTime;
 	private int status;
+	private double longitude;
+	private double latitude;
+	private String address;
+	private String remark;
 	
 	private String userEmail;
 	private int userId;
@@ -112,6 +116,30 @@ public class Order implements Serializable {
 			}
 		}
 		return ChineseStatus;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	
 }

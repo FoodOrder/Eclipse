@@ -39,7 +39,7 @@ public class OrderDBManager {
 
 		Statement stmt = null; // select order
 		String findUserId = "select * from USER where email=?";
-		String insertOrder = "insert into ORDER_LIST(shopId, userId, orderTime) values(?, ?, ?)";
+		String insertOrder = "insert into ORDER_LIST(shopId, userId, orderTime, status, longitude, latitude, address, remark) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		String selectOrder = "SELECT * FROM ORDER_LIST";
 
 		try {
@@ -67,6 +67,11 @@ public class OrderDBManager {
 			preStmt.setInt(1, order.getShopId());
 			preStmt.setInt(2, uid);
 			preStmt.setString(3, sdFormat.format(current));
+			preStmt.setInt(4, 0);
+			preStmt.setDouble(5, order.getLongitude());
+			preStmt.setDouble(6, order.getLatitude());
+			preStmt.setString(7, order.getAddress());
+			preStmt.setString(8, order.getRemark());
 			preStmt.executeUpdate();
 			preStmt.close();
 
