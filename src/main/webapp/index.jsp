@@ -27,8 +27,8 @@
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<h3><strong>店家管理平台</strong></h3>
-						<h4 class="col-md-6">登入</h4>
+						<h3><strong><p class="text-center">店家管理平台</p></strong></h3>
+					
 						<h4 class="text-right"><a href="signUp.jsp">註冊</a></h4>
 					</div>
 

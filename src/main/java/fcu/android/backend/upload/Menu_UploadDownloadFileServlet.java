@@ -174,7 +174,7 @@ public class Menu_UploadDownloadFileServlet extends HttpServlet {
 			/*out.write("<a href=\"UploadDownloadFileServlet?id=" + id + "\">Download "
 					+ fileItem.getName() + "</a>");*/
 			out.write("<br>");
-			out.write("<a href=\"Menu.jsp" + "\">Return " + "</a>");
+			out.write("<a href=\"menu.jsp" + "\">Return " + "</a>");
 //			statement.close();
 			statementUpdate.close();
 	        

@@ -75,208 +75,39 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">SuperMenu</a>
+			<!-- <a class="navbar-brand" href="order.jsp">SuperMenu</a> -->
+			<div>
+				<a href="order.jsp"> <img src="./logo/clipboard.png"
+					alt="Super Menu" height="4%" width="4%"> <img
+					src="./logo/9.png" alt="Super Menu" height="15%" width="15%">
+				</a>
+			</div>
 		</div>
 		<!-- /.navbar-header -->
 
 		<ul class="nav navbar-top-links navbar-right">
-			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#"> <i class="fa fa-envelope fa-fw"></i>
-					<i class="fa fa-caret-down"></i>
-			</a>
-				<ul class="dropdown-menu dropdown-messages">
-					<li><a href="#">
-							<div>
-								<strong>John Smith</strong> <span class="pull-right text-muted">
-									<em>Yesterday</em>
-								</span>
-							</div>
-							<div>Lorem ipsum dolor sit amet, consectetur adipiscing
-								elit. Pellentesque eleifend...</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">
-							<div>
-								<strong>John Smith</strong> <span class="pull-right text-muted">
-									<em>Yesterday</em>
-								</span>
-							</div>
-							<div>Lorem ipsum dolor sit amet, consectetur adipiscing
-								elit. Pellentesque eleifend...</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">
-							<div>
-								<strong>John Smith</strong> <span class="pull-right text-muted">
-									<em>Yesterday</em>
-								</span>
-							</div>
-							<div>Lorem ipsum dolor sit amet, consectetur adipiscing
-								elit. Pellentesque eleifend...</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a class="text-center" href="#"> <strong>Read
-								All Messages</strong> <i class="fa fa-angle-right"></i>
-					</a></li>
-				</ul> <!-- /.dropdown-messages --></li>
+
 			<!-- /.dropdown -->
-			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#"> <i class="fa fa-tasks fa-fw"></i>
-					<i class="fa fa-caret-down"></i>
-			</a>
-				<ul class="dropdown-menu dropdown-tasks">
-					<li><a href="#">
-							<div>
-								<p>
-									<strong>Task 1</strong> <span class="pull-right text-muted">40%
-										Complete</span>
-								</p>
-								<div class="progress progress-striped active">
-									<div class="progress-bar progress-bar-success"
-										role="progressbar" aria-valuenow="40" aria-valuemin="0"
-										aria-valuemax="100" style="width: 40%">
-										<span class="sr-only">40% Complete (success)</span>
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">
-							<div>
-								<p>
-									<strong>Task 2</strong> <span class="pull-right text-muted">20%
-										Complete</span>
-								</p>
-								<div class="progress progress-striped active">
-									<div class="progress-bar progress-bar-info" role="progressbar"
-										aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
-										style="width: 20%">
-										<span class="sr-only">20% Complete</span>
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">
-							<div>
-								<p>
-									<strong>Task 3</strong> <span class="pull-right text-muted">60%
-										Complete</span>
-								</p>
-								<div class="progress progress-striped active">
-									<div class="progress-bar progress-bar-warning"
-										role="progressbar" aria-valuenow="60" aria-valuemin="0"
-										aria-valuemax="100" style="width: 60%">
-										<span class="sr-only">60% Complete (warning)</span>
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">
-							<div>
-								<p>
-									<strong>Task 4</strong> <span class="pull-right text-muted">80%
-										Complete</span>
-								</p>
-								<div class="progress progress-striped active">
-									<div class="progress-bar progress-bar-danger"
-										role="progressbar" aria-valuenow="80" aria-valuemin="0"
-										aria-valuemax="100" style="width: 80%">
-										<span class="sr-only">80% Complete (danger)</span>
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a class="text-center" href="#"> <strong>See
-								All Tasks</strong> <i class="fa fa-angle-right"></i>
-					</a></li>
-				</ul> <!-- /.dropdown-tasks --></li>
+
 			<!-- /.dropdown -->
-			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
-					<i class="fa fa-caret-down"></i>
-			</a>
-				<ul class="dropdown-menu dropdown-alerts">
-					<li><a href="#">
-							<div>
-								<i class="fa fa-comment fa-fw"></i> New Comment <span
-									class="pull-right text-muted small">4 minutes ago</span>
-							</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">
-							<div>
-								<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
-									class="pull-right text-muted small">12 minutes ago</span>
-							</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">
-							<div>
-								<i class="fa fa-envelope fa-fw"></i> Message Sent <span
-									class="pull-right text-muted small">4 minutes ago</span>
-							</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">
-							<div>
-								<i class="fa fa-tasks fa-fw"></i> New Task <span
-									class="pull-right text-muted small">4 minutes ago</span>
-							</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">
-							<div>
-								<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
-									class="pull-right text-muted small">4 minutes ago</span>
-							</div>
-					</a></li>
-					<li class="divider"></li>
-					<li><a class="text-center" href="#"> <strong>See
-								All Alerts</strong> <i class="fa fa-angle-right"></i>
-					</a></li>
-				</ul> <!-- /.dropdown-alerts --></li>
+
 			<!-- /.dropdown -->
-			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
-					<i class="fa fa-caret-down"></i>
-			</a>
-				<ul class="dropdown-menu dropdown-user">
-					<li><a href="#"><i class="fa fa-user fa-fw"></i> User
-							Profile</a></li>
-					<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-					</li>
-					<li class="divider"></li>
-					<li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i>
-							Logout</a></li>
-				</ul> <!-- /.dropdown-user --></li>
-			<!-- /.dropdown -->
+			<li class="dropdown">
+			<li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i>
+					Logout</a></li>
 		</ul>
-		<!-- /.navbar-top-links -->
+		<!-- /.dropdown-user --> <!-- /.dropdown --> <!-- /.navbar-top-links -->
 
 		<div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
-					<li class="sidebar-search">
-						<div class="input-group custom-search-form">
-							<input type="text" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">
-									<i class="fa fa-search"></i>
-								</button>
-							</span>
-						</div> <!-- /input-group -->
-					</li>
-					<li><a href="dashboard.jsp"><i
-							class="fa fa-dashboard fa-fw"></i> 首頁</a></li>
-
 					<li><a href="order.jsp"><i class="fa fa-table fa-fw"></i>
 							訂單查詢</a></li>
 					<li><a href="shopInfo.jsp"><i class="fa fa-edit fa-fw"></i>
 							編輯店家資訊</a></li>
 					<li><a href="menu.jsp"><i class="fa fa-edit fa-fw"></i>菜單</a></li>
+					<li><a href="dashboard.jsp"><i
+							class="fa fa-dashboard fa-fw"></i> 統計報表</a></li>
 				</ul>
 			</div>
 		</div>
@@ -286,43 +117,62 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="page-header">
-					<h1>菜單</h1>
-					<form method="post" action="addMenu.jsp">
-						<button type="button" class="btn" data-toggle="modal"
-							data-target="#exampleModal" data-whatever="@mdo">新增菜單</button>
-						<div class="modal fade" id="exampleModal" tabindex="-1"
-							role="dialog" aria-labelledby="exampleModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog" id={{id}}>
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">
-											<span aria-hidden="true">&times;</span>
-											<spanclass="sr-only">Close</span>
-										</button>
-										<h4 class="modal-title" id="exampleModalLabel">新增餐點</h4>
-									</div>
-
-									<div class="modal-body">
-										<div class="form-group">
-											<label for="MenuName" class="control-label">餐點名稱:</label> <input
-												type="text" class="form-control" name="MenuName">
+						<h1>菜單</h1>
+						<form method="post" action="addMenu.jsp">
+							<button type="button" class="btn" data-toggle="modal"
+								data-target="#exampleModal" data-whatever="@mdo">新增菜單</button>
+							<div class="modal fade" id="exampleModal" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog" id={{id}}>
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">
+												<span aria-hidden="true">&times;</span>
+												<span class="sr-only">Close</span>
+											</button>
+											<h4 class="modal-title" id="exampleModalLabel">新增餐點</h4>
 										</div>
-										<div class="form-group">
-											<label for="MenuPrice" class="control-label">餐點價格:</label> <input
-												type="text" class="form-control" name="MenuPrice">
-										</div>
-									</div>
 
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">關閉</button>
-										<button type="submit" class="btn btn-primary">送出</button>
+										<div class="modal-body">
+											<div class="form-group">
+												<label for="MenuName" class="control-label">餐點名稱:</label> <input
+													type="text" class="form-control" name="MenuName">
+											</div>
+											<div class="form-group">
+												<label for="MenuPrice" class="control-label">餐點價格:</label> <input
+													type="text" class="form-control" name="MenuPrice">
+											</div>
+											<div class="form-group">
+												<form method="post"
+													action="Menu_UploadDownloadFileServlet?MenuId="
+													enctype="multipart/form-data">
+													<table border="0">
+														<tr>
+															<td><label>餐點圖片:</label></td>
+														</tr>
+														<tr>
+															<td></td>
+															<td><input type="file" name="fileName" size="50" /></td>
+														</tr>
+													</table>
+
+													<div class="modal-footer">
+														<button type="submit" class="btn btn-default">上傳</button>
+													</div>
+												</form>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">關閉</button>
+											<button type="submit" class="btn btn-primary">送出</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</form>
+						</form>
 					</div>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -339,7 +189,6 @@
 							<div class="col-lg-3">
 								<div class="panel panel-default panel-product">
 									<div class="panel-body">
-
 										<img
 											src="http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id=<%=menu.getId()%>"
 											class="img-responsive" alt="Responsive image">
@@ -361,7 +210,7 @@
 															<div class="modal-header">
 																<button type="button" class="close" data-dismiss="modal">
 																	<span aria-hidden="true">&times;</span>
-																	<spanclass="sr-only">Close</span>
+																	<span class="sr-only">Close</span>
 																</button>
 																<h4 class="modal-title" id="exampleModalLabel">刪除</h4>
 															</div>
@@ -389,49 +238,7 @@
 													</td>
 													<td class="col-md-3">
 														<form method="post"
-															action="Menu_UploadDownloadFileServlet?MenuId=<%=menu.getId()%>"
-															enctype="multipart/form-data">
-															<button type="button" class="btn btn-default"
-																data-toggle="modal" data-target="#exampleModal-<%=i%>"
-																data-whatever="@mdo">圖片</button>
-															<div class="modal fade" id="exampleModal-<%=i%>"
-																tabindex="-1" role="dialog"
-																aria-labelledby="exampleModalLabel" aria-hidden="true">
-																<div class="modal-dialog" id={{id}}>
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<button type="button" class="close"
-																				data-dismiss="modal">
-																				<span aria-hidden="true">&times;</span> <span
-																					class="sr-only">Close</span>
-																			</button>
-																			<h4 class="modal-title" id="exampleModalLabel">上傳圖片</h4>
-																		</div>
-
-																		<table border="0">
-																			<tr>
-																				<td><h4>File Name:</h4></td>
-																			</tr>
-																			<tr>
-																				<td></td>
-																				<td><input type="file" name="fileName"
-																					size="50" /></td>
-																			</tr>
-																		</table>
-
-																		<div class="modal-footer">
-																			<button type="button" class="btn btn-default"
-																				data-dismiss="modal">關閉</button>
-																			<button type="submit" class="btn btn-primary">送出</button>
-																		</div>
-
-																	</div>
-																</div>
-															</div>
-														</form>
-													</td>
-													<td class="col-md-3">
-														<form method="post" action="editMenu.jsp?MenuId=<%=menu.getId()%>">
+															action="editMenu.jsp?MenuId=<%=menu.getId()%>">
 															<button type="button" class="btn btn-default"
 																data-toggle="modal" data-target="#Modal-<%=i%>"
 																data-whatever="@mdo">編輯</button>
@@ -443,8 +250,8 @@
 																		<div class="modal-header">
 																			<button type="button" class="close"
 																				data-dismiss="modal">
-																				<span aria-hidden="true">&times;</span>
-																				<spanclass="sr-only">Close</span>
+																				<span aria-hidden="true">&times;</span> <span
+																					class="sr-only">Close</span>
 																			</button>
 																			<h4 class="modal-title" id="exampleModalLabel">編輯</h4>
 																		</div>
@@ -459,6 +266,26 @@
 																				<label for="MenuPrice" class="control-label">餐點價格:</label>
 																				<input type="text" class="form-control"
 																					name="MenuPrice" value=<%=menu.getMenuPrice()%>>
+																			</div>
+																			<div class="form-group">
+																				<form method="post"
+																					action="Menu_UploadDownloadFileServlet?MenuId=<%=menu.getId()%>"
+																					enctype="multipart/form-data">
+																					<table border="0">
+																						<tr>
+																							<td><label>餐點圖片:</label></td>
+																						</tr>
+																						<tr>
+																							<td></td>
+																							<td><input type="file" name="fileName"
+																								size="50" /></td>
+																						</tr>
+																					</table>
+
+																					<div class="modal-footer">
+																						<button type="submit" class="btn btn-default">上傳</button>
+																					</div>
+																				</form>
 																			</div>
 																		</div>
 

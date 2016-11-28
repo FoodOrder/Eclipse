@@ -29,10 +29,10 @@
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
 						<h3>
-							<strong>店家管理平台</strong>
+							<strong><p class="text-center">註冊</p></strong>
 						</h3>
-						<h4>註冊</h4>
-						<h4>
+					
+						<h4 class="text-right">
 							<a href="index.jsp">回登入畫面</a>
 						</h4>
 					</div>

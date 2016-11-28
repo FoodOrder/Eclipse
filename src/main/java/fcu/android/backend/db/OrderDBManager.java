@@ -11,12 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 //import java.util.Date;
-
-import javax.validation.constraints.Size;
-
-import fcu.android.backend.data.Menu;
 import fcu.android.backend.data.Order;
-import fcu.android.backend.data.OrderItem;
 
 public class OrderDBManager {
 
@@ -233,6 +228,10 @@ public class OrderDBManager {
 				order.setStatus(rs.getInt("status"));
 				order.setShopId(rs.getInt("shopId"));
 				order.setUserId(rs.getInt("userId"));
+				order.setAddress(rs.getString("address"));
+				order.setLongitude(rs.getDouble("longitude"));
+				order.setLatitude(rs.getDouble("latitude"));
+				order.setRemark(rs.getString("remark"));
 				order.setId(rs.getInt("id"));
 				lsOrder.add(order);
 			}
@@ -256,7 +255,6 @@ public class OrderDBManager {
 	public List<Order> getOrder(int UserId) {
 		Connection conn = database.getConnection();
 		PreparedStatement stmt = null;
-		PreparedStatement statement = null;
 //		String findShopId = "select * from USER where email=?";
 		String query = "select * from ORDER_LIST where userId = ?";
 		try {
@@ -284,6 +282,10 @@ public class OrderDBManager {
 				order.setArriveTime(rs.getString("arriveTime"));
 				order.setStatus(rs.getInt("status"));
 				order.setShopId(rs.getInt("shopId"));
+				order.setAddress(rs.getString("address"));
+				order.setLongitude(rs.getDouble("longitude"));
+				order.setLatitude(rs.getDouble("latitude"));
+				order.setRemark(rs.getString("remark"));
 				order.setId(rs.getInt("id"));
 				lsOrder.add(order);
 			}

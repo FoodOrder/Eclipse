@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.Date;
 
-import fcu.android.backend.service.MenuService;
-import fcu.android.backend.data.Menu;
 import fcu.android.backend.data.OrderItem;
 //import fcu.android.backend.data.Shop;
 
