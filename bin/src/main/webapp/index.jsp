@@ -1,57 +1,57 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+
+<%@ page import="fcu.android.backend.service.*"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<!-- Latest compiled and minified CSS -->
+<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
+<!-- 最新編譯和最佳化的 CSS -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-	crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-<!-- Optional theme -->
+<!-- 選擇性佈景主題 -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
-	crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
-<!-- Latest compiled and minified JavaScript -->
+<!-- 最新編譯和最佳化的 JavaScript -->
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-	crossorigin="anonymous"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
+<title>SuperMenu</title>
 </head>
 <body>
-
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Project name</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<form class="navbar-form navbar-right">
-					<div class="form-group">
-						<input type="text" placeholder="Email" class="form-control">
+	<div class="container">
+		<form class="form-signin" method="post" action="login.jsp">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="login-panel panel panel-default">
+					<div class="panel-heading">
+						<h3><strong><p class="text-center">店家管理平台</p></strong></h3>
+					
+						<h4 class="text-right"><a href="signUp.jsp">註冊</a></h4>
 					</div>
-					<div class="form-group">
-						<input type="password" placeholder="Password" class="form-control">
-					</div>
-					<button type="submit" class="btn btn-success">登入</button>
-					<a class="btn btn-success" href="#" role="button">註冊</a>
-				</form>
-			</div>
-			<!--/.navbar-collapse -->
-		</div>
-	</nav>
 
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="InputEmail">電子郵件</label> 
+							<input type="email" class="form-control" name="InputEmail" placeholder="輸入電子郵件" requried autofocus> 
+							
+							<label for="eInputPassword">密碼</label>
+							<input type="password" class="form-control" name="InputPassword" placeholder="輸入密碼" requried>
+
+							<div class="checkbox">
+								<label> <input type="checkbox"> 記住我</label>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<button type="submit" class="btn btn-lg btn-success btn-block">登入</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

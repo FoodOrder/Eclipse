@@ -118,7 +118,9 @@
 				<div class="col-lg-12">
 					<div class="page-header">
 						<h1>菜單</h1>
-						<form method="post" action="addMenu.jsp">
+						<form method="post"
+							action="Menu_UploadDownloadFileServlet?MenuId=0"
+							enctype="multipart/form-data">
 							<button type="button" class="btn" data-toggle="modal"
 								data-target="#exampleModal" data-whatever="@mdo">新增菜單</button>
 							<div class="modal fade" id="exampleModal" tabindex="-1"
@@ -128,8 +130,8 @@
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal">
-												<span aria-hidden="true">&times;</span>
-												<span class="sr-only">Close</span>
+												<span aria-hidden="true">&times;</span> <span
+													class="sr-only">Close</span>
 											</button>
 											<h4 class="modal-title" id="exampleModalLabel">新增餐點</h4>
 										</div>
@@ -144,23 +146,15 @@
 													type="text" class="form-control" name="MenuPrice">
 											</div>
 											<div class="form-group">
-												<form method="post"
-													action="Menu_UploadDownloadFileServlet?MenuId="
-													enctype="multipart/form-data">
-													<table border="0">
-														<tr>
-															<td><label>餐點圖片:</label></td>
-														</tr>
-														<tr>
-															<td></td>
-															<td><input type="file" name="fileName" size="50" /></td>
-														</tr>
-													</table>
-
-													<div class="modal-footer">
-														<button type="submit" class="btn btn-default">上傳</button>
-													</div>
-												</form>
+												<table border="0">
+													<tr>
+														<td><label>餐點圖片:</label></td>
+													</tr>
+													<tr>
+														<td></td>
+														<td><input type="file" name="fileName" size="50" /></td>
+													</tr>
+												</table>
 											</div>
 										</div>
 
@@ -209,8 +203,8 @@
 														<div class="modal-content">
 															<div class="modal-header">
 																<button type="button" class="close" data-dismiss="modal">
-																	<span aria-hidden="true">&times;</span>
-																	<span class="sr-only">Close</span>
+																	<span aria-hidden="true">&times;</span> <span
+																		class="sr-only">Close</span>
 																</button>
 																<h4 class="modal-title" id="exampleModalLabel">刪除</h4>
 															</div>
@@ -238,7 +232,8 @@
 													</td>
 													<td class="col-md-3">
 														<form method="post"
-															action="editMenu.jsp?MenuId=<%=menu.getId()%>">
+															action="Menu_UploadDownloadFileServlet?MenuId=<%=menu.getId()%>"
+															enctype="multipart/form-data">
 															<button type="button" class="btn btn-default"
 																data-toggle="modal" data-target="#Modal-<%=i%>"
 																data-whatever="@mdo">編輯</button>
@@ -268,24 +263,16 @@
 																					name="MenuPrice" value=<%=menu.getMenuPrice()%>>
 																			</div>
 																			<div class="form-group">
-																				<form method="post"
-																					action="Menu_UploadDownloadFileServlet?MenuId=<%=menu.getId()%>"
-																					enctype="multipart/form-data">
-																					<table border="0">
-																						<tr>
-																							<td><label>餐點圖片:</label></td>
-																						</tr>
-																						<tr>
-																							<td></td>
-																							<td><input type="file" name="fileName"
-																								size="50" /></td>
-																						</tr>
-																					</table>
-
-																					<div class="modal-footer">
-																						<button type="submit" class="btn btn-default">上傳</button>
-																					</div>
-																				</form>
+																				<table border="0">
+																					<tr>
+																						<td><label>餐點圖片:</label></td>
+																					</tr>
+																					<tr>
+																						<td></td>
+																						<td><input type="file" name="fileName"
+																							size="50" /></td>
+																					</tr>
+																				</table>
 																			</div>
 																		</div>
 

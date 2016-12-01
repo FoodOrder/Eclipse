@@ -70,32 +70,26 @@
 			</button>
 			<!-- <a class="navbar-brand" href="order.jsp">SuperMenu</a> -->
 			<div>
-				<a href="order.jsp">
-				<img src="./logo/clipboard.png" alt="Super Menu" height="4%" width="4%">
-				<img src="./logo/9.png" alt="Super Menu" height="15%" width="15%">
+				<a href="order.jsp"> <img src="./logo/clipboard.png"
+					alt="Super Menu" height="4%" width="4%"> <img
+					src="./logo/9.png" alt="Super Menu" height="15%" width="15%">
 				</a>
 			</div>
 		</div>
 		<!-- /.navbar-header -->
 
 		<ul class="nav navbar-top-links navbar-right">
-			
+
 			<!-- /.dropdown -->
-			
+
 			<!-- /.dropdown -->
-			
+
 			<!-- /.dropdown -->
 			<li class="dropdown">
-					
-		
-					
-					
-					<li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i>
-							Logout</a></li>
-				</ul> <!-- /.dropdown-user -->
-			<!-- /.dropdown -->
-		
-		<!-- /.navbar-top-links -->
+			<li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i>
+					Logout</a></li>
+		</ul>
+		<!-- /.dropdown-user --> <!-- /.dropdown --> <!-- /.navbar-top-links -->
 
 		<div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse">
@@ -131,7 +125,8 @@
 										<tbody>
 											<tr>
 												<td>
-													<form method="post" action="editShop.jsp">
+													<form method="post" action="UploadDownloadFileServlet?ShopID=<%=shopservice.getShop(email).getID() %>"
+														enctype="multipart/form-data">
 														<button type="button" class="btn btn-default"
 															data-toggle="modal" data-target="#exampleModal"
 															data-whatever="@mdo">編輯資料</button>
@@ -141,9 +136,10 @@
 															<div class="modal-dialog">
 																<div class="modal-content">
 																	<div class="modal-header">
-																		<button type="button" class="close" data-dismiss="modal">
-																			<span aria-hidden="true">&times;</span>
-																			<span class="sr-only">Close</span>
+																		<button type="button" class="close"
+																			data-dismiss="modal">
+																			<span aria-hidden="true">&times;</span> <span
+																				class="sr-only">Close</span>
 																		</button>
 																		<h4 class="modal-title" id="exampleModalLabel">編輯資料</h4>
 																	</div>
@@ -151,41 +147,65 @@
 																	<div class="modal-body">
 																		<div class="form-group">
 																			<label for="ShopName" class="control-label">店家名稱:</label>
-																			<input type="text" class="form-control" name="ShopName"
+																			<input type="text" class="form-control"
+																				name="ShopName"
 																				value=<%=shopservice.getShop(email).getShopName()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="ShopPhone" class="control-label">聯絡電話:</label>
-																			<input type="text" class="form-control" name="ShopPhone"
+																			<input type="text" class="form-control"
+																				name="ShopPhone"
 																				value=<%=shopservice.getShop(email).getPhone()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="ShopEmail" class="control-label">信箱:</label>
-																			<input type="email" class="form-control" name="ShopEmail"
+																			<input type="email" class="form-control"
+																				name="ShopEmail"
 																				value=<%=shopservice.getShop(email).getEmail()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="ShopPwd" class="control-label">密碼:</label>
-																			<input type="text" class="form-control" name="ShopPwd">
+																			<input type="password" class="form-control"
+																				name="ShopPwd"
+																				value=<%=shopservice.getShop(email).getPassword()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="ShopEmail" class="control-label">經度:</label>
-																			<input type="text" class="form-control" name="ShopLongitude"
+																			<input type="text" class="form-control"
+																				name="ShopLongitude"
 																				value=<%=shopservice.getShop(email).getLongitude()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="ShopEmail" class="control-label">緯度:</label>
-																			<input type="text" class="form-control" name="ShopLatitude"
+																			<input type="text" class="form-control"
+																				name="ShopLatitude"
 																				value=<%=shopservice.getShop(email).getLatitude()%>>
 																		</div>
 																		<div class="form-group">
 																			<label for="message-text" class="control-label">店家簡介</label>
-																			
-																			<textarea class="form-control" id="message-text" name="ShopIntro" rows="3"></textarea>
+																			<textarea class="form-control" id="message-text"
+																				name="ShopIntro" rows="3"></textarea>
+																		</div>
+																		<div class="form-group">
+																			<table border="0">
+																				<tr>
+																					<td><h4>
+																							<strong>上傳店家圖片</strong>
+																						</h4></td>
+																				</tr>
+																				<tr>
+																					<td><h4>上傳檔案：</h4></td>
+																				</tr>
+																				<tr>
+																					<td><input type="file" name="fileName"
+																						size="50" /></td>
+																				</tr>
+																			</table>
 																		</div>
 																	</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+																		<button type="button" class="btn btn-default"
+																			data-dismiss="modal">關閉</button>
 																		<button type="submit" class="btn btn-primary">送出</button>
 																	</div>
 																</div>
@@ -195,32 +215,36 @@
 												</td>
 											</tr>
 											<tr>
-												<td><h4>店家名稱：<%=shopservice.getShop(email).getShopName()%></h4></td>
+												<td><h4>
+														店家名稱：<%=shopservice.getShop(email).getShopName()%></h4></td>
 											</tr>
 											<tr>
-												<td><h4>聯絡電話： <%=shopservice.getShop(email).getPhone()%></h4></td>
+												<td><h4>
+														聯絡電話：
+														<%=shopservice.getShop(email).getPhone()%></h4></td>
 											</tr>
 											<tr>
-												<td><h4>信箱：<%=shopservice.getShop(email).getEmail()%></h4></td>
+												<td><h4>
+														信箱：<%=shopservice.getShop(email).getEmail()%></h4></td>
 											</tr>
 											<tr>
-												<td><h4>經緯度：(<%=shopservice.getShop(email).getLongitude()%>, <%=shopservice.getShop(email).getLatitude()%>)</h4></td>
+												<td><h4>
+														經緯度：(<%=shopservice.getShop(email).getLongitude()%>,
+														<%=shopservice.getShop(email).getLatitude()%>)
+													</h4></td>
 											</tr>
 											<tr>
-												<td><h4>店家簡介：<%=shopservice.getShop(email).getIntro()%></h4></td>
+												<td><h4>
+														店家簡介：<%=shopservice.getShop(email).getIntro()%></h4></td>
 											</tr>
 
 											<tr>
 												<td>
-													<form method="post" action="UploadDownloadFileServlet" enctype="multipart/form-data">
-														<table border="0">
-															<tr><td><h4><strong>上傳店家圖片</strong></h4></td></tr>
-															<tr><td><img src=<%=path%> class="img-responsive" alt="Responsive image"></td></tr>
-															<tr><td><h4>上傳檔案：</h4></td></tr>
-															<tr><td><input type="file" name="fileName" size="50" /></td></tr>
-															<tr><td colspan="2"><input type="submit" value="上傳"></td></tr>
-														</table>
-													</form>
+													<table border="0">
+														<tr>
+															<td><img src=<%=path%> class="img-responsive" alt="Responsive image"></td>
+														</tr>
+													</table>
 												</td>
 											</tr>
 										</tbody>
@@ -229,7 +253,9 @@
 								<!-- /.col-lg-6 (nested) -->
 								<div class="row">
 									<div class="col-lg-6">
-										<h5><strong>店家位址：</strong></h5>
+										<h4>
+											店家位址：
+										</h4>
 										<input type="hidden" id="a"
 											value="<%=shopservice.getShop(email).getLongitude()%>">
 										<input type="hidden" id="b"

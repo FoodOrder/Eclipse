@@ -8,19 +8,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>SuperMenu</title>
+<title>Delete</title>
 </head>
 <body>
 <%
-	request.setCharacterEncoding("utf-8");
-
 	int id = Integer.valueOf(request.getParameter("MenuId"));
-	String name = request.getParameter("MenuName");
-	int price = Integer.valueOf(request.getParameter("MenuPrice"));
 	
 	MenuService menuservice = new MenuService();
 	
-	menuservice.update(id, name, price);
+	Menu Menu = new Menu();
+	menuservice.delete(id);
 %>	
 
 <%

@@ -43,4 +43,17 @@
     <servlet-name>UploadToDatabase</servlet-name>
     <url-pattern>/UploadToDatabase</url-pattern>
   </servlet-mapping>
+  <listener>
+    <listener-class>fcu.android.backend.upload.Menu_FileLocationContextListener</listener-class>
+  </listener>
+  <servlet>
+    <description></description>
+    <display-name>Menu_UploadDownloadFileServlet</display-name>
+    <servlet-name>Menu_UploadDownloadFileServlet</servlet-name>
+    <servlet-class>fcu.android.backend.upload.Menu_UploadDownloadFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Menu_UploadDownloadFileServlet</servlet-name>
+    <url-pattern>/Menu_UploadDownloadFileServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
