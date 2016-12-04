@@ -184,7 +184,8 @@
 																		<div class="form-group">
 																			<label for="message-text" class="control-label">店家簡介</label>
 																			<textarea class="form-control" id="message-text"
-																				name="ShopIntro" rows="3"></textarea>
+																				name="ShopIntro" rows="3">
+																				<%=shopservice.getShop(email).getIntro()%></textarea>
 																		</div>
 																		<div class="form-group">
 																			<table border="0">
