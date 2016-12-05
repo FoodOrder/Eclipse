@@ -143,7 +143,7 @@ public class OrderItemDBManager {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				int orderid = rs.getInt("id");
+				int orderid = rs.getInt("orderId");
 				int foodId = rs.getInt("foodId");
 				int amount = rs.getInt("amount");
 
