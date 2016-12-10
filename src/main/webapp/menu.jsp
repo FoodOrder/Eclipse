@@ -18,8 +18,8 @@
 
 	List<Menu> lsMenu = menuservice.getMenu(email);
 	int i = 0;
-	String path = "\"" + "http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id="
-			+ lsMenu.get(i).getId() + "\"";
+	/*String path = "\"" + "http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id="
+			+ lsMenu.get(i).getId() + "\"";*/
 
 	/*for (int i = 0; i < lsMenu.size(); i++) {
 		out.println(lsMenu.get(i).getMenuName());

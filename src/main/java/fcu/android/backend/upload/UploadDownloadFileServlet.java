@@ -35,6 +35,17 @@ public class UploadDownloadFileServlet extends HttpServlet {
 	private ServletFileUpload uploader = null;
 
 	private String shopImgPath = null;
+	
+	private String meta = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=BIG5\">"
+			 + "<!-- 最新編譯和最佳化的 CSS -->"
+			 + "<link rel=\"stylesheet\""
+			 + "href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css\">"
+			 + "<!-- 選擇性佈景主題 -->"
+			 + "<link rel=\"stylesheet\""
+			 + "href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css\">"
+			 + "<!-- 最新編譯和最佳化的 JavaScript -->"
+			 + "<script	src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js\"></script>"
+			 + "<title>SuperMenu</title>";
 
 	/*
 	 * private String dbURL =
@@ -138,79 +149,20 @@ public class UploadDownloadFileServlet extends HttpServlet {
 					shop.add(value);
 					System.out.println(name + ";" + value);
 				} else {
-					if(id != 0) { //update
-					statement = conn.prepareStatement(sql);
-					statement.setString(1, email);
-					ResultSet rs = statement.executeQuery();
-					
-					while (rs.next()) {
-						id = rs.getInt("ID");
-					}
-					System.out.println("id;" + id);
-					out.write("id:" + id);
-					out.write("<br>");
+					if (id != 0) { // update
+						statement = conn.prepareStatement(sql);
+						statement.setString(1, email);
+						ResultSet rs = statement.executeQuery();
 
-					InputStream uploadedStream = item.getInputStream();
+						while (rs.next()) {
+							id = rs.getInt("ID");
+						}
+						System.out.println("id;" + id);
+						out.write("id:" + id);
+						out.write("<br>");
 
-					String fileName = item.getName();
-					System.out.println("fileName;" + fileName);
-					out.write("fileName:" + fileName);
-					out.write("<br>");
-					String ext = StringUtils.substringAfterLast(fileName, "."); // 取檔名不包括副檔名
-					String convertFileName = id + "." + ext;
-					System.out.println("convertFileName;" + convertFileName);// 更改成id名字
-					out.write("coverFileName:" + convertFileName);
-					out.write("<br>");
-					FileOutputStream outFile = new FileOutputStream(shopImgPath + convertFileName);
-
-					statementUpdate = conn.prepareStatement(query_update);
-					statementUpdate.setString(1, shop.get(0)); // name
-					statementUpdate.setString(2, shop.get(1)); //phone
-					statementUpdate.setString(3, shop.get(2)); //email
-					statementUpdate.setString(4, shop.get(3)); //password
-					statementUpdate.setDouble(5, Double.parseDouble(shop.get(4))); //lng
-					statementUpdate.setDouble(6, Double.parseDouble(shop.get(5))); //lat
-					statementUpdate.setString(7, shop.get(6)); //intro
-					statementUpdate.setString(8, shopImgPath + convertFileName);
-					statementUpdate.setInt(9, id);
-					statementUpdate.executeUpdate();
-
-					System.out.println("final file path;" + shopImgPath + convertFileName);
-					out.write("final file path:" + shopImgPath + convertFileName);
-					out.write("<br>");
-//					fileItem.write(file);
-					out.write("<br>");
-					IOUtils.copy(uploadedStream, outFile);
-					/*
-					 * out.write("<a href=\"UploadDownloadFileServlet?id=" + id
-					 * + "\">Download " + fileItem.getName() + "</a>");
-					 */
-//					out.write("<br>");
-//					out.write("<a href=\"shopInfo.jsp" + "\">Return " + "</a>");
-					statement.close();
-					statementUpdate.close();
-					}
-					else { //insert
 						InputStream uploadedStream = item.getInputStream();
-						
-						statementInsert = conn.prepareStatement(query_insert, Statement.RETURN_GENERATED_KEYS);
-						statementInsert.setString(1, shop.get(0)); //name
-						statementInsert.setString(2, shop.get(1));//email
-						statementInsert.setString(3, shop.get(2));//password
-						statementInsert.setString(4, shop.get(4));//phone
-						statementInsert.setDouble(5, Double.parseDouble(shop.get(5)));//lng
-						statementInsert.setDouble(6, Double.parseDouble(shop.get(6)));//lat
-						statementInsert.setString(7, shop.get(7));//intro
-						statementInsert.executeUpdate();
-						
-						try (ResultSet generatedKeys = statementInsert.getGeneratedKeys()) {
-				            if (generatedKeys.next()) {
-				                id = generatedKeys.getInt(1);
-				            }
-				            else {
-				                throw new SQLException("Creating user failed, no ID obtained.");
-				            }
-				        }
+
 						String fileName = item.getName();
 						System.out.println("fileName;" + fileName);
 						out.write("fileName:" + fileName);
@@ -223,13 +175,84 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						FileOutputStream outFile = new FileOutputStream(shopImgPath + convertFileName);
 
 						statementUpdate = conn.prepareStatement(query_update);
-						statementUpdate.setString(1, shop.get(0)); //name
-						statementUpdate.setString(2, shop.get(4));//phone
-						statementUpdate.setString(3, shop.get(1));//email
-						statementUpdate.setString(4, shop.get(2));//password
-						statementUpdate.setDouble(5, Double.parseDouble(shop.get(5)));//lng
-						statementUpdate.setDouble(6, Double.parseDouble(shop.get(6)));//lat
-						statementUpdate.setString(7, shop.get(7));//intro
+						statementUpdate.setString(1, shop.get(0)); // name
+						statementUpdate.setString(2, shop.get(1)); // phone
+						statementUpdate.setString(3, shop.get(2)); // email
+						statementUpdate.setString(4, shop.get(3)); // password
+						statementUpdate.setDouble(5, Double.parseDouble(shop.get(4))); // lng
+						statementUpdate.setDouble(6, Double.parseDouble(shop.get(5))); // lat
+						statementUpdate.setString(7, shop.get(6)); // intro
+						statementUpdate.setString(8, shopImgPath + convertFileName);
+						statementUpdate.setInt(9, id);
+						statementUpdate.executeUpdate();
+
+						System.out.println("final file path;" + shopImgPath + convertFileName);
+						out.write("final file path:" + shopImgPath + convertFileName);
+						out.write("<br>");
+						// fileItem.write(file);
+						out.write("<br>");
+						IOUtils.copy(uploadedStream, outFile);
+						/*
+						 * out.write("<a href=\"UploadDownloadFileServlet?id=" +
+						 * id + "\">Download " + fileItem.getName() + "</a>");
+						 */
+						// out.write("<br>");
+						// out.write("<a href=\"shopInfo.jsp" + "\">Return " +
+						// "</a>");
+						statement.close();
+						statementUpdate.close();
+						out.write("<br>");
+						out.write("<a href=\"shopInfo.jsp" + "\">Return " + "</a>");
+					} else { // insert
+//						out.println(shop.get(2));
+//						out.println(shop.get(3));
+						if (!shop.get(2).equalsIgnoreCase(shop.get(3))) {
+							out.write("<html><head></head><body>");
+							out.write("<h4>wrong password!</h4>");
+							out.write("<br><br>");
+							out.write("<h4><a href=\"signUp.jsp" + "\">return to sing up " + "</a></h4><br><br>");
+							out.write("<h4><a href=\"index.jsp" + "\">return to sing in" + "</a></h4>");
+							break;
+						}
+						
+						InputStream uploadedStream = item.getInputStream();
+
+						statementInsert = conn.prepareStatement(query_insert, Statement.RETURN_GENERATED_KEYS);
+						statementInsert.setString(1, shop.get(0)); // name
+						statementInsert.setString(2, shop.get(1));// email
+						statementInsert.setString(3, shop.get(2));// password
+						statementInsert.setString(4, shop.get(4));// phone
+						statementInsert.setDouble(5, Double.parseDouble(shop.get(5)));// lng
+						statementInsert.setDouble(6, Double.parseDouble(shop.get(6)));// lat
+						statementInsert.setString(7, shop.get(7));// intro
+						statementInsert.executeUpdate();
+
+						try (ResultSet generatedKeys = statementInsert.getGeneratedKeys()) {
+							if (generatedKeys.next()) {
+								id = generatedKeys.getInt(1);
+							} else {
+								throw new SQLException("Creating user failed, no ID obtained.");
+							}
+						}
+						String fileName = item.getName();
+						System.out.println("fileName;" + fileName);
+						out.write("fileName:" + fileName);
+						out.write("<br>");
+						String ext = StringUtils.substringAfterLast(fileName, "."); // 取檔名不包括副檔名
+						String convertFileName = id + "." + ext;
+						System.out.println("convertFileName;" + convertFileName);// 更改成id名字
+						out.write("coverFileName:" + convertFileName);
+						out.write("<br>");
+						FileOutputStream outFile = new FileOutputStream(shopImgPath + convertFileName);
+
+						statementUpdate = conn.prepareStatement(query_update);
+						statementUpdate.setString(1, shop.get(0)); // name
+						statementUpdate.setString(2, shop.get(4));// phone
+						statementUpdate.setString(3, shop.get(1));// email
+						statementUpdate.setString(4, shop.get(2));// password
+						statementUpdate.setDouble(5, Double.parseDouble(shop.get(5)));// lng
+						statementUpdate.setDouble(6, Double.parseDouble(shop.get(6)));// lat
+						statementUpdate.setString(7, shop.get(7));// intro
 						statementUpdate.setString(8, shopImgPath + convertFileName);
 						statementUpdate.setInt(9, id);
 						statementUpdate.executeUpdate();
@@ -240,17 +263,18 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						out.write("<br>");
 						IOUtils.copy(uploadedStream, outFile);
 						/*
-						 * out.write("<a href=\"UploadDownloadFileServlet?id=" + id
-						 * + "\">Download " + fileItem.getName() + "</a>");
+						 * out.write( "<a href=\"UploadDownloadFileServlet?id="
+						 * + id + "\">Download " + fileItem.getName() + "</a>");
 						 */
-						
+
 						statementUpdate.close();
 						statementInsert.close();
+						out.write("<br>");
+						out.write("<a href=\"index.jsp" + "\">Return " + "</a>");
 					}
 				}
+				
 			}
-			out.write("<br>");
-			out.write("<a href=\"shopInfo.jsp" + "\">Return " + "</a>");
 
 		} catch (SQLException | FileUploadException e) {
 			// TODO Auto-generated catch block
