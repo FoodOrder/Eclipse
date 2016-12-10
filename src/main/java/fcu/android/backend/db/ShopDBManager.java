@@ -182,6 +182,8 @@ public class ShopDBManager {
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
 				String intro = rs.getString("intro");
+				Double longitude = rs.getDouble("longitude");
+				Double latitude = rs.getDouble("latitude");
 				//String photo = rs.getString("photo");
 
 				Shop shop = new Shop();
@@ -191,6 +193,8 @@ public class ShopDBManager {
 				shop.setEmail(email);
 				shop.setPhone(phone);
 				shop.setIntro(intro);
+				shop.setLongitude(longitude);
+				shop.setLatitude(latitude);
 				shop.setPhoto(shopImgURL+id);
 				lsShops.add(shop);
 			}
