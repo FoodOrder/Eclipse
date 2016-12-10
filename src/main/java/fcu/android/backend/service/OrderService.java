@@ -58,6 +58,14 @@ public class OrderService{
 		return order;
 	}
 	
+	@POST
+	@Path("addTime")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void addTime(@FormParam("id") int id, @FormParam("type") int type) {
+		dbManager.addTime(id, type);
+	}
+	
 	@GET
 	@Path("getOrder")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -96,11 +104,12 @@ public class OrderService{
 		return order;
 	}
 	
-	public void additem(int foodId,int amount,ArrayList<OrderItem> lsItems){
+	public boolean additem(int foodId,int amount,ArrayList<OrderItem> lsItems){
 		OrderItem item = new OrderItem();
 		item.setFoodId(foodId);
 		item.setAmount(amount);
-		lsItems.add(item);
+		boolean check = lsItems.add(item);
+		return check;
 	}
 
 	@GET

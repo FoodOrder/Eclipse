@@ -18,6 +18,7 @@
 		out.println(accept);
 		
 		orderservice.update(id, accept);
+		orderservice.addTime(id, 1);
 		
 		response.sendRedirect("order.jsp");
 	
