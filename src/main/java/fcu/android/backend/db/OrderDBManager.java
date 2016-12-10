@@ -30,37 +30,38 @@ public class OrderDBManager {
 	public boolean addOrderList(Order order) {
 		Connection conn = database.getConnection();
 		PreparedStatement preStmt = null; // insert order
-		PreparedStatement statement_findUser = null; // find userId
+		//PreparedStatement statement_findUser = null; // find userId
 
 		Statement stmt = null; // select order
-		String findUserId = "select * from USER where email=?";
+		//String findUserId = "select * from USER where email=?";
 		String insertOrder = "insert into ORDER_LIST(shopId, userId, orderTime, status, longitude, latitude, address, remark) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		String selectOrder = "SELECT * FROM ORDER_LIST";
 
 		try {
 
 			// find userId
-			statement_findUser = conn.prepareStatement(findUserId);
+			/*statement_findUser = conn.prepareStatement(findUserId);
 			statement_findUser.setString(1, order.getUserEmail());
 			ResultSet rs_uid = statement_findUser.executeQuery();
-
+			
 			int uid = -1;
 			while (rs_uid.next()) {
 				uid = rs_uid.getInt("ID");
 			}
-			statement_findUser.close();
+			System.out.println(uid);
+			statement_findUser.close();*/
 
 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date current = new Date();
 
 			System.out.println("shopId: " + order.getShopId());
-			System.out.println("uid: " + uid);
+			System.out.println("uid: " + order.getUserId());
 			System.out.println("OrderTime: " + sdFormat.format(current));
 
 			// insert order
 			preStmt = conn.prepareStatement(insertOrder);
 			preStmt.setInt(1, order.getShopId());
-			preStmt.setInt(2, uid);
+			preStmt.setInt(2, order.getUserId());
 			preStmt.setString(3, sdFormat.format(current));
 			preStmt.setInt(4, 0);
 			preStmt.setDouble(5, order.getLongitude());
@@ -79,7 +80,7 @@ public class OrderDBManager {
 			stmt.close();
 			conn.commit();
 
-			addOrderItem(order, uid);
+			addOrderItem(order, order.getUserId());
 
 			return true;
 		} catch (SQLException e) {
