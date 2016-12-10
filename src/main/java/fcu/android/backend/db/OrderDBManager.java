@@ -195,16 +195,15 @@ public class OrderDBManager {
 		Statement stmt = null;
 		String sql = "";
 		String query = "SELECT * FROM ORDER_LIST";
-		String result = "";
 		try {
 			switch(timeType) {
-			case 1:
+			case 1:  //接受
 				sql = "UPDATE ORDER_LIST SET confirmTime=? WHERE id=?";
 				break;
-			case 2:
+			case 2:  //外送
 				sql = "UPDATE ORDER_LIST SET outsetTime=? WHERE id=?";
 				break;
-			case 3:
+			case 3:  //送達
 				sql = "UPDATE ORDER_LIST SET arriveTime=? WHERE id=?";
 				break;
 			default:
@@ -226,13 +225,13 @@ public class OrderDBManager {
 			while (rs.next()) {
 				switch(timeType) {
 				case 1:
-					System.out.println(result = "OrderId: " + rs.getInt("id") + ", userId: " + rs.getInt("userId") + ", confirmTime: " + rs.getString("confirmTime"));
+					System.out.println("OrderId: " + rs.getInt("id") + ", userId: " + rs.getInt("userId") + ", confirmTime: " + rs.getString("confirmTime"));
 					break;
 				case 2:
-					System.out.println(result = "OrderId: " + rs.getInt("id") + ", userId: " + rs.getInt("userId") + ", outsetTime: " + rs.getString("outsetTime"));
+					System.out.println("OrderId: " + rs.getInt("id") + ", userId: " + rs.getInt("userId") + ", outsetTime: " + rs.getString("outsetTime"));
 					break;
 				case 3:
-					System.out.println(result = "OrderId: " + rs.getInt("id") + ", userId: " + rs.getInt("userId") + ", arriveTime: " + rs.getString("arriveTime"));
+					System.out.println("OrderId: " + rs.getInt("id") + ", userId: " + rs.getInt("userId") + ", arriveTime: " + rs.getString("arriveTime"));
 					break;
 				default:
 					break;	
@@ -313,18 +312,8 @@ public class OrderDBManager {
 	public List<Order> getOrder(int UserId) {
 		Connection conn = database.getConnection();
 		PreparedStatement stmt = null;
-//		String findShopId = "select * from USER where email=?";
 		String query = "select * from ORDER_LIST where userId = ?";
 		try {
-
-//			statement = conn.prepareStatement(findShopId);
-//			statement.setString(1, UserEmail);
-//			ResultSet rs_id = statement.executeQuery();
-//
-//			int uid = -1;
-//			while (rs_id.next()) {
-//				uid = rs_id.getInt("ID");
-//			}
 
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, UserId);
