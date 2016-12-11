@@ -373,6 +373,8 @@ public class OrderDBManager {
 				String confirmTime = rs.getString("confirmTime");
 				String outsetTime = rs.getString("outsetTime");
 				String arriveTime = rs.getString("arriveTime");
+				Double longitude = rs.getDouble("longitude");
+				Double latitude = rs.getDouble("latitude");
 
 				Order order = new Order();
 				order.setId(id);
@@ -383,6 +385,8 @@ public class OrderDBManager {
 				order.setConfirmTime(confirmTime);
 				order.setOutsetTime(outsetTime);
 				order.setArriveTime(arriveTime);
+				order.setLongitude(longitude);
+				order.setLatitude(latitude);
 				lsOrder.add(order);
 			}
 		} catch (SQLException e) {
