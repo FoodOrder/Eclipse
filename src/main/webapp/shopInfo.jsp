@@ -268,7 +268,7 @@
 												var b = (document
 														.getElementById("b").value) * 1;
 												var latlng = new google.maps.LatLng(
-														a, b);
+														b, a);
 												//設定地圖參數
 												var mapOptions = {
 													zoom : 19, //初始放大倍數
