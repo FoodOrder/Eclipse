@@ -12,6 +12,7 @@ import java.util.List;
 
 import fcu.android.backend.data.OrderItem;
 //import fcu.android.backend.data.Shop;
+import fcu.android.backend.data.Shop;
 
 public class OrderItemDBManager {
 
@@ -103,16 +104,18 @@ public class OrderItemDBManager {
 		try {
 
 			stmt = conn.prepareStatement(query);
-			 stmt.setInt(1, orderId);
-			 ResultSet rs = stmt.executeQuery();
+			stmt.setInt(1, orderId);
+			ResultSet rs = stmt.executeQuery();
 
 			List<OrderItem> lsOrderItem = new ArrayList<OrderItem>();
 
 				while (rs.next()) {
 					OrderItem orderItem = new OrderItem();
 					orderItem.setFoodId(rs.getInt("foodId"));
+					orderItem.setFoodName(getMenuName(rs.getInt("foodId")));
 					orderItem.setAmount(rs.getInt("amount"));
 					orderItem.setOrderid(rs.getInt("orderId"));
+					
 					lsOrderItem.add(orderItem);
 				}
 
@@ -130,6 +133,35 @@ public class OrderItemDBManager {
 			}
 		}
 		return new ArrayList<OrderItem>();
+	}
+	
+	public String getMenuName(int id) {
+		Connection conn = database.getConnection();
+		String sql = "select * from MENU where id=?";
+		PreparedStatement stmt = null;
+		String name = "";
+		
+		try {
+
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				name = rs.getString("MenuName");
+			}
+			return name;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return "";
 	}
 
 	public List<OrderItem> listAllOrderItem() {
