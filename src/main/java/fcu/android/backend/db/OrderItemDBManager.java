@@ -114,8 +114,7 @@ public class OrderItemDBManager {
 					orderItem.setFoodId(rs.getInt("foodId"));
 					orderItem.setFoodName(getMenuName(rs.getInt("foodId")));
 					orderItem.setAmount(rs.getInt("amount"));
-					orderItem.setOrderid(rs.getInt("orderId"));
-					
+					orderItem.setOrderid(rs.getInt("orderId"));		
 					lsOrderItem.add(orderItem);
 				}
 
