@@ -50,7 +50,7 @@ public class OrderService{
 	@Path("update")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String update(@FormParam("id") String id, @FormParam("status") String status) {
+	public String update(@FormParam("status") String status, @FormParam("id") String id) {
 		Order order = new Order();
 		int newId = Integer.parseInt(id);
 		int newStatus = Integer.parseInt(status);
