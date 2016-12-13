@@ -171,7 +171,7 @@ public class OrderDBManager {
 
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			System.out.println("List All Menus");
+			System.out.println("List All Orders");
 			while (rs.next()) {
 				System.out.println("OrderId: " + rs.getInt("id") + ", userId: " + rs.getInt("userId") + ", orderTime: " + rs.getString("orderTime"));
 			}

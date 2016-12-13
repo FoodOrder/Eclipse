@@ -50,12 +50,15 @@ public class OrderService{
 	@Path("update")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Order update(@FormParam("id") int id, @FormParam("status") int status) {
+	public String update(@FormParam("id") String id, @FormParam("status") String status) {
 		Order order = new Order();
-		order.setId(id);
-		order.setStatus(status);
-		dbManager.updateOrder(order);
-		return order;
+		int newId = Integer.parseInt(id);
+		int newStatus = Integer.parseInt(status);
+		order.setId(newId);
+		order.setStatus(newStatus);
+		System.out.println(id + ", " +  status);
+		boolean check = dbManager.updateOrder(order);
+		return String.valueOf(check);
 	}
 	
 	@POST
