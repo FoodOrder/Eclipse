@@ -40,7 +40,7 @@ public class OrderService{
 		for(int i = 0; i < order.getItems().size() ; i++){
 			additem(order.getItems().get(i).getFoodId(),order.getItems().get(i).getAmount(),lsItems);
 		}
-		
+		System.out.println("Order成功");
 		dbManager.addOrderList(order);
 		System.out.println(id);
 		return true;

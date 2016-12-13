@@ -22,23 +22,21 @@ public class CommentService {
 
 	@POST
 	@Path("register")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Comment register(@FormParam("userId") int userId, @FormParam("type") String type, @FormParam("content") String content) {
-		Comment comment = new Comment();
-		comment.setType(type);
-		comment.setContent(content);
-		dbManager.addComment(userId, comment);
-		return comment;
+	public boolean addComment(Comment comment) {
+		
+		System.out.println("Comment成功");
+		dbManager.addComment(comment);
+		return true;
 	}
 
-	@GET
+	/*@GET
 	@Path("{userId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Comment getComment(@PathParam("userId") int userId) {
-
 		return dbManager.getComment(userId);
-	}
+	}*/
 
 	@GET
 	@Path("list")

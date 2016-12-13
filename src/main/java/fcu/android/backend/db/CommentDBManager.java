@@ -24,7 +24,7 @@ public class CommentDBManager {
 
 	}
 
-	public boolean addComment(int userId, Comment comment) {
+	public boolean addComment(Comment comment) {
 		Connection conn = database.getConnection();
 		PreparedStatement preStmt = null;
 		Statement stmt = null;
@@ -32,7 +32,7 @@ public class CommentDBManager {
 		String query = "SELECT * FROM COMMENT";
 		try {
 			preStmt = conn.prepareStatement(sql);
-			preStmt.setInt(1, userId);
+			preStmt.setInt(1, comment.getUserId());
 			preStmt.setString(2, comment.getType());
 			preStmt.setString(3, comment.getContent());
 			preStmt.executeUpdate();
