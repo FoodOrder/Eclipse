@@ -10,15 +10,15 @@
 <body>
 
 	<%
-		int id = Integer.valueOf(request.getParameter("OrderId"));
-		int outset = Integer.valueOf(request.getParameter("outset"));
+		String id = request.getParameter("OrderId");
+		String outset = request.getParameter("outset");
 	
 		OrderService orderservice = new OrderService();
 		
 		out.println(outset);
 		
-		orderservice.update(id, outset);
-		orderservice.addTime(id, 2);
+		orderservice.update(outset, id);
+		orderservice.addTime(Integer.parseInt(id), 2);
 		
 		response.sendRedirect("order.jsp");
 	

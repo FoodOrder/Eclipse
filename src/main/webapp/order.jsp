@@ -25,7 +25,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="refresh" content="60; url=order.jsp; charset=BIG5">
+<meta http-equiv="refresh" content="60; url=order.jsp; charset=utf-8">
 
 <!-- 選擇性佈景主題 -->
 <link rel="stylesheet"

@@ -10,15 +10,15 @@
 <body>
 
 	<%
-		int id = Integer.valueOf(request.getParameter("OrderId"));
-		int accept = Integer.valueOf(request.getParameter("accept"));
+		String id = request.getParameter("OrderId");
+		String accept = request.getParameter("accept");
 	
 		OrderService orderservice = new OrderService();
 		
 		out.println(accept);
 		
-		orderservice.update(id, accept);
-		orderservice.addTime(id, 1);
+		orderservice.update(accept, id);
+		orderservice.addTime(Integer.parseInt(id), 1);
 		
 		response.sendRedirect("order.jsp");
 	
