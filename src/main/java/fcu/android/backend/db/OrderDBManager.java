@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 //import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+//import java.util.ArrayList;
 //import java.util.Date;
+//import java.util.List;
+//import java.util.Date;
+import java.util.*;
 import fcu.android.backend.data.Order;
 
 public class OrderDBManager {
@@ -296,6 +297,7 @@ public class OrderDBManager {
 
 			stmt.close();
 			conn.commit();
+			Collections.reverse(lsOrder);
 			return lsOrder;
 
 		} catch (SQLException e) {
@@ -340,6 +342,7 @@ public class OrderDBManager {
 
 			stmt.close();
 			conn.commit();
+			Collections.reverse(lsOrder);
 			return lsOrder;
 
 		} catch (SQLException e) {

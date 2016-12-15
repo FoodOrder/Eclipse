@@ -14,7 +14,7 @@
 
 	OrderService orderservice = new OrderService();
 	List<Order> lsOrder = orderservice.getOrder(email);
-	Collections.reverse(lsOrder);
+	//Collections.reverse(lsOrder);
 
 	UserService userservice = new UserService();
 
