@@ -51,7 +51,7 @@ public class OrderDBManager {
 			}
 			System.out.println(uid);
 			statement_findUser.close();*/
-
+			TimeZone.setDefault(TimeZone.getTimeZone("GMT+08:00"));
 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date current = new Date();
 
