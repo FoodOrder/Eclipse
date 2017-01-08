@@ -90,6 +90,10 @@ public class ShopService {
 
 		return dbManager.getShop(email);
 	}
+	
+	public Shop getShop(int shopId){
+		return dbManager.getShop(shopId);
+	}
 
 	@GET
 	@Path("list")

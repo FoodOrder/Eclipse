@@ -164,6 +164,41 @@ public class ShopDBManager {
 		}
 		return new Shop();
 	}
+	
+	public Shop getShop(int id) {
+		Connection conn = database.getConnection();
+		PreparedStatement stmt = null;
+		String query = "select * from SHOP where id = ?";
+		try {
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			Shop shop = new Shop();
+			if (rs.next()) {
+				shop.setID(rs.getInt("ID"));
+				shop.setShopName(rs.getString("shopName"));
+				shop.setPassword(rs.getString("password"));
+				shop.setEmail(rs.getString("email"));
+				shop.setPhone(rs.getString("phone"));
+				shop.setIntro(rs.getString("intro"));
+				shop.setLongitude(rs.getDouble("longitude"));
+				shop.setLatitude(rs.getDouble("latitude"));
+				shop.setPhoto(shopImgURL+id);
+			}
+			stmt.close();
+			conn.commit();
+			return shop;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return new Shop();
+	}
 
 	public List<Shop> listAllShops() {
 		List<Shop> lsShops = new ArrayList<Shop>();
