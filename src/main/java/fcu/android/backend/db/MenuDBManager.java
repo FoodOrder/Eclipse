@@ -13,6 +13,8 @@ import fcu.android.backend.data.Menu;
 public class MenuDBManager {
 
 	private static MenuDBManager DB_MANAGER = new MenuDBManager();
+	
+	private static final String menuImgURL = "http://140.134.26.71:58080/android-backend/Menu_UploadDownloadFileServlet?id=";
 
 	public static MenuDBManager getInstance() {
 		return DB_MANAGER;
@@ -176,6 +178,7 @@ public class MenuDBManager {
 
 			while (rs.next()) {
 				Menu menu = new Menu();
+				menu.setPhoto(menuImgURL + rs.getInt("id"));
 				menu.setMenuName(rs.getString("MenuName"));
 				menu.setMenuPrice(rs.getInt("MenuPrice"));
 				menu.setShopID(rs.getInt("ShopID"));
@@ -216,6 +219,7 @@ public class MenuDBManager {
 				menu.setMenuPrice(rs.getInt("MenuPrice"));
 				menu.setShopID(rs.getInt("ShopID"));
 				menu.setId(rs.getInt("id"));
+				menu.setPhoto(menuImgURL + id);
 			}
 
 			stmt.close();
@@ -256,7 +260,7 @@ public class MenuDBManager {
 				menu.setMenuName(name);
 				menu.setMenuPrice(price);
 				menu.setShopID(shopId);
-				menu.setPhoto(photo);
+				menu.setPhoto(menuImgURL + id);
 				lsMenu.add(menu);
 			}
 		} catch (SQLException e) {

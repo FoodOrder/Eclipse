@@ -10,13 +10,15 @@ public class Type implements Serializable {
 	 * 2 飯
 	 * 3 粥
 	 * 4 飲品
-	 * 5 冰
+	 * 5 冰(甜)
 	 * 6 炸
 	 * 7 小吃
 	 * 8 火鍋
 	 * 9 西式餐點
 	 * 10 辣
 	 * 11 便當
+	 * 12 早餐
+	 * 13 晚餐
 	*/
 	
 	private int id;

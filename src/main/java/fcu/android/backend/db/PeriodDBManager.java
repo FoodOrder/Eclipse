@@ -8,28 +8,28 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fcu.android.backend.data.Period;
 import fcu.android.backend.data.Shop;
-import fcu.android.backend.data.Style;
 import fcu.android.backend.service.ShopService;
 
-public class StyleDBManager {
+public class PeriodDBManager {
 	
-	private static StyleDBManager DB_MANAGER = new StyleDBManager();
+	private static PeriodDBManager DB_MANAGER = new PeriodDBManager();
 
-	public static StyleDBManager getInstance() {
+	public static PeriodDBManager getInstance() {
 		return DB_MANAGER;
 	}
 
 	private IDatabase database = DatabaseFactory.getDatabase(DatabaseFactory.DatabaseType.MySql);
 
-	private StyleDBManager() {
+	private PeriodDBManager() {
 
 	}
 	
-	public List<Shop> getShopFromStyle(int style_id) {
+	public List<Shop> getShopFromPeriod(int Period_id) {
 		Connection conn = database.getConnection();
 		PreparedStatement stmt = null;
-		String query = "select * from STYLE where style = ?";
+		String query = "select * from PRIDAY_OR_NIGHTCE where DayNight = ?";
 		
 		List<Shop> lsShop = new ArrayList<Shop>();
 		ShopService shopService = new ShopService();
@@ -37,7 +37,7 @@ public class StyleDBManager {
 		
 		try {
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, style_id);
+			stmt.setInt(1, Period_id);
 			ResultSet rs = stmt.executeQuery();
 			Shop shop = new Shop();
 			
@@ -61,27 +61,22 @@ public class StyleDBManager {
 		return new ArrayList<Shop>();
 	}
 	
-	public List<Style> getStyleFromShop(int shopId) {
-		List<Style> lsStyles = new ArrayList<Style>();
-		
+	public Period getPeriodFromShop(int shopId) {		
 		Connection conn = database.getConnection();
 		PreparedStatement stmt = null;
-		String query = "select * from TYPE where shopId = ?";
+		String query = "select * from DAY_OR_NIGHT where shopId = ?";
+		
+		Period period = new Period();
 		try {
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, shopId);
 			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				int style_id = rs.getInt("type");
-				
-				Style style = new Style();
-				style.setStyle(style_id);
-				
-				lsStyles.add(style);
+			if (rs.next()) {
+				period.setPeriod(rs.getInt("DAY_OR_NIGHT"));
 			}
 			stmt.close();
 			conn.commit();
-			return lsStyles;
+			return period;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -91,14 +86,14 @@ public class StyleDBManager {
 				e.printStackTrace();
 			}
 		}
-		return new ArrayList<Style>();
+		return new Period();
 	}
 
-	public List<Style> listAllStyles() {
-		List<Style> lsStyles = new ArrayList<Style>();
+	public List<Period> listAllPeriods() {
+		List<Period> lsPeriods = new ArrayList<Period>();
 
 		Connection conn = database.getConnection();
-		String sql = "SELECT * FROM STYLE";
+		String sql = "SELECT * FROM DAY_OR_NIGHT";
 		Statement stmt = null;
 
 		try {
@@ -107,19 +102,18 @@ public class StyleDBManager {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				int shopId = rs.getInt("shopId");
-				int style_id = rs.getInt("style");
+				int DayNight_id = rs.getInt("price");
 
-				Style style = new Style();
-				style.setId(id);
-				style.setShopId(shopId);
-				style.setStyle(style_id);
-				lsStyles.add(style);
+				Period period = new Period();
+				period.setId(id);
+				period.setShopId(shopId);
+				period.setPeriod(DayNight_id);
+				lsPeriods.add(period);
 				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return lsStyles;
+		return lsPeriods;
 	}
-
 }

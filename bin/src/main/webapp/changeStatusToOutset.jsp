@@ -10,8 +10,8 @@
 <body>
 
 	<%
-		int id = Integer.valueOf(request.getParameter("OrderId"));
-		int outset = Integer.valueOf(request.getParameter("outset"));
+		String id = request.getParameter("OrderId");
+		String outset = request.getParameter("outset");
 	
 		OrderService orderservice = new OrderService();
 		

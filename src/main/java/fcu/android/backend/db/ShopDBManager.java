@@ -238,5 +238,48 @@ public class ShopDBManager {
 		}
 		return lsShops;
 	}
+	
+	public List<Shop> listAllShops_IOS() {
+		List<Shop> lsShops = new ArrayList<Shop>();
+		Shop shop1 = new Shop();
+		Shop shop2 = new Shop();
+		lsShops.add(shop1);
+		lsShops.add(shop2);
+
+		Connection conn = database.getConnection();
+		String sql = "SELECT * FROM SHOP";
+		Statement stmt = null;
+
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				int id = rs.getInt("ID");
+				String name = rs.getString("shopName");
+				String password = rs.getString("password");
+				String email = rs.getString("email");
+				String phone = rs.getString("phone");
+				String intro = rs.getString("intro");
+				Double longitude = rs.getDouble("longitude");
+				Double latitude = rs.getDouble("latitude");
+				//String photo = rs.getString("photo");
+
+				Shop shop = new Shop();
+				shop.setID(id);
+				shop.setShopName(name);
+				shop.setPassword(password);
+				shop.setEmail(email);
+				shop.setPhone(phone);
+				shop.setIntro(intro);
+				shop.setLongitude(longitude);
+				shop.setLatitude(latitude);
+				shop.setPhoto(shopImgURL+id);
+				lsShops.add(shop);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lsShops;
+	}
 
 }

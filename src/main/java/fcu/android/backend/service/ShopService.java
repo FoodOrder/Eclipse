@@ -101,4 +101,11 @@ public class ShopService {
 	public List<Shop> listShops() {
 		return dbManager.listAllShops();
 	}
+	
+	@GET
+	@Path("list_iOS")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Shop> listShops_IOS() {
+		return dbManager.listAllShops_IOS();
+	}
 }

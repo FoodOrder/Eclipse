@@ -33,7 +33,7 @@ public class PriceDBManager {
 		
 		List<Shop> lsShop = new ArrayList<Shop>();
 		ShopService shopService = new ShopService();
-		int id = -1;
+		int sid = -1;
 		
 		try {
 			stmt = conn.prepareStatement(query);
@@ -42,8 +42,8 @@ public class PriceDBManager {
 			Shop shop = new Shop();
 			
 			while (rs.next()) {
-				id = rs.getInt("id");
-				shop = shopService.getShop(id);
+				sid = rs.getInt("shopId");
+				shop = shopService.getShop(sid);
 				lsShop.add(shop);
 			}
 			stmt.close();

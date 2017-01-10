@@ -10,8 +10,8 @@
 <body>
 
 	<%
-		int id = Integer.valueOf(request.getParameter("OrderId"));
-		int accept = Integer.valueOf(request.getParameter("accept"));
+		String id = request.getParameter("OrderId");
+		String accept = request.getParameter("accept");
 	
 		OrderService orderservice = new OrderService();
 		
