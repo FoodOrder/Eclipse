@@ -147,6 +147,8 @@ public class ShopDBManager {
 				shop.setIntro(rs.getString("intro"));
 				shop.setLongitude(rs.getDouble("longitude"));
 				shop.setLatitude(rs.getDouble("latitude"));
+				shop.setOpenTime(rs.getString("openTime"));
+				shop.setCloseDay(rs.getString("closeDay"));
 				int id = rs.getInt("ID");
 				shop.setPhoto(shopImgURL+id);
 			}
@@ -183,6 +185,8 @@ public class ShopDBManager {
 				shop.setIntro(rs.getString("intro"));
 				shop.setLongitude(rs.getDouble("longitude"));
 				shop.setLatitude(rs.getDouble("latitude"));
+				shop.setOpenTime(rs.getString("openTime"));
+				shop.setCloseDay(rs.getString("closeDay"));
 				shop.setPhoto(shopImgURL+id);
 			}
 			stmt.close();
@@ -219,6 +223,8 @@ public class ShopDBManager {
 				String intro = rs.getString("intro");
 				Double longitude = rs.getDouble("longitude");
 				Double latitude = rs.getDouble("latitude");
+				String openTime = rs.getString("openTime");
+				String closeDay = rs.getString("closeDay");
 				//String photo = rs.getString("photo");
 
 				Shop shop = new Shop();
@@ -231,6 +237,8 @@ public class ShopDBManager {
 				shop.setLongitude(longitude);
 				shop.setLatitude(latitude);
 				shop.setPhoto(shopImgURL+id);
+				shop.setCloseDay(closeDay);
+				shop.setOpenTime(openTime);
 				lsShops.add(shop);
 			}
 		} catch (SQLException e) {

@@ -162,7 +162,7 @@
 											<td class="col-md-2"><h4 class="text-center"><%=userservice.getUser(order.getUserId()).getPhone()%></h4></td>
 											<td class="col-md-2">
 												<%
-													Double shopLa = shopservice.getShop(email).getLatitude();
+														Double shopLa = shopservice.getShop(email).getLatitude();
 														Double shopLng = shopservice.getShop(email).getLongitude();
 
 														Double userLa = order.getLatitude();

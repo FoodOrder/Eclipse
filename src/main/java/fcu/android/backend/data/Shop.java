@@ -18,6 +18,10 @@ public class Shop implements Serializable {
 	private String photo;
 	
 	private String intro;
+	
+	private String openTime;
+	
+	private String closeDay;
 
 	private double longitude;
 	
@@ -93,5 +97,21 @@ public class Shop implements Serializable {
 
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
+	}
+
+	public String getOpenTime() {
+		return openTime;
+	}
+
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
+	}
+
+	public String getCloseDay() {
+		return closeDay;
+	}
+
+	public void setCloseDay(String closeDay) {
+		this.closeDay = closeDay;
 	}
 }
