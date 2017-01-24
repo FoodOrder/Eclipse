@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -152,8 +153,9 @@ public class Menu_UploadDownloadFileServlet extends HttpServlet {
 						System.out.println("fileName;" + fileName);
 						out.write("fileName:" + fileName);
 						out.write("<br>");
-						String ext = StringUtils.substringAfterLast(fileName, "."); // 取副檔名不包括檔名
-						String convertFileName = id + "." + ext;
+//						String ext = StringUtils.substringAfterLast(fileName, "."); // 取副檔名不包括檔名
+//						String convertFileName = id + "." + ext;
+						String convertFileName = id + ".jpg";
 						System.out.println("convertFileName;" + convertFileName);// 更改成id名字
 						out.write("coverFileName:" + convertFileName);
 						out.write("<br>");
@@ -184,7 +186,9 @@ public class Menu_UploadDownloadFileServlet extends HttpServlet {
 						out.write("<a href=\"menu.jsp" + "\">Return " + "</a>");
 						// statement.close();
 						statementUpdate.close();
-					} else { // insert
+					} 
+					
+					else { // insert
 						InputStream uploadedStream = item.getInputStream();					
 
 						statementFindId = conn.prepareStatement(findShopId);
@@ -216,15 +220,14 @@ public class Menu_UploadDownloadFileServlet extends HttpServlet {
 						out.write("fileName:" + fileName);
 						out.write("<br>");
 						String ext = StringUtils.substringAfterLast(fileName, "."); // 取副檔名不包括檔名
-						String convertFileName = id + "." + ext;
+//						String convertFileName = id + "." + ext;
+						String convertFileName = id + ".jpg";
 						System.out.println("convertFileName;" + convertFileName);// 更改成id名字
 						out.write("coverFileName:" + convertFileName);
 						out.write("<br>");
-						// File file = new
-						// File(request.getServletContext().getAttribute("FILES_DIR_MENU")
-						// + File.separator
-						// + convertFileName);
+						
 						FileOutputStream outFile = new FileOutputStream(foodImgPath + convertFileName);
+						
 						statementUpdate = conn.prepareStatement(query_update);
 						statementUpdate.setString(1, foodImgPath + convertFileName);
 						statementUpdate.setString(2, menu.get(0));
@@ -234,11 +237,16 @@ public class Menu_UploadDownloadFileServlet extends HttpServlet {
 
 						System.out.println("final file path;" + foodImgPath + convertFileName);
 						out.write("final file path:" + foodImgPath + convertFileName);
-						out.write("<br>");
+//						out.write("<br>");
 						// item.write(file);
-						out.write("<br>");
-
-						IOUtils.copy(uploadedStream, outFile);
+//						out.write("<br>");
+						
+						InputStream input = getClass().getResourceAsStream("menuDefault.jpg");
+						System.out.println(input.getClass().getClassLoader().getResource("").getPath());
+						System.out.println(input.getClass().getName());
+						
+						if (ext.equals(null)) IOUtils.copy(input, outFile);
+						else IOUtils.copy(uploadedStream, outFile);
 						/*
 						 * out.write("<a href=\"UploadDownloadFileServlet?id=" +
 						 * id + "\">Download " + fileItem.getName() + "</a>");

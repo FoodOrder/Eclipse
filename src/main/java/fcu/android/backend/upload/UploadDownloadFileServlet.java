@@ -167,8 +167,9 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						System.out.println("fileName;" + fileName);
 						out.write("fileName:" + fileName);
 						out.write("<br>");
-						String ext = StringUtils.substringAfterLast(fileName, "."); // 取檔名不包括副檔名
-						String convertFileName = id + "." + ext;
+//						String ext = StringUtils.substringAfterLast(fileName, "."); // 取副檔名不包括檔名
+//						String convertFileName = id + "." + ext;
+						String convertFileName = id + ".jpg";
 						System.out.println("convertFileName;" + convertFileName);// 更改成id名字
 						out.write("coverFileName:" + convertFileName);
 						out.write("<br>");
@@ -203,7 +204,9 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						statementUpdate.close();
 						out.write("<br>");
 						out.write("<a href=\"shopInfo.jsp" + "\">Return " + "</a>");
-					} else { // insert
+					} 
+					
+					else { // insert
 //						out.println(shop.get(2));
 //						out.println(shop.get(3));
 						if (!shop.get(2).equalsIgnoreCase(shop.get(3))) {
@@ -238,8 +241,9 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						System.out.println("fileName;" + fileName);
 						out.write("fileName:" + fileName);
 						out.write("<br>");
-						String ext = StringUtils.substringAfterLast(fileName, "."); // 取檔名不包括副檔名
-						String convertFileName = id + "." + ext;
+//						String ext = StringUtils.substringAfterLast(fileName, "."); // 取副檔名不包括檔名
+//						String convertFileName = id + "." + ext;
+						String convertFileName = id + ".jpg";
 						System.out.println("convertFileName;" + convertFileName);// 更改成id名字
 						out.write("coverFileName:" + convertFileName);
 						out.write("<br>");
