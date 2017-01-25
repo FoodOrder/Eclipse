@@ -241,11 +241,19 @@ public class Menu_UploadDownloadFileServlet extends HttpServlet {
 						// item.write(file);
 //						out.write("<br>");
 						
-						InputStream input = getClass().getResourceAsStream("menuDefault.jpg");
-						System.out.println(input.getClass().getClassLoader().getResource("").getPath());
-						System.out.println(input.getClass().getName());
+						String tempDir = System.getProperty("java.io.tmpdir");
 						
-						if (ext.equals(null)) IOUtils.copy(input, outFile);
+						System.out.println(tempDir);
+						out.write("<br>");
+						out.write(tempDir);
+						
+						FileInputStream fi = new FileInputStream(tempDir + "/menuDefault.jpg");
+						File file = new File(tempDir + "/menuDefault.jpg");
+						out.print("<br>" + file.getAbsolutePath());
+						InputStream input = fi;
+						
+						if (ext.equals(null) || ext.equals(""))
+							IOUtils.copy(input, outFile);
 						else IOUtils.copy(uploadedStream, outFile);
 						/*
 						 * out.write("<a href=\"UploadDownloadFileServlet?id=" +

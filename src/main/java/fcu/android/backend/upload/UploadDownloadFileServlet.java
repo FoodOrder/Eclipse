@@ -35,17 +35,15 @@ public class UploadDownloadFileServlet extends HttpServlet {
 	private ServletFileUpload uploader = null;
 
 	private String shopImgPath = null;
-	
+
 	private String meta = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=BIG5\">"
-			 + "<!-- 最新編譯和最佳化的 CSS -->"
-			 + "<link rel=\"stylesheet\""
-			 + "href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css\">"
-			 + "<!-- 選擇性佈景主題 -->"
-			 + "<link rel=\"stylesheet\""
-			 + "href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css\">"
-			 + "<!-- 最新編譯和最佳化的 JavaScript -->"
-			 + "<script	src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js\"></script>"
-			 + "<title>SuperMenu</title>";
+			+ "<!-- 最新編譯和最佳化的 CSS -->" + "<link rel=\"stylesheet\""
+			+ "href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css\">" + "<!-- 選擇性佈景主題 -->"
+			+ "<link rel=\"stylesheet\""
+			+ "href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css\">"
+			+ "<!-- 最新編譯和最佳化的 JavaScript -->"
+			+ "<script	src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js\"></script>"
+			+ "<title>SuperMenu</title>";
 
 	/*
 	 * private String dbURL =
@@ -167,8 +165,9 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						System.out.println("fileName;" + fileName);
 						out.write("fileName:" + fileName);
 						out.write("<br>");
-//						String ext = StringUtils.substringAfterLast(fileName, "."); // 取副檔名不包括檔名
-//						String convertFileName = id + "." + ext;
+						// String ext = StringUtils.substringAfterLast(fileName,
+						// "."); // 取副檔名不包括檔名
+						// String convertFileName = id + "." + ext;
 						String convertFileName = id + ".jpg";
 						System.out.println("convertFileName;" + convertFileName);// 更改成id名字
 						out.write("coverFileName:" + convertFileName);
@@ -204,11 +203,11 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						statementUpdate.close();
 						out.write("<br>");
 						out.write("<a href=\"shopInfo.jsp" + "\">Return " + "</a>");
-					} 
-					
+					}
+
 					else { // insert
-//						out.println(shop.get(2));
-//						out.println(shop.get(3));
+						// out.println(shop.get(2));
+						// out.println(shop.get(3));
 						if (!shop.get(2).equalsIgnoreCase(shop.get(3))) {
 							out.write("<html><head></head><body>");
 							out.write("<h4>wrong password!</h4>");
@@ -217,7 +216,7 @@ public class UploadDownloadFileServlet extends HttpServlet {
 							out.write("<h4><a href=\"index.jsp" + "\">return to sing in" + "</a></h4>");
 							break;
 						}
-						
+
 						InputStream uploadedStream = item.getInputStream();
 
 						statementInsert = conn.prepareStatement(query_insert, Statement.RETURN_GENERATED_KEYS);
@@ -241,8 +240,8 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						System.out.println("fileName;" + fileName);
 						out.write("fileName:" + fileName);
 						out.write("<br>");
-//						String ext = StringUtils.substringAfterLast(fileName, "."); // 取副檔名不包括檔名
-//						String convertFileName = id + "." + ext;
+						String ext = StringUtils.substringAfterLast(fileName, "."); // 取副檔名不包括檔名
+						// String convertFileName = id + "." + ext;
 						String convertFileName = id + ".jpg";
 						System.out.println("convertFileName;" + convertFileName);// 更改成id名字
 						out.write("coverFileName:" + convertFileName);
@@ -265,7 +264,22 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						out.write("final file path:" + shopImgPath + convertFileName);
 						out.write("<br>");
 						out.write("<br>");
-						IOUtils.copy(uploadedStream, outFile);
+
+						String tempDir = System.getProperty("java.io.tmpdir");
+
+						System.out.println(tempDir);
+						out.write("<br>");
+						out.write(tempDir);
+
+						FileInputStream fi = new FileInputStream(tempDir + "/shopDefault.jpg");
+						File file = new File(tempDir + "/shopDefault.jpg");
+						out.print("<br>" + file.getAbsolutePath());
+						InputStream input = fi;
+
+						if (ext.equals(null) || ext.equals(""))
+							IOUtils.copy(input, outFile);
+						else
+							IOUtils.copy(uploadedStream, outFile);
 						/*
 						 * out.write( "<a href=\"UploadDownloadFileServlet?id="
 						 * + id + "\">Download " + fileItem.getName() + "</a>");
@@ -277,7 +291,7 @@ public class UploadDownloadFileServlet extends HttpServlet {
 						out.write("<a href=\"index.jsp" + "\">Return " + "</a>");
 					}
 				}
-				
+
 			}
 
 		} catch (SQLException | FileUploadException e) {

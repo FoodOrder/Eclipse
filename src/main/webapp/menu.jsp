@@ -297,9 +297,6 @@
 								i++;
 								}
 							%>
-							
-
-							<img alt="" src="./defaultImg/menuDefault.jpg">
 						</div>
 						<!-- /.row (nested) -->
 					</div>
